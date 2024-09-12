@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { createPinia } from 'pinia'
 import i18n from './locale'
+import "./index.css"
 
 import App from './App.vue'
 import router from './router'
