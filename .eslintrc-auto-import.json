@@ -69,6 +69,7 @@
     "watchPostEffect": true,
     "watchSyncEffect": true,
     "createRouter": true,
-    "createWebHistory": true
+    "createWebHistory": true,
+    "createWebHashHistory": true
   }
 }
