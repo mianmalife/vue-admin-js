@@ -13,8 +13,8 @@ watch(() => route.path, () => {
 
 <template>
   <el-config-provider :locale="locale">
-    <layout v-if='route.path !== "/login"'></layout>
-    <router-view name='login' />
+    <!-- <layout v-if='route.path !== "/login"'></layout> -->
+    <router-view />
   </el-config-provider>
 </template>
 

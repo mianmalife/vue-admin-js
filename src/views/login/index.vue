@@ -8,7 +8,7 @@
 const router = useRouter()
 function login() {
   localStorage.setItem('token', Math.random())
-  router.push('/')
+  router.push('/workplace')
 }
 </script>
 

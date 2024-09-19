@@ -1,30 +1,120 @@
 
 import login from '@/views/login/index.vue'
+import layout from '@/layout/index.vue'
 
-const staticRouter = [
+const staticRoutes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/home/index.vue'),
-    meta: {
-      title: '首页'
-    },
+    redirect: '/workplace',
   },
   {
-  path: '/login',
-  name: 'login',
-  meta: {
-    title: "登录",
+    path: '/workplace',
+    component: layout,
+    meta: {
+      title: '工作台'
+    },
+    children: [
+      { path: '', name: 'workplace', component: () => import('@/views/workplace/index.vue') }
+    ]
   },
-  components: {
-    login
+  {
+    path: '/login',
+    name: 'login',
+    meta: {
+      title: "登录",
+    },
+    component: login
   }
-}]
+]
+export const dynamicRoutes = [
+  {
+    path: '/list',
+    name: 'list',
+    component: layout,
+    meta: {
+      title: '列表页'
+    },
+    redirect: '/list/table-list',
+    children: [
+      {
+        path: '/list/table-list',
+        name: 'table-list',
+        component: () => import('@/views/list/table-list/index.vue'),
+        meta: {
+          title: '查询表格'
+        },
+      },
+      {
+        path: '/list/basic-list',
+        name: 'basic-list',
+        component: () => import('@/views/list/basic-list/index.vue'),
+        meta: {
+          title: '标准表格'
+        },
+      }
+    ]
+  },
+  {
+    path: '/nested',
+    name: 'nested',
+    component: layout,
+    meta: {
+      title: '路由嵌套'
+    },
+    children: [
+      {
+        path: '/menu1',
+        name: 'menu1',
+        meta: {
+          title: 'menu1'
+        },
+        redirect: '/menu1/menu1-1',
+        children: [
+          {
+            path: '/menu1/menu1-1',
+            name: 'menu1-1',
+            component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
+            meta: {
+              title: 'menu1-1'
+            },
+          },
+          {
+            path: '/menu1/menu1-2',
+            name: 'menu1-2',
+            meta: {
+              title: 'menu1-2'
+            },
+            redirect: '/menu1/menu1-2/menu1-2-1',
+            children: [
+              {
+                path: '/menu1/menu1-2/menu1-2-1',
+                name: 'menu1-2-1',
+                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
+                meta: {
+                  title: 'menu1-2-1'
+                },
+              }
+            ]
+          },
+        ]
+      },
+      {
+        path: '/menu2',
+        name: 'menu2',
+        component: () => import('@/views/nested/menu2/index.vue'),
+        meta: {
+          title: 'menu2'
+        },
+      },
+    ]
+  }]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    ...staticRouter
+    ...staticRoutes,
+    ...dynamicRoutes
   ]
 })
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    hello home
+    工作台
   </div>
 </template>
 
