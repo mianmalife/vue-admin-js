@@ -1,14 +1,14 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="bg-white shadow-sm flex items-center justify-between !px-[10px]">
+    <el-header class="bg-white shadow-sm flex items-center !px-[10px]">
       <div class="w-[190px] h-[40px] leading-[40px] my-[10px] font-bold">
         VUE-ADMIN-JS
       </div>
-      <headerMenuItem />
+      <headerComp />
     </el-header>
     <el-container>
-      <el-aside width="200px" class="bg-white shadow-sm">
-        <siderMenuItem />
+      <el-aside width="200px" class="bg-white shadow-sm" v-if="menulist.length > 0">
+        <siderComp />
       </el-aside>
       <el-container>
         <el-main class="!p-[10px]">
@@ -24,8 +24,11 @@
 </template>
 
 <script setup>
-import headerMenuItem from './headerMenuItem.vue';
-import siderMenuItem from './siderMenuItem.vue';
+import headerComp from './header.vue';
+import siderComp from './sider.vue';
+import { useSideMenuStore } from '@/stores/sidemenu'
+const sideStore = useSideMenuStore()
+const menulist = computed(() => sideStore.menulist?.children || [])
 </script>
 
 <style lang="scss" scoped></style>

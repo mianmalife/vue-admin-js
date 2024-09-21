@@ -2,10 +2,11 @@
 import login from '@/views/login/index.vue'
 import layout from '@/layout/index.vue'
 
-const staticRoutes = [
+export const staticRoutes = [
   {
     path: '/',
     name: 'home',
+    component: layout,
     redirect: '/workplace',
   },
   {
@@ -62,6 +63,7 @@ export const dynamicRoutes = [
     meta: {
       title: '路由嵌套'
     },
+    redirect: '/menu1/menu1-2/menu1-2-1',
     children: [
       {
         path: '/menu1',
@@ -69,7 +71,6 @@ export const dynamicRoutes = [
         meta: {
           title: 'menu1'
         },
-        redirect: '/menu1/menu1-1',
         children: [
           {
             path: '/menu1/menu1-1',
@@ -85,7 +86,6 @@ export const dynamicRoutes = [
             meta: {
               title: 'menu1-2'
             },
-            redirect: '/menu1/menu1-2/menu1-2-1',
             children: [
               {
                 path: '/menu1/menu1-2/menu1-2-1',
