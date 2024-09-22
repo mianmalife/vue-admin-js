@@ -5,10 +5,13 @@
 </template>
 
 <script setup>
+import { useActiveStore } from '@/stores/topmenu'
+const topStore = useActiveStore()
 const router = useRouter()
 function login() {
   localStorage.setItem('token', Math.random())
   router.push('/workplace')
+  topStore.setKey('/workplace')
 }
 </script>
 
