@@ -70,6 +70,7 @@
     "watchSyncEffect": true,
     "createRouter": true,
     "createWebHistory": true,
-    "createWebHashHistory": true
+    "createWebHashHistory": true,
+    "ElMessage": true
   }
 }

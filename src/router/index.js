@@ -1,4 +1,3 @@
-
 import login from '@/views/login/index.vue'
 import layout from '@/layout/index.vue'
 
@@ -7,7 +6,7 @@ export const staticRoutes = [
     path: '/',
     name: 'home',
     component: layout,
-    redirect: '/workplace',
+    redirect: '/workplace'
   },
   {
     path: '/workplace',
@@ -23,7 +22,7 @@ export const staticRoutes = [
     path: '/login',
     name: 'login',
     meta: {
-      title: "登录",
+      title: '登录'
     },
     component: login
   }
@@ -44,7 +43,7 @@ export const dynamicRoutes = [
         component: () => import('@/views/list/table-list/index.vue'),
         meta: {
           title: '查询表格'
-        },
+        }
       },
       {
         path: '/list/basic-list',
@@ -52,7 +51,7 @@ export const dynamicRoutes = [
         component: () => import('@/views/list/basic-list/index.vue'),
         meta: {
           title: '标准表格'
-        },
+        }
       }
     ]
   },
@@ -78,7 +77,7 @@ export const dynamicRoutes = [
             component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
             meta: {
               title: 'menu1-1'
-            },
+            }
           },
           {
             path: '/menu1/menu1-2',
@@ -93,10 +92,10 @@ export const dynamicRoutes = [
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                 meta: {
                   title: 'menu1-2-1'
-                },
+                }
               }
             ]
-          },
+          }
         ]
       },
       {
@@ -105,17 +104,15 @@ export const dynamicRoutes = [
         component: () => import('@/views/nested/menu2/index.vue'),
         meta: {
           title: 'menu2'
-        },
-      },
+        }
+      }
     ]
-  }]
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    ...staticRoutes,
-    ...dynamicRoutes
-  ]
+  routes: [...staticRoutes, ...dynamicRoutes]
 })
 
 router.beforeEach((to, from, next) => {
@@ -126,5 +123,20 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some(record => record.meta.requiresAuth)) {
+//     // 这里检查localStorage中的登录状态
+//     if (!localStorage.getItem('isLoggedIn')) {
+//       next({
+//         path: '/login',
+//         query: { redirect: to.fullPath } // 将尝试访问的路由作为参数，登录后可以重定向回去
+//       })
+//     } else {
+//       next() // 确保调用 next()
+//     }
+//   } else {
+//     next() // 确保一定要调用 next()
+//   }
+// })
 
 export default router
