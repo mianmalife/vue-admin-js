@@ -123,20 +123,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.requiresAuth)) {
-//     // 这里检查localStorage中的登录状态
-//     if (!localStorage.getItem('isLoggedIn')) {
-//       next({
-//         path: '/login',
-//         query: { redirect: to.fullPath } // 将尝试访问的路由作为参数，登录后可以重定向回去
-//       })
-//     } else {
-//       next() // 确保调用 next()
-//     }
-//   } else {
-//     next() // 确保一定要调用 next()
-//   }
-// })
 
 export default router

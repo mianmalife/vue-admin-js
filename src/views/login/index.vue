@@ -53,15 +53,10 @@
 </template>
 
 <script setup>
+import { reactive, ref } from 'vue'
 import { useActiveStore } from '@/stores/topmenu'
 const topStore = useActiveStore()
 const router = useRouter()
-// function login() {
-//   localStorage.setItem('token', Math.random())
-//   router.push('/workplace')
-//   topStore.setKey('/workplace')
-// }
-import { reactive, ref } from 'vue'
 
 let isLoginError = ref(false)
 const userRef = ref()
@@ -110,23 +105,4 @@ const handleForm = async () => {
 }
 </script>
 
-<style lang="scss" scoped>
-// #contain {
-//   display: flex;
-//   flex-direction: column;
-//   text-align: center;
-//   align-items: center;
-//   justify-content: center;
-
-//   width: 400px;
-//   height: 400px;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   border-radius: 25px;
-// border: 1px solid black;
-// background-color: rgba(255, 255, 255, 0.1) !important;
-// backdrop-filter: blur(5px);
-// }
-</style>
+<style lang="scss" scoped></style>
