@@ -26,7 +26,7 @@
 
     <div class="flex justify-end px-[12px] py-[10px]">
       <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
-        :pager-count="3" layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
+        :pager-count="5" layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </div>
   </div>
