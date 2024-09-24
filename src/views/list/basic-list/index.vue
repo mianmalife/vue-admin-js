@@ -25,8 +25,8 @@
     </el-table>
 
     <div class="flex justify-end px-[12px] py-[10px]">
-      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[5, 10]"
-        layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
+      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
+        :pager-count="3" layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </div>
   </div>
@@ -109,12 +109,11 @@ const handleDelete = (index, row) => {
 }
 
 const handleAdd = () => {
-  tableData.value.push({
+  tableData.value.unshift({
     date: '2024-09-24',
     name: '新增了',
     done: false,
   })
-  currentPage.value = Math.ceil(tableData.value.length / pageSize.value);
   updateTotal()
 }
 
@@ -127,7 +126,7 @@ const tableRowClassName = ({ row, rowIndex }) => {
 
 //分页
 const currentPage = ref(1);
-const pageSize = ref(5);
+const pageSize = ref(10);
 const total = ref(tableData.value.length);
 const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value;
