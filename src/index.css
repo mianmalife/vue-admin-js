@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: var(--el-font-family)
+}
+
 html,
 body,
 #app {
