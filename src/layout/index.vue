@@ -1,10 +1,13 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="bg-white shadow-sm flex items-center !px-[10px]">
+    <el-header class="bg-white shadow-sm flex items-center  justify-between !px-[20px]">
       <div class="w-[190px] h-[40px] leading-[40px] my-[10px] font-bold">
         VUE-ADMIN-JS
       </div>
-      <headerComp />
+      <div class="flex flex-1 items-center justify-between">
+        <topmenu />
+        <opti />
+      </div>
     </el-header>
     <el-container>
       <el-aside width="200px" class="bg-white shadow-sm" v-if="menulist.length > 0">
@@ -24,7 +27,8 @@
 </template>
 
 <script setup>
-import headerComp from './header.vue';
+import topmenu from './topmenu.vue';
+import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useSideMenuStore } from '@/stores/sidemenu'
 const sideStore = useSideMenuStore()
