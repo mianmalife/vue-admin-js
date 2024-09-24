@@ -2,15 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  font-family: var(--el-font-family)
-}
-
 html,
 body,
 #app {
   height: 100%;
   background-color: #f1f1f1;
+  font-family: var(--el-font-family)
 }
 
 body {
