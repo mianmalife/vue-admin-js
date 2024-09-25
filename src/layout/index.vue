@@ -25,17 +25,27 @@
           vue-admin-js</el-footer>
       </el-container>
     </el-container>
+    <el-drawer v-model="drawer" title="" size="320">
+      <span>Hi there!</span>
+    </el-drawer>
+    <div class="fixed right-0 top-[20%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded z-10"
+      @click="handleDrawer">
+      <i-ep-setting class="text-[18px]"></i-ep-setting>
+    </div>
   </el-container>
 </template>
 
 <script setup>
-import { Icon } from '@iconify/vue'
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useSideMenuStore } from '@/stores/sidemenu'
 const sideStore = useSideMenuStore()
 const menulist = computed(() => sideStore.menulist?.children || [])
+const drawer = ref(false)
+function handleDrawer() {
+  drawer.value = true
+}
 </script>
 
 <style lang="scss" scoped>

@@ -5,7 +5,9 @@
 :root {
   --hmenu-border-color: #F2F6FC;
   --topmenu-active-bgcolor: #F5F7FA;
+  --setting-bgcolor: #F0F2F5;
 }
+
 html,
 body,
 #app {
@@ -51,6 +53,7 @@ body::-webkit-scrollbar-thumb {
 .el-menu {
   border-right: none !important;
 }
+
 .el-menu--horizontal.el-menu {
   border-bottom: 1px solid var(--hmenu-border-color) !important;
 }
@@ -58,6 +61,7 @@ body::-webkit-scrollbar-thumb {
 .el-header {
   border-bottom: 1px solid var(--hmenu-border-color) !important;
 }
+
 .el-aside {
   border-right: 1px solid var(--hmenu-border-color) !important;
 }
@@ -69,4 +73,10 @@ body::-webkit-scrollbar-thumb {
 .el-menu-item.is-active,
 .el-menu-item:not(.is-disabled):focus {
   background-color: var(--topmenu-active-bgcolor);
+}
+
+.el-drawer__header {
+  border-bottom: 1px solid var(--hmenu-border-color) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 10px !important;
 }
