@@ -8,18 +8,14 @@
         <el-form-item class="mt-[20px]" label="" prop="username">
           <el-input v-model="userForm.username" type="text" autocomplete="off" placeholder="账户：admin">
             <template #prefix>
-              <el-icon color="var(--el-color-primary)">
-                <User />
-              </el-icon>
+              <i-ep-user color="var(--el-color-primary)"></i-ep-user>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
           <el-input v-model="userForm.password" type="password" autocomplete="off" show-password placeholder="密码：admin">
             <template #prefix>
-              <el-icon color="var(--el-color-primary)">
-                <Lock />
-              </el-icon>
+              <i-ep-lock color="var(--el-color-primary)"></i-ep-lock>
             </template>
           </el-input>
         </el-form-item>

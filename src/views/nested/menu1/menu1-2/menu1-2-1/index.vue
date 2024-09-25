@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-white h-[200px] p-[20px]">
     menu1-2-1
   </div>
 </template>

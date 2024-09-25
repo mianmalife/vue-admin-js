@@ -2,11 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --hmenu-border-color: #F2F6FC;
+  --topmenu-active-bgcolor: #F5F7FA;
+}
 html,
 body,
 #app {
   height: 100%;
-  background-color: #f1f1f1;
+  background-color: #FAFCFF;
   font-family: var(--el-font-family);
 }
 
@@ -42,4 +46,27 @@ body::-webkit-scrollbar-thumb {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+
+.el-menu {
+  border-right: none !important;
+}
+.el-menu--horizontal.el-menu {
+  border-bottom: 1px solid var(--hmenu-border-color) !important;
+}
+
+.el-header {
+  border-bottom: 1px solid var(--hmenu-border-color) !important;
+}
+.el-aside {
+  border-right: 1px solid var(--hmenu-border-color) !important;
+}
+
+.el-menu-item:not(.is-disabled):hover {
+  background-color: transparent;
+}
+
+.el-menu-item.is-active,
+.el-menu-item:not(.is-disabled):focus {
+  background-color: var(--topmenu-active-bgcolor);
 }

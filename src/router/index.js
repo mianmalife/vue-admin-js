@@ -12,7 +12,8 @@ export const staticRoutes = [
     path: '/workplace',
     component: layout,
     meta: {
-      title: '工作台'
+      title: '工作台',
+      icon: 'ant-design:field-time-outlined'
     },
     children: [
       { path: '', name: 'workplace', component: () => import('@/views/workplace/index.vue') }
@@ -33,7 +34,8 @@ export const dynamicRoutes = [
     name: 'list',
     component: layout,
     meta: {
-      title: '列表页'
+      title: '列表页',
+      icon: 'ant-design:table-outlined'
     },
     redirect: '/list/table-list',
     children: [
@@ -60,7 +62,8 @@ export const dynamicRoutes = [
     name: 'nested',
     component: layout,
     meta: {
-      title: '路由嵌套'
+      title: '路由嵌套',
+      icon: 'ant-design:folder-open-outlined'
     },
     redirect: '/menu1/menu1-2/menu1-2-1',
     children: [

@@ -1,11 +1,14 @@
 <template>
   <el-menu :default-active="topStore.activeKey" :ellipsis="false" @select="handleSelect" mode="horizontal" router>
-    <el-menu-item v-for="menuObj in topmenu" :index="menuObj.redirect || menuObj.path">{{ menuObj.meta.title
-      }}</el-menu-item>
+    <el-menu-item v-for="menuObj in topmenu" :index="menuObj.redirect || menuObj.path">
+      <Icon :icon="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3 text-[18px]" />
+      {{ menuObj.meta.title }}
+    </el-menu-item>
   </el-menu>
 </template>
 
 <script setup>
+import { Icon } from '@iconify/vue'
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { staticRoutes, dynamicRoutes } from '@/router';
@@ -21,9 +24,4 @@ const handleSelect = (key, keyPath) => {
 }
 </script>
 
-<style lang="scss" scoped>
-.el-menu--horizontal .el-menu-item:not(.is-disabled):hover,
-.el-menu--horizontal .el-menu-item:not(.is-disabled):focus {
-  background-color: transparent;
-}
-</style>
+<style lang="scss" scoped></style>
