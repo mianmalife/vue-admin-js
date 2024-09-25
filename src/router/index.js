@@ -1,5 +1,6 @@
 import login from '@/views/login/index.vue'
 import layout from '@/layout/index.vue'
+import { useMultiTabsStore } from '@/stores/multiTabs'
 
 export const staticRoutes = [
   {
@@ -120,9 +121,14 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   console.log(to, from)
+  if (to.name !== 'login') {
+    const multiTabsStore = useMultiTabsStore()
+    multiTabsStore.setMultiTabsStore(to)
+  }
   if (!localStorage.getItem('token') && to.name !== 'login') {
     next({ name: 'login' })
   } else {
+
     next()
   }
 })

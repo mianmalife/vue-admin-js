@@ -14,6 +14,7 @@
         <siderComp />
       </el-aside>
       <el-container>
+        <multiTabs />
         <el-main class="!p-[10px]">
           <router-view v-slot="{ Component }">
             <transition name="slide" mode="out-in">
@@ -40,6 +41,7 @@ import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useSideMenuStore } from '@/stores/sidemenu'
+import multiTabs from './multiTabs.vue';
 const sideStore = useSideMenuStore()
 const menulist = computed(() => sideStore.menulist?.children || [])
 const drawer = ref(false)

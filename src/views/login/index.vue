@@ -70,7 +70,7 @@ const handleForm = async () => {
       if (!valid) return
       if (userForm.username === 'admin' && userForm.password === 'admin') {
         localStorage.setItem('token', 'true')
-        router.push('/workplace')
+        router.push({ name: 'workplace' })
         topStore.setKey('/workplace')
       } else {
         isLoginError.value = true
