@@ -17,7 +17,14 @@ export const staticRoutes = [
       icon: 'ant-design:field-time-outlined'
     },
     children: [
-      { path: '', name: 'workplace', component: () => import('@/views/workplace/index.vue') }
+      {
+        path: '',
+        name: 'workplace',
+        meta: {
+          title: '工作台'
+        },
+        component: () => import('@/views/workplace/index.vue')
+      }
     ]
   },
   {
@@ -66,7 +73,7 @@ export const dynamicRoutes = [
       title: '路由嵌套',
       icon: 'ant-design:folder-open-outlined'
     },
-    redirect: '/menu1/menu1-2/menu1-2-1',
+    redirect: '/nested/menu1/menu1-2/menu1-2-1',
     children: [
       {
         path: '/menu1',
@@ -76,7 +83,7 @@ export const dynamicRoutes = [
         },
         children: [
           {
-            path: '/menu1/menu1-1',
+            path: '/nested/menu1/menu1-1',
             name: 'menu1-1',
             component: () => import('@/views/nested/menu1/menu1-1/index.vue'),
             meta: {
@@ -84,14 +91,14 @@ export const dynamicRoutes = [
             }
           },
           {
-            path: '/menu1/menu1-2',
+            path: '/nested/menu1/menu1-2',
             name: 'menu1-2',
             meta: {
               title: 'menu1-2'
             },
             children: [
               {
-                path: '/menu1/menu1-2/menu1-2-1',
+                path: '/nested/menu1/menu1-2/menu1-2-1',
                 name: 'menu1-2-1',
                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1/index.vue'),
                 meta: {
@@ -103,7 +110,7 @@ export const dynamicRoutes = [
         ]
       },
       {
-        path: '/menu2',
+        path: '/nested/menu2',
         name: 'menu2',
         component: () => import('@/views/nested/menu2/index.vue'),
         meta: {

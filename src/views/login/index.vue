@@ -32,7 +32,12 @@
 
 <script setup>
 import { useActiveStore } from '@/stores/topmenu'
+import { useSideMenuStore } from '@/stores/sidemenu';
+import { staticRoutes, dynamicRoutes } from '@/router';
+const filterPath = ['/', '/login']
+const allRoutes = staticRoutes.filter(item => filterPath.includes(item.path) === false).concat(dynamicRoutes)
 const topStore = useActiveStore()
+const sideStore = useSideMenuStore()
 const router = useRouter()
 
 let isLoginError = ref(false)
@@ -70,8 +75,12 @@ const handleForm = async () => {
       if (!valid) return
       if (userForm.username === 'admin' && userForm.password === 'admin') {
         localStorage.setItem('token', 'true')
-        router.push({ name: 'workplace' })
+        topStore.setAllRoutes(allRoutes)
         topStore.setKey('/workplace')
+        sideStore.setSideMenu({})
+        nextTick(() => {
+          router.push({ name: 'workplace' })
+        })
       } else {
         isLoginError.value = true
       }

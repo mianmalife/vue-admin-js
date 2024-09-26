@@ -3,10 +3,14 @@ import { defineStore } from 'pinia'
 
 export const useActiveStore = defineStore('topActiveKey', () => {
   const activeKey = ref('')
+  const allRoutes = ref([])
   function setKey(data) {
     activeKey.value = data
   }
-  return { activeKey, setKey }
+  function setAllRoutes(routes) {
+    allRoutes.value = routes
+  }
+  return { activeKey, setKey, allRoutes, setAllRoutes }
 }, {
   persist: true
 })
