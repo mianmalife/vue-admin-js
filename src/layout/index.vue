@@ -26,12 +26,14 @@
           vue-admin-js</el-footer>
       </el-container>
     </el-container>
-    <el-drawer v-model="drawer" title="" size="320">
+    <el-drawer v-model="drawer" title="" size="320" :append-to-body="true">
       <span>Hi there!</span>
     </el-drawer>
-    <div class="fixed right-0 top-[20%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded z-10"
+    <div
+      :class="['transition-all duration-300 delay-75 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none', { ['right-0 z-10']: !drawer }, { ['right-[320px] z-[2200]']: drawer }]"
       @click="handleDrawer">
-      <i-ep-setting class="text-[18px]"></i-ep-setting>
+      <i-ep-setting class="text-[18px]" v-if="!drawer"></i-ep-setting>
+      <i-ep-close class="text-[18px]" v-else></i-ep-close>
     </div>
   </el-container>
 </template>
@@ -46,7 +48,7 @@ const sideStore = useSideMenuStore()
 const menulist = computed(() => sideStore.menulist?.children || [])
 const drawer = ref(false)
 function handleDrawer() {
-  drawer.value = true
+  drawer.value = !drawer.value
 }
 </script>
 
