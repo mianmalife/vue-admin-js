@@ -1,6 +1,7 @@
 <template>
-  <div class="flex items-center justify-between  mx-[10px] bg-white border-b border-solid border-[var(--el-bg-color]">
-    <el-tabs class="px-[10px] bg-white" type="card" :model-value="route.path" @tab-click="tabClick"
+  <div
+    class="mutab__cls flex items-center justify-between pt-[10px] bg-[var(--card-bgcolor)] border-b border-solid border-[var(--el-border-color)]">
+    <el-tabs class="px-[10px] bg-[var(--card-bgcolor)]" type="card" :model-value="route.path" @tab-click="tabClick"
       :closable="multiTabsStore.multiTabslist.length > 1" @tab-remove="handleTabsRemove">
       <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path">
         <template #label>
@@ -122,5 +123,12 @@ const handleCommand = (command) => {
 
 .icon-refresh:hover svg {
   transform: scale(1.5);
+}
+</style>
+<style lang="scss">
+.mutab__cls {
+  .el-tabs--card>.el-tabs__header {
+    margin-bottom: 10px;
+  }
 }
 </style>
