@@ -3,16 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --hmenu-border-color: #F2F6FC;
+  --body-color: #FAFCFF;
   --topmenu-active-bgcolor: #F5F7FA;
   --setting-bgcolor: #F0F2F5;
+  --header-bgcolor: #ffffff;
+  --card-bgcolor: #ffffff;
+}
+
+html.dark {
+  --body-color: #333333;
+  --topmenu-active-bgcolor: #666666;
+  --setting-bgcolor: #666666;
+  --header-bgcolor: #141414;
+  --card-bgcolor: #141414;
 }
 
 html,
 body,
 #app {
   height: 100%;
-  background-color: #FAFCFF;
+  background-color: var(--body-color);
   font-family: var(--el-font-family);
 }
 
@@ -30,16 +40,16 @@ body {
   --sb-size: 4px;
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: var(--sb-size);
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--sb-track-color);
   border-radius: 3px;
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 3px;
 }
@@ -55,28 +65,31 @@ body::-webkit-scrollbar-thumb {
 }
 
 .el-menu--horizontal.el-menu {
-  border-bottom: 1px solid var(--hmenu-border-color) !important;
+  border-bottom: 1px solid var(--el-border-color) !important;
 }
 
 .el-header {
-  border-bottom: 1px solid var(--hmenu-border-color) !important;
+  border-bottom: 1px solid var(--el-border-color) !important;
 }
 
 .el-aside {
-  border-right: 1px solid var(--hmenu-border-color) !important;
+  border-right: 1px solid var(--el-border-color) !important;
 }
 
-.el-menu-item:not(.is-disabled):hover {
-  background-color: transparent;
-}
-
+.el-menu-item:not(.is-disabled):hover, 
+.el-sub-menu__title:hover, 
 .el-menu-item.is-active,
-.el-menu-item:not(.is-disabled):focus {
-  background-color: var(--topmenu-active-bgcolor);
+.el-menu-item:not(.is-disabled):focus  {
+  background-color: var(--topmenu-active-bgcolor) !important;
+}
+
+.el-menu--horizontal .el-menu-item:not(.is-disabled):hover,
+.el-menu--horizontal .el-menu-item:not(.is-disabled):focus {
+  background-color: var(--topmenu-active-bgcolor) !important;
 }
 
 .el-drawer__header {
-  border-bottom: 1px solid var(--hmenu-border-color) !important;
+  border-bottom: 1px solid var(--el-border-color) !important;
   margin-bottom: 0 !important;
   padding-bottom: 10px !important;
 }

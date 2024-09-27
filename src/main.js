@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import i18n from './locale'
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import "./index.css"
 
 import App from './App.vue'

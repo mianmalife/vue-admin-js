@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white p-[20px] rounded shadow">
+  <div class="bg-[var(--card-bgcolor)] p-[20px] rounded shadow">
     <el-skeleton :rows="5" animated :loading="loading">
       <template #default>
         <h1>工作台</h1>

@@ -1,6 +1,6 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="bg-white flex items-center  justify-between !px-[20px] !pr-[40px]">
+    <el-header class="bg-[var(--header-bgcolor)] flex items-center  justify-between !px-[20px] !pr-[40px]">
       <div class="w-[190px] h-[40px] leading-[40px] my-[10px] font-bold">
         VUE-ADMIN-JS
       </div>
@@ -10,7 +10,7 @@
       </div>
     </el-header>
     <el-container>
-      <el-aside width="260px" class="bg-white" v-if="menulist.length > 0">
+      <el-aside width="260px" class="bg-[var(--header-bgcolor)]" v-if="menulist.length > 0">
         <siderComp />
       </el-aside>
       <el-container>
@@ -39,13 +39,13 @@
         <el-divider></el-divider>
       </div>
       <!-- <div
-        :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--el-fill-color)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
+        :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
         @click="handleDrawer">
         <i-ep-close class="text-[18px]"></i-ep-close>
       </div> -->
     </el-drawer>
     <div
-      :class="['translate-all ease-ease fixed top-[40%] bg-[var(--el-fill-color)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
+      :class="['translate-all ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
       @click="handleDrawer">
       <i-ep-setting class="text-[18px]"></i-ep-setting>
     </div>

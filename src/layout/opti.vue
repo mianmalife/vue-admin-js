@@ -7,9 +7,9 @@
             <i-ep-user-filled></i-ep-user-filled>
           </template>
         </el-avatar>
-        <span class="text-[#333] outline-0">
+        <el-link class="outline-0">
           admin
-        </span>
+        </el-link>
       </div>
       <template #dropdown>
         <el-dropdown-menu>
