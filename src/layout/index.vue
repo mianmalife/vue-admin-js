@@ -26,14 +26,28 @@
           vue-admin-js</el-footer>
       </el-container>
     </el-container>
-    <el-drawer v-model="drawer" title="" size="320" :append-to-body="true">
-      <span>Hi there!</span>
+    <el-drawer v-model="drawer" title="设置" size="320" :append-to-body="true">
+      <div>
+        <div class="flex justify-between items-end mb-2">
+          <el-text class="mr-2">暗黑模式</el-text>
+          <el-switch v-model="isDark" @change="changeDark" />
+        </div>
+        <div class="flex justify-between items-end mb-2">
+          <el-text class="mr-2">主题色</el-text>
+          <el-color-picker v-model="themeColor" @change="changeThemeColor" />
+        </div>
+        <el-divider></el-divider>
+      </div>
+      <!-- <div
+        :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--el-fill-color)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
+        @click="handleDrawer">
+        <i-ep-close class="text-[18px]"></i-ep-close>
+      </div> -->
     </el-drawer>
     <div
-      :class="['transition-all duration-300 delay-75 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none', { ['right-0 z-10']: !drawer }, { ['right-[320px] z-[2200]']: drawer }]"
+      :class="['translate-all ease-ease fixed top-[40%] bg-[var(--el-fill-color)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
       @click="handleDrawer">
-      <i-ep-setting class="text-[18px]" v-if="!drawer"></i-ep-setting>
-      <i-ep-close class="text-[18px]" v-else></i-ep-close>
+      <i-ep-setting class="text-[18px]"></i-ep-setting>
     </div>
   </el-container>
 </template>
@@ -47,8 +61,18 @@ import multiTabs from './multiTabs.vue';
 const sideStore = useSideMenuStore()
 const menulist = computed(() => sideStore.menulist?.children || [])
 const drawer = ref(false)
+const themeColor = ref('#409EFF')
+const isDark = ref(false)
 function handleDrawer() {
   drawer.value = !drawer.value
+}
+function changeThemeColor(color) {
+  console.log(color)
+  document.documentElement.style.setProperty('--el-color-primary', color)
+}
+function changeDark(isDa) {
+  console.log(isDa)
+  document.documentElement.classList.toggle('dark')
 }
 </script>
 
