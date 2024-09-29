@@ -1,16 +1,16 @@
 <template>
-  <el-menu :default-active="route.path" @open="handleOpen" @close="handleClose" router>
+  <el-menu :default-active="route.path" @open="handleOpen" @close="handleClose" router :collapse="false">
     <template v-for="menuItem in sideStore.menulist">
       <el-sub-menu :index="menuItem.path" v-if="menuItem.children && menuItem.children.length > 0">
         <template #title>
-          <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="mr-3 text-[18px]" />
-          <span>{{ menuItem.meta.title }}</span>
+          <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]" />
+          <span class="pl-[6px]">{{ menuItem.meta.title }}</span>
         </template>
         <sidemenu :menuItem="menuItem.children" />
       </el-sub-menu>
       <el-menu-item v-else :index="menuItem.path">
-        <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="mr-3 text-[18px]" />
-        <span>{{ menuItem.meta.title }}</span>
+        <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]" />
+        <span class="pl-[6px]">{{ menuItem.meta.title }}</span>
       </el-menu-item>
     </template>
   </el-menu>
