@@ -17,6 +17,7 @@
       <el-container>
         <multiTabs />
         <el-main class="!p-[10px]">
+          <breadcrumb />
           <router-view v-slot="{ Component }">
             <transition name="slide" mode="out-in">
               <component :is="Component" />
@@ -85,6 +86,7 @@ import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import multiTabs from './multiTabs.vue';
+import breadcrumb from './breadcrumb.vue';
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const route = useRoute()
