@@ -46,12 +46,41 @@ const tabClick = (TabsPaneContext, evevt) => {
   console.log(TabsPaneContext.props.name)
   if (TabsPaneContext.props.name === '/workplace') {
     topStore.setKey(TabsPaneContext.props.name)
-    sideStore.setSideMenu({})
+    // 自动分割菜单
+    if (sideStore.autoSplit) {
+      sideStore.setSideMenu([])
+    } else {
+      const filteWorkPlace = topStore.allRoutes.map(item => {
+        if (item.path === '/workplace') {
+          return {
+            ...item,
+            children: []
+          }
+        } else {
+          return item
+        }
+      })
+      sideStore.setSideMenu(filteWorkPlace)
+    }
   } else {
     const prefixUrl = TabsPaneContext.props.name.match(/(\/\w+)/) ? TabsPaneContext.props.name.match(/(\/\w+)/)[1] : null
     const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
     topStore.setKey(prefixUrl)
-    sideStore.setSideMenu(sideMenu)
+    if (sideStore.autoSplit) {
+      sideStore.setSideMenu(sideMenu.children)
+    } else {
+      const filteWorkPlace = topStore.allRoutes.map(item => {
+        if (item.path === '/workplace') {
+          return {
+            ...item,
+            children: []
+          }
+        } else {
+          return item
+        }
+      })
+      sideStore.setSideMenu(filteWorkPlace)
+    }
   }
   nextTick(() => {
     router.push({ path: TabsPaneContext.props.name })

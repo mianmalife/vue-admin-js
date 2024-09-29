@@ -77,7 +77,21 @@ const handleForm = async () => {
         localStorage.setItem('token', 'true')
         topStore.setAllRoutes(allRoutes)
         topStore.setKey('/workplace')
-        sideStore.setSideMenu({})
+        if (sideStore.autoSplit) {
+          sideStore.setSideMenu([])
+        } else {
+          const filteWorkPlace = allRoutes.map(item => {
+            if (item.path === '/workplace') {
+              return {
+                ...item,
+                children: []
+              }
+            } else {
+              return item
+            }
+          })
+          sideStore.setSideMenu(filteWorkPlace)
+        }
         nextTick(() => {
           router.push({ name: 'workplace' })
         })

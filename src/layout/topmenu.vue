@@ -20,13 +20,14 @@ const handleSelect = (key, keyPath) => {
   topStore.setKey(key)
   if (key === '/workplace') {
     currentObj = null
-    sideStore.setSideMenu({})
+    sideStore.setSideMenu([])
     nextTick(() => {
       router.push({ path: '/workplace' })
     })
   } else {
     currentObj = topStore.allRoutes.find(item => item.path === key)
-    sideStore.setSideMenu(currentObj)
+    console.log(currentObj.children, 'currentObj.children')
+    sideStore.setSideMenu(currentObj.children)
     // 暂时先跳redirect 如果没有redirect 要跳第一个菜单
     nextTick(() => {
       router.push({ path: currentObj.redirect })

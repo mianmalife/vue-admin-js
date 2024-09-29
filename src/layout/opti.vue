@@ -27,7 +27,7 @@
 const router = useRouter()
 function handleCommand(key) {
   if (key === 'logout') {
-    localStorage.clear()
+    localStorage.setItem('token', null)
     router.push({ name: 'login' })
   }
 }
