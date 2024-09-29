@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import MultiTabs from '@/layout/multiTabs.vue'
 
 export const useMultiTabsStore = defineStore('MultiTabs', () => {
   const multiTabslist = ref([])
@@ -12,11 +13,19 @@ export const useMultiTabsStore = defineStore('MultiTabs', () => {
 
   }
 
+  function removeItem(path) {
+    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path !== path)
+  }
+
+  function removeOtherItem(path) {
+    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path === path)
+  }
+
   function removeData() {
     multiTabslist.value = []
   }
 
-  return { multiTabslist, setMultiTabsStore, removeData }
+  return { multiTabslist, setMultiTabsStore, removeItem, removeOtherItem, removeData }
 }, {
   persist: true
 })

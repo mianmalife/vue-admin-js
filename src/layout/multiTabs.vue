@@ -96,23 +96,31 @@ const handleTabsRemove = (targetTab) => {
     tabs.forEach((tab, index) => {
       if (tab.path === targetTab) {
         const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab) {
+        console.log(nextTab)
+        if (nextTab.path === '/workplace') {
+          topStore.setKey(nextTab.path)
+          sideStore.setSideMenu([])
           activeTab = nextTab.path
-          console.log(activeTab)
+          // console.log(activeTab)
+        } else {
+          const prefixUrl = nextTab.path.match(/(\/\w+)/) ? nextTab.path.match(/(\/\w+)/)[1] : null
+          const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
+          topStore.setKey(prefixUrl)
+          sideStore.setSideMenu(sideMenu.children)
+          activeTab = nextTab.path
         }
       }
     })
   }
   router.push({ path: activeTab })
-  multiTabsStore.multiTabslist = tabs.filter((tab) => tab.path !== targetTab)
+  multiTabsStore.removeItem(targetTab)
 }
 
 const handleCommand = (command) => {
   if (command === 'close') {
-    console.log(route.path, multiTabsStore.multiTabslist)
-    multiTabsStore.multiTabslist = multiTabsStore.multiTabslist.filter((tab) => tab.path === route.path)
-
-    console.log(multiTabsStore.multiTabslist)
+    // console.log(route.path, multiTabsStore.multiTabslist)
+    multiTabsStore.removeOtherItem(route.path)
+    // console.log(multiTabsStore.multiTabslist)
   } else {
     console.log(command)
   }
@@ -129,21 +137,9 @@ const handleCommand = (command) => {
   display: none;
 }
 
-// .el-tabs--card>.el-tabs__header {
-//   margin-bottom: 0 !important;
-//   border-bottom: 2px solid #000000;
-// }
-
-// .el-tabs--card>.el-tabs__header .el-tabs__item {
-//   border-bottom: none;
-// }
-
-// .el-tabs--card>.el-tabs__header .el-tabs__item.is-active {
-//   border-bottom: 2px solid var(--el-bg-color);
-// }
-
 .el-tabs {
   --el-font-size-base: 12px;
+  overflow-x: auto;
 }
 
 .el-dropdown-link:focus {
@@ -157,7 +153,12 @@ const handleCommand = (command) => {
 <style lang="scss">
 .mutab__cls {
   .el-tabs--card>.el-tabs__header {
+    border-bottom: none;
     margin-bottom: 10px;
+  }
+
+  .el-tabs--card>.el-tabs__header .el-tabs__item {
+    border-bottom: 1px solid var(--el-border-color-light);
   }
 }
 </style>
