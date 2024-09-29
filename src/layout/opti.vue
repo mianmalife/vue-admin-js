@@ -24,11 +24,16 @@
 </template>
 
 <script setup>
+import { useMultiTabsStore } from '@/stores/multiTabs';
+const multiTabsStore = useMultiTabsStore()
 const router = useRouter()
 function handleCommand(key) {
   if (key === 'logout') {
-    localStorage.setItem('token', null)
-    router.push({ name: 'login' })
+    localStorage.removeItem('token')
+    multiTabsStore.removeData()
+    nextTick(() => {
+      router.push({ name: 'login' })
+    })
   }
 }
 </script>

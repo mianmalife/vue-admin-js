@@ -12,7 +12,11 @@ export const useMultiTabsStore = defineStore('MultiTabs', () => {
 
   }
 
-  return { multiTabslist, setMultiTabsStore }
+  function removeData() {
+    multiTabslist.value = []
+  }
+
+  return { multiTabslist, setMultiTabsStore, removeData }
 }, {
   persist: true
 })
