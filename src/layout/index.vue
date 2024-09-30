@@ -11,11 +11,16 @@
       </div>
     </el-header>
     <el-container>
-      <el-aside width="260px" class="bg-[var(--header-bgcolor)]" v-if="sideStore.menulist.length > 0">
+      <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
+        <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
+          class="w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--topmenu-active-bgcolor)]">
+          <i-ant-design:menu-unfold-outlined v-if="sideStore.collapse" />
+          <i-ant-design:menu-fold-outlined v-else />
+        </div>
       </el-aside>
       <el-container>
-        <multiTabs />
+        <multiTabs v-if="multiTabsStore.isVisible" />
         <el-main class="!p-[10px]">
           <breadcrumb />
           <router-view v-slot="{ Component }">
@@ -64,6 +69,10 @@
           <el-color-picker v-model="themeColor" @change="changeThemeColor" />
         </div>
         <el-divider></el-divider>
+        <div class="flex justify-between items-end mb-2">
+          <el-text class="mr-2">标签栏</el-text>
+          <el-switch v-model="multiTabsStore.isVisible" />
+        </div>
       </div>
       <!-- <div
         :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
@@ -85,10 +94,12 @@ import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
+import { useMultiTabsStore } from '@/stores/multiTabs'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
+const multiTabsStore = useMultiTabsStore()
 const route = useRoute()
 const drawer = ref(false)
 const themeColor = ref('#409EFF')
@@ -101,7 +112,7 @@ watch(() => isDark.value, newValue => {
 
 watch(() => sideStore.autoSplit, bool => {
   console.log(bool)
-  sideStore.setSplit(bool)
+  // sideStore.setSplit(bool)
   if (!bool) {
     // 关闭自动分割菜单
     const filteWorkPlace = topStore.allRoutes.map(item => {

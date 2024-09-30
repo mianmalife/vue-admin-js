@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export const useSideMenuStore = defineStore('Sidemenu', () => {
   const menulist = ref([])
   const autoSplit = ref(true)
-  const collapse = ref(true)
+  const collapse = ref(false)
 
   function setSideMenu(data) {
     console.log(data, 'data')
