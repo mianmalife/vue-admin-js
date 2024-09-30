@@ -66,7 +66,7 @@
         </div>
         <div class="flex justify-between items-end mb-2">
           <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
-          <el-color-picker v-model="themeColor" @change="changeThemeColor" />
+          <el-color-picker v-model="themeColorStore.color" />
         </div>
         <el-divider></el-divider>
         <div class="flex justify-between items-end mb-2">
@@ -97,19 +97,27 @@ import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
+import { useThemeColor } from '@/stores/themeColor'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
+const themeColorStore = useThemeColor()
 const route = useRoute()
 const drawer = ref(false)
-const themeColor = ref('#409EFF')
 const isDark = ref(false)
 const isLayout = ref('fixed')
 
 watch(() => isDark.value, newValue => {
   document.documentElement.classList.toggle('dark')
+})
+
+watch(() => themeColorStore.color, newValue => {
+  console.log(newValue)
+  document.documentElement.style.setProperty('--el-color-primary', newValue)
+}, {
+  immediate: true
 })
 
 watch(() => sideStore.autoSplit, bool => {

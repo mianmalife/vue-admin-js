@@ -38,14 +38,20 @@ const { t } = useI18n()
 import { useActiveStore } from '@/stores/topmenu'
 import { useSideMenuStore } from '@/stores/sidemenu';
 import { staticRoutes, dynamicRoutes } from '@/router';
+import { useThemeColor } from '@/stores/themeColor'
 const filterPath = ['/', '/login']
 const allRoutes = staticRoutes.filter(item => filterPath.includes(item.path) === false).concat(dynamicRoutes)
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
+const themeColorStore = useThemeColor()
 const router = useRouter()
 
 let isLoginError = ref(false)
 const userRef = ref()
+
+onMounted(() => {
+  document.documentElement.style.setProperty('--el-color-primary', themeColorStore.color)
+})
 
 const validatePass = (rule, value, callback) => {
   if (value === '') {
