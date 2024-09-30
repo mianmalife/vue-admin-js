@@ -2,12 +2,14 @@
   <el-menu :default-active="topStore.activeKey" :ellipsis="false" @select="handleSelect" mode="horizontal">
     <el-menu-item v-for="menuObj in topStore.allRoutes" :index="menuObj.path">
       <Icon :icon="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3 text-[18px]" />
-      {{ menuObj.meta.title }}
+      {{ t(`${menuObj.meta.title}`) }}
     </el-menu-item>
   </el-menu>
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { Icon } from '@iconify/vue'
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'

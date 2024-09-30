@@ -5,7 +5,7 @@
       :closable="multiTabsStore.multiTabslist.length > 1" @tab-remove="handleTabsRemove">
       <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path">
         <template #label>
-          {{ multiTabs.meta.title }}
+          {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
             <i-ep-refreshRight class=" ease-ease duration-300 hover:scale-120" />
           </i>
@@ -21,9 +21,9 @@
       </span>
       <template #dropdown>
         <el-dropdown-menu>
-          <el-dropdown-item command="close"
-            :disabled="!(multiTabsStore.multiTabslist.length > 1)">关闭其他</el-dropdown-item>
-          <el-dropdown-item command="refresh">刷新当前页</el-dropdown-item>
+          <el-dropdown-item command="close" :disabled="!(multiTabsStore.multiTabslist.length > 1)">{{ t('closeOther')
+            }}</el-dropdown-item>
+          <el-dropdown-item command="refresh">{{ t('Refresh') }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -32,6 +32,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { useActiveStore } from '@/stores/topmenu'
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs';

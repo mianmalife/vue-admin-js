@@ -14,7 +14,7 @@
       <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--topmenu-active-bgcolor)]">
+          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--topmenu-active-bgcolor)]">
           <i-ant-design:menu-unfold-outlined v-if="sideStore.collapse" />
           <i-ant-design:menu-fold-outlined v-else />
         </div>
@@ -33,14 +33,14 @@
           vue-admin-js</el-footer>
       </el-container>
     </el-container>
-    <el-drawer v-model="drawer" title="设置" size="320" :append-to-body="true">
+    <el-drawer v-model="drawer" :title="t('Settings')" size="320" :append-to-body="true">
       <div>
         <div>
           <div class="mb-2">
-            <el-text>导航模式</el-text>
+            <el-text>{{ t('Navigation Mode') }}</el-text>
           </div>
           <div class="flex items-center mb-4">
-            <el-tooltip :effect="isDark ? 'dark' : 'light'" content="混合布局" placement="top">
+            <el-tooltip :effect="isDark ? 'dark' : 'light'" :content="t('Mixed layout')" placement="top">
               <div @click="isLayout = 'fixed'"
                 class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)]">
                 <div
@@ -55,22 +55,22 @@
             </el-tooltip>
           </div>
           <div class="flex justify-between items-end mb-2">
-            <el-text class="mr-2">自动分割菜单</el-text>
+            <el-text class="mr-2">{{ t('Auto-split menu') }}</el-text>
             <el-switch v-model="sideStore.autoSplit" />
           </div>
         </div>
         <el-divider></el-divider>
         <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">暗黑模式</el-text>
+          <el-text class="mr-2">{{ t('Dark Mode') }}</el-text>
           <el-switch v-model="isDark" />
         </div>
         <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">主题色</el-text>
+          <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
           <el-color-picker v-model="themeColor" @change="changeThemeColor" />
         </div>
         <el-divider></el-divider>
         <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">标签栏</el-text>
+          <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>
           <el-switch v-model="multiTabsStore.isVisible" />
         </div>
       </div>
@@ -89,6 +89,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';

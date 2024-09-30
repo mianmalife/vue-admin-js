@@ -2,17 +2,19 @@
   <template v-for="menu in props.menuItem">
     <el-sub-menu :index="menu.path" v-if="menu.children && menu.children.length > 0">
       <template #title>
-        <span>{{ menu.meta.title }}</span>
+        <span>{{ t(`${menu.meta.title}`) }}</span>
       </template>
       <sidemenu :menuItem="menu.children" />
     </el-sub-menu>
     <el-menu-item v-else :index="menu.path">
-      <span>{{ menu.meta.title }}</span>
+      <span>{{ t(`${menu.meta.title}`) }}</span>
     </el-menu-item>
   </template>
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 const props = defineProps(['menuItem'])
 </script>
 

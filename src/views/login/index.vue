@@ -4,23 +4,25 @@
       <el-form ref="userRef" :model="userForm" status-icon :rules="rules" label-width="auto" size="large"
         class="w-[400px]  p-[30px] shadow-xl bg-[var(--card-bgcolor)] rounded-md">
         <div class="text-center w-[100%] pb-[20px] font-bold">vue-admin-js</div>
-        <el-alert v-show="isLoginError" title="用户名或密码错误" type="error" show-icon @close="isLoginError = false" />
+        <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
+          @close="isLoginError = false" />
         <el-form-item class="mt-[20px]" label="" prop="username">
-          <el-input v-model="userForm.username" type="text" autocomplete="off" placeholder="账户：admin">
+          <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：admin`">
             <template #prefix>
               <i-ep-user color="var(--el-color-primary)"></i-ep-user>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
-          <el-input v-model="userForm.password" type="password" autocomplete="off" show-password placeholder="密码：admin">
+          <el-input v-model="userForm.password" type="password" autocomplete="off" show-password
+            :placeholder="`${t('Password')}：admin`">
             <template #prefix>
               <i-ep-lock color="var(--el-color-primary)"></i-ep-lock>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="w-full" type="primary" @click="handleForm">登&nbsp;录</el-button>
+          <el-button class="w-full" type="primary" @click="handleForm">{{ t('Sign in') }}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -31,6 +33,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { useActiveStore } from '@/stores/topmenu'
 import { useSideMenuStore } from '@/stores/sidemenu';
 import { staticRoutes, dynamicRoutes } from '@/router';
@@ -45,7 +49,7 @@ const userRef = ref()
 
 const validatePass = (rule, value, callback) => {
   if (value === '') {
-    callback(new Error('密码不能为空'))
+    callback(new Error(`${t('Password cannot be empty')}`))
   } else {
     callback()
   }
@@ -53,7 +57,7 @@ const validatePass = (rule, value, callback) => {
 
 const validateName = (rule, value, callback) => {
   if (value === '') {
-    callback(new Error('用户名不能为空'))
+    callback(new Error(`${t('Username cannot be empty')}`))
   } else {
     callback()
   }

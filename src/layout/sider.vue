@@ -7,7 +7,7 @@
         <template #title>
           <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]"
             :class="sideStore.collapse ? 'mx-auto' : ''" />
-          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ menuItem.meta.title
+          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
             }}</span>
         </template>
         <sidemenu :menuItem="menuItem.children" />
@@ -16,7 +16,7 @@
         <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]"
           :class="sideStore.collapse ? 'mx-auto' : ''" />
         <template #title>
-          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ menuItem.meta.title
+          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
             }}</span>
         </template>
       </el-menu-item>
@@ -25,6 +25,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 import { Icon } from '@iconify/vue'
 import sidemenu from './sidemenu.vue'
 import { useSideMenuStore } from '@/stores/sidemenu'

@@ -13,7 +13,7 @@ export const staticRoutes = [
     path: '/workplace',
     component: layout,
     meta: {
-      title: '工作台',
+      title: 'Workbenches',
       icon: 'ant-design:field-time-outlined'
     },
     children: [
@@ -21,7 +21,7 @@ export const staticRoutes = [
         path: '',
         name: 'workplace',
         meta: {
-          title: '工作台'
+          title: 'Workbenches'
         },
         component: () => import('@/views/workplace/index.vue')
       }
@@ -31,7 +31,7 @@ export const staticRoutes = [
     path: '/login',
     name: 'login',
     meta: {
-      title: '登录'
+      title: 'Login'
     },
     component: login
   }
@@ -42,7 +42,7 @@ export const dynamicRoutes = [
     name: 'list',
     component: layout,
     meta: {
-      title: '列表页',
+      title: 'List page',
       icon: 'ant-design:table-outlined'
     },
     redirect: '/list/table-list',
@@ -52,7 +52,7 @@ export const dynamicRoutes = [
         name: 'table-list',
         component: () => import('@/views/list/table-list/index.vue'),
         meta: {
-          title: '查询表格'
+          title: 'Enquiry Form'
         }
       },
       {
@@ -60,7 +60,7 @@ export const dynamicRoutes = [
         name: 'basic-list',
         component: () => import('@/views/list/basic-list/index.vue'),
         meta: {
-          title: '标准表格'
+          title: 'Standard forms'
         }
       }
     ]
@@ -70,7 +70,7 @@ export const dynamicRoutes = [
     name: 'nested',
     component: layout,
     meta: {
-      title: '路由嵌套',
+      title: 'Nested routes',
       icon: 'ant-design:folder-open-outlined'
     },
     redirect: '/nested/menu1/menu1-2/menu1-2-1',
