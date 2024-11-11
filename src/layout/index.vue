@@ -23,7 +23,7 @@
         <multiTabs v-if="multiTabsStore.isVisible" />
         <el-main class="!p-[10px]">
           <breadcrumb />
-          <router-view v-slot="{ Component }">
+          <router-view v-slot="{ Component }" v-if="isrefreshing">
             <transition name="slide" mode="out-in">
               <component :is="Component" />
             </transition>
@@ -89,6 +89,7 @@
 </template>
 
 <script setup>
+provide('refreshPage', handleRefresh)
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import topmenu from './topmenu.vue';
@@ -108,6 +109,7 @@ const route = useRoute()
 const drawer = ref(false)
 const isDark = ref(false)
 const isLayout = ref('fixed')
+const isrefreshing = ref(true)
 
 watch(() => isDark.value, newValue => {
   document.documentElement.classList.toggle('dark')
@@ -152,9 +154,11 @@ function handleDrawer() {
   drawer.value = !drawer.value
 }
 
-function changeThemeColor(color) {
-  console.log(color)
-  document.documentElement.style.setProperty('--el-color-primary', color)
+function handleRefresh() {
+  isrefreshing.value = false
+  nextTick(() => {
+    isrefreshing.value = true
+  })
 }
 
 </script>

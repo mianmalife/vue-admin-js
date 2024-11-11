@@ -3,6 +3,8 @@
     <el-skeleton :rows="5" animated :loading="loading">
       <template #default>
         <h1>工作台</h1>
+        <el-button @click="count++">count++</el-button>
+        count: {{ count }}
       </template>
     </el-skeleton>
   </div>
@@ -10,6 +12,7 @@
 
 <script setup>
 const loading = ref(true)
+const count = ref(0)
 onMounted(() => {
   setTimeout(() => {
     loading.value = false

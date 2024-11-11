@@ -7,7 +7,7 @@
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <i-ep-refreshRight class=" ease-ease duration-300 hover:scale-120" />
+            <i-ep-refreshRight class="ease-ease duration-300 hover:scale-150" @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
@@ -32,6 +32,7 @@
 </template>
 
 <script setup>
+const refreshPage = inject('refreshPage')
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import { useActiveStore } from '@/stores/topmenu'
@@ -42,10 +43,10 @@ const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
 const route = useRoute()
 const router = useRouter()
-// console.log(multiTabsStore.multiTabslist)
 
-const tabClick = (TabsPaneContext, evevt) => {
+const tabClick = (TabsPaneContext, event) => {
   console.log(TabsPaneContext.props.name)
+  event.stopPropagation();
   if (TabsPaneContext.props.name === '/workplace') {
     topStore.setKey(TabsPaneContext.props.name)
     // 自动分割菜单
@@ -98,7 +99,6 @@ const handleTabsRemove = (targetTab) => {
     tabs.forEach((tab, index) => {
       if (tab.path === targetTab) {
         const nextTab = tabs[index + 1] || tabs[index - 1]
-        console.log(nextTab)
         if (nextTab.path === '/workplace') {
           topStore.setKey(nextTab.path)
           sideStore.setSideMenu([])
@@ -125,13 +125,14 @@ const handleCommand = (command) => {
     // console.log(multiTabsStore.multiTabslist)
   } else {
     console.log(command)
+    refreshPage()
   }
 }
 
-// const handleRefresh = (TabsPaneContext) => {
-//   console.log(TabsPaneContext)
-//   router.push({ path: TabsPaneContext })
-// }
+const handleRefresh = (e) => {
+  e.stopPropagation()
+  refreshPage()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -148,8 +149,18 @@ const handleCommand = (command) => {
   outline: none;
 }
 
-.icon-refresh:hover svg {
-  transform: scale(1.5);
+// .icon-refresh:hover svg {
+//   transform: scale(1.5);
+// }
+
+.animateRotate {
+  animation: rotates 1s linear infinite;
+}
+
+@keyframes rotates {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
 <style lang="scss">
