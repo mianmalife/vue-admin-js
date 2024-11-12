@@ -94,26 +94,28 @@ const handleTabsRemove = (targetTab) => {
   // console.log(targetTab)
   // console.log(route)
   const tabs = multiTabsStore.multiTabslist
+  console.log(tabs)
   let activeTab = route.path
   if (activeTab === targetTab) {
     tabs.forEach((tab, index) => {
       if (tab.path === targetTab) {
         const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab.path === '/workplace') {
-          topStore.setKey(nextTab.path)
-          sideStore.setSideMenu([])
-          activeTab = nextTab.path
-          // console.log(activeTab)
-        } else {
-          const prefixUrl = nextTab.path.match(/(\/\w+)/) ? nextTab.path.match(/(\/\w+)/)[1] : null
-          const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
-          topStore.setKey(prefixUrl)
-          sideStore.setSideMenu(sideMenu.children)
-          activeTab = nextTab.path
+        if (sideStore.autoSplit) {
+          if (nextTab.path === '/workplace') {
+            topStore.setKey(nextTab.path)
+            sideStore.setSideMenu([])
+          } else {
+            const prefixUrl = nextTab.path.match(/(\/\w+)/) ? nextTab.path.match(/(\/\w+)/)[1] : null
+            const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
+            topStore.setKey(prefixUrl)
+            sideStore.setSideMenu(sideMenu.children)
+          }
         }
+        activeTab = nextTab.path
       }
     })
   }
+
   router.push({ path: activeTab })
   multiTabsStore.removeItem(targetTab)
 }
