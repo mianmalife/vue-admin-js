@@ -49,7 +49,7 @@ const router = useRouter()
 const { locale, t } = useI18n()
 function handleCommand(key) {
   if (key === 'logout') {
-    localStorage.removeItem('token')
+    localStorage.clear()
     multiTabsStore.removeData()
     nextTick(() => {
       router.push({ name: 'login' })

@@ -1,6 +1,6 @@
-<script setup>
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
-import en from 'element-plus/dist/locale/en.mjs'
+<script lang="ts" setup>
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import en from 'element-plus/es/locale/lang/en'
 import { useLangStore } from './stores/language'
 const langStore = useLangStore()
 const locale = computed(() => (langStore.lang === 'zh-cn' ? zhCn : en))

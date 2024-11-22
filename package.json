@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
@@ -26,6 +26,7 @@
     "@iconify-json/ep": "^1.2.0",
     "@iconify/vue": "^4.1.2",
     "@rushstack/eslint-patch": "^1.8.0",
+    "@types/node": "^22.9.1",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
@@ -34,10 +35,12 @@
     "postcss": "^8.4.45",
     "sass": "^1.78.0",
     "tailwindcss": "^3.4.11",
+    "typescript": "~5.6.2",
     "unplugin-auto-import": "^0.18.2",
     "unplugin-icons": "^0.19.3",
     "unplugin-vue-components": "^0.27.4",
-    "vite": "^5.3.1"
+    "vite": "^5.3.1",
+    "vue-tsc": "^2.1.10"
   },
   "volta": {
     "node": "22.5.1"

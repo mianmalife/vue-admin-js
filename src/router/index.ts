@@ -123,7 +123,7 @@ export const dynamicRoutes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...staticRoutes, ...dynamicRoutes]
+  routes: [...staticRoutes, ...dynamicRoutes] as any
 })
 
 router.beforeEach((to, from, next) => {

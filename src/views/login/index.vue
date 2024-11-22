@@ -3,7 +3,7 @@
     <div class="flex grow justify-center items-center">
       <el-form ref="userRef" :model="userForm" status-icon :rules="rules" label-width="auto" size="large"
         class="w-[400px]  p-[30px] shadow-xl bg-[var(--card-bgcolor)] rounded-md">
-        <div class="text-center w-[100%] pb-[20px] font-bold">vue-admin-js</div>
+        <div class="text-center w-[100%] pb-[20px] font-bold">vue-admin-ts</div>
         <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
           @close="isLoginError = false" />
         <el-form-item class="mt-[20px]" label="" prop="username">
