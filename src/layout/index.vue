@@ -2,7 +2,7 @@
   <el-container class="h-[100%]">
     <el-header class="bg-[var(--header-bgcolor)] flex items-center justify-between !px-[20px] !pr-[40px]">
       <div class="w-[230px] h-[40px] leading-[40px] my-[10px] font-bold">
-        VUE-ADMIN-JS
+        VUE-ADMIN-TS
       </div>
       <div class="flex flex-1 items-center justify-between">
         <topmenu v-if="sideStore.autoSplit" />
@@ -30,7 +30,7 @@
           </router-view>
         </el-main>
         <el-footer class="flex justify-center" height="30px">Copyright © {{ new Date().getFullYear() }}
-          vue-admin-js</el-footer>
+          vue-admin-ts</el-footer>
       </el-container>
     </el-container>
     <el-drawer v-model="drawer" :title="t('Settings')" size="320" :append-to-body="true">

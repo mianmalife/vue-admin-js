@@ -1,4 +1,4 @@
-# vue-admin-js
+# vue-admin-ts
 
 vue3技术栈的后台模板，纯js实现, 解决市面上都是ts版本的问题(js版本都收费)，追求极简。
 

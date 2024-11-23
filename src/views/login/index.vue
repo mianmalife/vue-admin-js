@@ -27,7 +27,7 @@
       </el-form>
     </div>
     <div class=" h-[30px]">
-      Copyright © {{ new Date().getFullYear() }} vue-admin-js
+      Copyright © {{ new Date().getFullYear() }} vue-admin-ts
     </div>
   </div>
 </template>
