@@ -6,16 +6,15 @@ export const useSideMenuStore = defineStore('Sidemenu', () => {
   const autoSplit = ref(true)
   const collapse = ref(false)
 
-  function setSideMenu(data) {
-    console.log(data, 'data')
+  function setSideMenu(data: []) {
     menulist.value = data
   }
 
-  function setSplit(auto) {
+  function setSplit(auto: boolean) {
     autoSplit.value = auto
   }
 
-  function setCollapse(bool) {
+  function setCollapse(bool: boolean) {
     collapse.value = bool
   }
 

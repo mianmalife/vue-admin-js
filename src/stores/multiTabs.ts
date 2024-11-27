@@ -1,10 +1,14 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
+interface IMultiTabs {
+  path?: string;
+}
+type IMu = IMultiTabs[]
 export const useMultiTabsStore = defineStore('MultiTabs', () => {
-  const multiTabslist = ref([])
+  const multiTabslist = ref<IMu>([])
   const isVisible = ref(true)
-  function setMultiTabsStore(data) {
+  function setMultiTabsStore(data: any) {
     if (multiTabslist.value) {
       if (!multiTabslist.value.find(item => item.path === data.path)) {
         multiTabslist.value.push(data)
@@ -13,12 +17,12 @@ export const useMultiTabsStore = defineStore('MultiTabs', () => {
 
   }
 
-  function removeItem(path) {
+  function removeItem(path:string) {
     multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path !== path)
   }
 
-  function removeOtherItem(path) {
-    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path === path)
+  function removeOtherItem(path:string) {
+    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path === path) as any
   }
 
   function removeData() {

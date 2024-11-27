@@ -88,7 +88,7 @@
   </el-container>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 provide('refreshPage', handleRefresh)
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
@@ -111,7 +111,7 @@ const isDark = ref(false)
 const isLayout = ref('fixed')
 const isrefreshing = ref(true)
 
-watch(() => isDark.value, newValue => {
+watch(() => isDark.value, () => {
   document.documentElement.classList.toggle('dark')
 })
 
@@ -142,7 +142,7 @@ watch(() => sideStore.autoSplit, bool => {
     if (route.path === '/workplace') {
       sideStore.setSideMenu([])
     } else {
-      const prefixUrl = route.path.match(/(\/\w+)/) ? route.path.match(/(\/\w+)/)[1] : null
+      const prefixUrl = route.path.match(/(\/\w+)/) ? route.path.match(/(\/\w+)/)?.[1] : null
       const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
       topStore.setKey(prefixUrl)
       sideStore.setSideMenu(sideMenu.children)

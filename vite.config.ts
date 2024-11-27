@@ -60,7 +60,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'element-plus': ['element-plus']
+          'element-plus': ['element-plus'],
+          'vue': ['vue'],
+          'vue-router': ['vue-router']
         }
       }
     }
