@@ -4,6 +4,7 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import i18n from './locale'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import "./index.css"
+import './main.scss'
 
 import App from './App.vue'
 import router from './router'

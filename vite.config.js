@@ -51,6 +51,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        api: 'modern-compiler',
         additionalData: `@use "@/styles/element/index.scss" as *;`
       }
     }
@@ -59,7 +60,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'element-plus': ['element-plus']
+          'vue': ['vue'],
+          'vue-router': ['vue-router'],
+          'element-plus': ['element-plus'],
         }
       }
     }

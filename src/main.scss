@@ -1,0 +1,40 @@
+// @use 'styles/base';
+// @use 'sass:color';
+
+:root {
+  --sb-track-color: #cccccc;
+  --sb-thumb-color: #f7f7f7;
+  --sb-size: 4px;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+:-webkit-autofill {
+  box-shadow: inset 0 0 0 2000px #fff;
+}
+
+:autofill {
+  box-shadow: inset 0 0 0 2000px #fff;
+}
+
+::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
