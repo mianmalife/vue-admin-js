@@ -55,6 +55,10 @@ const handleClose = (key, keyPath) => {
 </script>
 
 <style lang="scss" scoped>
+:deep(.el-menu-item.is-active) {
+  border-right: 2px solid var(--el-menu-active-color)
+}
+
 :deep(.el-sub-menu.is-active)>.el-sub-menu__title {
   color: var(--el-menu-active-color);
 }

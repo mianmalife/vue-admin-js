@@ -7,7 +7,7 @@
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <i-ep-refreshRight class="ease-ease duration-300 hover:scale-150" @click="handleRefresh" />
+            <i-ep-refreshRight class="hover:scale-150" :class="{ animateRotate: refresh }" @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
@@ -43,6 +43,8 @@ const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
 const route = useRoute()
 const router = useRouter()
+
+const refresh = ref(false)
 
 const tabClick = (TabsPaneContext, event) => {
   console.log(TabsPaneContext.props.name)
@@ -132,6 +134,10 @@ const handleCommand = (command) => {
 }
 
 const handleRefresh = (e) => {
+  refresh.value = true;
+  setTimeout(() => {
+    refresh.value = false
+  }, 1000)
   e.stopPropagation()
   refreshPage()
 }
@@ -151,8 +157,8 @@ const handleRefresh = (e) => {
   outline: none;
 }
 
-// .icon-refresh:hover svg {
-//   transform: scale(1.5);
+// .icon-refresh:active svg {
+//   transform: rotate(360deg);
 // }
 
 .animateRotate {
@@ -160,9 +166,32 @@ const handleRefresh = (e) => {
 }
 
 @keyframes rotates {
-  to {
-    transform: rotate(360deg);
+
+  0% {
+    transform: rotate(0deg);
+    scale: 1.5;
   }
+
+  30% {
+    transform: rotate(100deg);
+    scale: 1.5;
+  }
+
+  50% {
+    transform: rotate(180deg);
+    scale: 1.5;
+  }
+
+  70% {
+    transform: rotate(270deg);
+    scale: 1.5;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    scale: 1.5;
+  }
+
 }
 </style>
 <style lang="scss">
