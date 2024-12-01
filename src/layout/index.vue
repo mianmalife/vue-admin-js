@@ -1,12 +1,11 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="bg-[var(--header-bgcolor)] flex items-center justify-between !px-[20px] !pr-[40px]">
-      <div class="w-[230px] h-[40px] leading-[40px] my-[10px] font-bold">
+    <el-header class="flex items-center justify-between" style="--el-header-padding: 0 0 0 20px">
+      <div class="w-[240px] flex-shrink-0 h-[40px] leading-[40px] my-[10px] font-bold">
         VUE-ADMIN-JS
       </div>
-      <div class="flex flex-1 items-center justify-between">
+      <div class="flex flex-1 flex-shrink-0 items-center justify-between">
         <topmenu v-if="sideStore.autoSplit" />
-        <div v-else></div>
         <opti />
       </div>
     </el-header>
@@ -14,7 +13,7 @@
       <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--topmenu-active-bgcolor)]">
+          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px]">
           <i-ant-design:menu-unfold-outlined v-if="sideStore.collapse" />
           <i-ant-design:menu-fold-outlined v-else />
         </div>
@@ -74,14 +73,9 @@
           <el-switch v-model="multiTabsStore.isVisible" />
         </div>
       </div>
-      <!-- <div
-        :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
-        @click="handleDrawer">
-        <i-ep-close class="text-[18px]"></i-ep-close>
-      </div> -->
     </el-drawer>
     <div
-      :class="['translate-all ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
+      :class="['translate-all ease-ease fixed top-[40%] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
       @click="handleDrawer">
       <i-ep-setting class="text-[18px]"></i-ep-setting>
     </div>
@@ -116,15 +110,12 @@ watch(() => isDark.value, newValue => {
 })
 
 watch(() => themeColorStore.color, newValue => {
-  console.log(newValue)
   document.documentElement.style.setProperty('--el-color-primary', newValue)
 }, {
   immediate: true
 })
 
 watch(() => sideStore.autoSplit, bool => {
-  console.log(bool)
-  // sideStore.setSplit(bool)
   if (!bool) {
     // 关闭自动分割菜单
     const filteWorkPlace = topStore.allRoutes.map(item => {
@@ -140,6 +131,7 @@ watch(() => sideStore.autoSplit, bool => {
     sideStore.setSideMenu(filteWorkPlace)
   } else {
     if (route.path === '/workplace') {
+      topStore.setKey('/workplace')
       sideStore.setSideMenu([])
     } else {
       const prefixUrl = route.path.match(/(\/\w+)/) ? route.path.match(/(\/\w+)/)[1] : null
@@ -148,6 +140,8 @@ watch(() => sideStore.autoSplit, bool => {
       sideStore.setSideMenu(sideMenu.children)
     }
   }
+}, {
+  immediate: true
 })
 
 function handleDrawer() {

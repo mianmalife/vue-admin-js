@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.border-b-default {
+  border-bottom: 1px solid var(--el-menu-border-color);
+}
