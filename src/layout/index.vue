@@ -32,88 +32,26 @@
           vue-admin-js</el-footer>
       </el-container>
     </el-container>
-    <el-drawer v-model="drawer" :title="t('Settings')" size="320" :append-to-body="true">
-      <div>
-        <div>
-          <div class="mb-2">
-            <el-text>{{ t('Navigation Mode') }}</el-text>
-          </div>
-          <div class="flex items-center mb-4">
-            <el-tooltip :effect="isDark ? 'dark' : 'light'" :content="t('Mixed layout')" placement="top">
-              <div @click="isLayout = 'fixed'"
-                class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)]">
-                <div
-                  class="w-[100%] h-[10px] rounded-t bg-[var(--topmenu-active-bgcolor)] border-b-[var(--el-border-color)] border-b border-b-solid">
-                </div>
-                <div
-                  class="w-[20px] h-[40px] bg-[var(--topmenu-active-bgcolor] border-r-[var(--el-border-color)] border-r border-r-solid">
-                </div>
-                <i-ep-check v-if="isLayout === 'fixed'"
-                  class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></i-ep-check>
-              </div>
-            </el-tooltip>
-          </div>
-          <div class="flex justify-between items-end mb-2">
-            <el-text class="mr-2">{{ t('Auto-split menu') }}</el-text>
-            <el-switch v-model="sideStore.autoSplit" />
-          </div>
-        </div>
-        <el-divider></el-divider>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Dark Mode') }}</el-text>
-          <el-switch v-model="isDark" />
-        </div>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
-          <el-color-picker v-model="themeColorStore.color" />
-        </div>
-        <el-divider></el-divider>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>
-          <el-switch v-model="multiTabsStore.isVisible" />
-        </div>
-      </div>
-    </el-drawer>
-    <div
-      :class="['translate-all ease-ease fixed top-[40%] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
-      @click="handleDrawer">
-      <i-ep-setting class="text-[18px]"></i-ep-setting>
-    </div>
+    <settings />
   </el-container>
 </template>
 
 <script setup>
 provide('refreshPage', handleRefresh)
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
-import { useThemeColor } from '@/stores/themeColor'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
+import settings from './settings.vue'
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
-const themeColorStore = useThemeColor()
 const route = useRoute()
-const drawer = ref(false)
-const isDark = ref(false)
-const isLayout = ref('fixed')
 const isrefreshing = ref(true)
-
-watch(() => isDark.value, newValue => {
-  document.documentElement.classList.toggle('dark')
-})
-
-watch(() => themeColorStore.color, newValue => {
-  document.documentElement.style.setProperty('--el-color-primary', newValue)
-}, {
-  immediate: true
-})
 
 watch(() => sideStore.autoSplit, bool => {
   if (!bool) {
@@ -144,10 +82,6 @@ watch(() => sideStore.autoSplit, bool => {
   immediate: true
 })
 
-function handleDrawer() {
-  drawer.value = !drawer.value
-}
-
 function handleRefresh() {
   isrefreshing.value = false
   nextTick(() => {
@@ -157,15 +91,4 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.15s ease-in-out;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-</style>
+<style lang="scss" scoped></style>
