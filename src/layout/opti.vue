@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-row-reverse items-center h-[60px] pr-[20px] border-b-default">
+  <div class="flex flex-row-reverse items-center h-[60px] pr-[20px] border-b-default"
+    :class="sideStore.autoSplit ? '' : 'flex-1'">
     <el-dropdown @command="setLanguage">
       <div class="flex items-center outline-none">
         <i-ant-design:global-outlined class="text-[18px]" />
@@ -40,6 +41,8 @@
 </template>
 
 <script setup>
+import { useSideMenuStore } from '@/stores/sidemenu'
+const sideStore = useSideMenuStore()
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/language'
 import { useMultiTabsStore } from '@/stores/multiTabs';

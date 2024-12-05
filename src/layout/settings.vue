@@ -1,11 +1,11 @@
 <template>
   <div
-    class="transition-all duration-500 ease-ease w-[320px] h-[100%] fixed top-0 right-[-320px] bg-[#fff] text-[rgb(114, 118, 123] z-[2000]"
+    class="transition-all duration-300 ease-ease w-[320px] h-[100%] fixed top-0 right-[-320px] bg-[#fff] text-[rgb(114, 118, 123] z-[2000]"
     :class="drawer ? 'right-[0]' : ''">
     <!-- 遮罩层 -->
     <div
-      class="opacity-0 transition-all duration-500 ease-ease fixed top-0 left-0 right-0 bottom-0 bg-[var(--el-overlay-color-lighter)] overflow-auto"
-      :class="drawer ? 'opacity-100 block' : 'hidden'" @click="handleDrawer">
+      class="opacity-0 transition-all duration-300 ease-ease fixed top-0 left-0 right-0 bottom-0 bg-[var(--el-overlay-color-lighter)] overflow-auto"
+      :class="drawer ? 'opacity-100 visible' : 'invisible'" @click="handleDrawer">
     </div>
     <div
       class="translate-all ease-ease absolute top-[40%] right-[320px] bg-[var(--el-menu-active-color)] p-3 cursor-pointer rounded rounded-tr-none rounded-br-none text-[#fff]"

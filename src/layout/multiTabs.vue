@@ -157,9 +157,10 @@ const handleRefresh = (e) => {
   outline: none;
 }
 
-// .icon-refresh:active svg {
-//   transform: rotate(360deg);
-// }
+:deep(.el-tabs__item) .is-icon-close:hover {
+  --el-text-color-placeholder: var(--el-color-primary);
+  opacity: 0.5;
+}
 
 .animateRotate {
   animation: rotates 1s linear infinite;
@@ -204,5 +205,9 @@ const handleRefresh = (e) => {
   .el-tabs--card>.el-tabs__header .el-tabs__item {
     border-bottom: 1px solid var(--el-border-color-light);
   }
+
+  // .el-tabs__item .is-icon-close:hover {
+  //   --el-text-color-placeholder: var(--el-color-primary);
+  // }
 }
 </style>
