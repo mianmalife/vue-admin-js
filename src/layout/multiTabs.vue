@@ -2,12 +2,13 @@
   <div
     class="mutab__cls flex items-center justify-between pt-[10px] bg-[var(--card-bgcolor)] border-b border-solid border-[var(--el-border-color)]">
     <el-tabs class="px-[10px] bg-[var(--card-bgcolor)]" type="card" :model-value="route.path" @tab-click="tabClick"
-      :closable="multiTabsStore.multiTabslist.length > 1" @tab-remove="handleTabsRemove">
-      <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path">
+      @tab-remove="handleTabsRemove">
+      <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path"
+        :closable="multiTabs.name !== 'workplace'">
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <i-ep-refreshRight class="ease-ease duration-300 hover:scale-150" @click="handleRefresh" />
+            <i-ep-refreshRight class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
@@ -43,6 +44,8 @@ const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
 const route = useRoute()
 const router = useRouter()
+
+const refresh = ref(false)
 
 const tabClick = (TabsPaneContext, event) => {
   console.log(TabsPaneContext.props.name)
@@ -132,6 +135,10 @@ const handleCommand = (command) => {
 }
 
 const handleRefresh = (e) => {
+  refresh.value = true;
+  setTimeout(() => {
+    refresh.value = false
+  }, 1000)
   e.stopPropagation()
   refreshPage()
 }
@@ -151,18 +158,42 @@ const handleRefresh = (e) => {
   outline: none;
 }
 
-// .icon-refresh:hover svg {
-//   transform: scale(1.5);
-// }
+:deep(.el-tabs__item) .is-icon-close:hover {
+  --el-text-color-placeholder: var(--el-color-primary);
+  opacity: 0.5;
+}
 
 .animateRotate {
   animation: rotates 1s linear infinite;
 }
 
 @keyframes rotates {
-  to {
-    transform: rotate(360deg);
+
+  0% {
+    transform: rotate(0deg);
+    scale: 1.25;
   }
+
+  30% {
+    transform: rotate(100deg);
+    scale: 1.25;
+  }
+
+  50% {
+    transform: rotate(180deg);
+    scale: 1.25;
+  }
+
+  70% {
+    transform: rotate(270deg);
+    scale: 1.25;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    scale: 1.25;
+  }
+
 }
 </style>
 <style lang="scss">
@@ -175,5 +206,9 @@ const handleRefresh = (e) => {
   .el-tabs--card>.el-tabs__header .el-tabs__item {
     border-bottom: 1px solid var(--el-border-color-light);
   }
+
+  // .el-tabs__item .is-icon-close:hover {
+  //   --el-text-color-placeholder: var(--el-color-primary);
+  // }
 }
 </style>

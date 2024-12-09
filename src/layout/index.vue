@@ -1,12 +1,12 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="bg-[var(--header-bgcolor)] flex items-center justify-between !px-[20px] !pr-[40px]">
-      <div class="w-[230px] h-[40px] leading-[40px] my-[10px] font-bold">
-        VUE-ADMIN-TS
+    <el-header class="flex items-center justify-between !h-[48px] shadow-md z-2"
+      style="--el-header-padding: 0 0 0 20px">
+      <div class="w-[240px] flex-shrink-0 h-[30px] leading-[30px] my-[10px] font-bold">
+        VUE-ADMIN-JS
       </div>
-      <div class="flex flex-1 items-center justify-between">
+      <div class="flex flex-1 flex-shrink-0 items-center justify-between">
         <topmenu v-if="sideStore.autoSplit" />
-        <div v-else></div>
         <opti />
       </div>
     </el-header>
@@ -14,7 +14,7 @@
       <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--topmenu-active-bgcolor)]">
+          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px]">
           <i-ant-design:menu-unfold-outlined v-if="sideStore.collapse" />
           <i-ant-design:menu-fold-outlined v-else />
         </div>
@@ -33,98 +33,28 @@
           vue-admin-ts</el-footer>
       </el-container>
     </el-container>
-    <el-drawer v-model="drawer" :title="t('Settings')" size="320" :append-to-body="true">
-      <div>
-        <div>
-          <div class="mb-2">
-            <el-text>{{ t('Navigation Mode') }}</el-text>
-          </div>
-          <div class="flex items-center mb-4">
-            <el-tooltip :effect="isDark ? 'dark' : 'light'" :content="t('Mixed layout')" placement="top">
-              <div @click="isLayout = 'fixed'"
-                class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)]">
-                <div
-                  class="w-[100%] h-[10px] rounded-t bg-[var(--topmenu-active-bgcolor)] border-b-[var(--el-border-color)] border-b border-b-solid">
-                </div>
-                <div
-                  class="w-[20px] h-[40px] bg-[var(--topmenu-active-bgcolor] border-r-[var(--el-border-color)] border-r border-r-solid">
-                </div>
-                <i-ep-check v-if="isLayout === 'fixed'"
-                  class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></i-ep-check>
-              </div>
-            </el-tooltip>
-          </div>
-          <div class="flex justify-between items-end mb-2">
-            <el-text class="mr-2">{{ t('Auto-split menu') }}</el-text>
-            <el-switch v-model="sideStore.autoSplit" />
-          </div>
-        </div>
-        <el-divider></el-divider>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Dark Mode') }}</el-text>
-          <el-switch v-model="isDark" />
-        </div>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
-          <el-color-picker v-model="themeColorStore.color" />
-        </div>
-        <el-divider></el-divider>
-        <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>
-          <el-switch v-model="multiTabsStore.isVisible" />
-        </div>
-      </div>
-      <!-- <div
-        :class="['translate-all duration-300 ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-[320px] z-[2200]']"
-        @click="handleDrawer">
-        <i-ep-close class="text-[18px]"></i-ep-close>
-      </div> -->
-    </el-drawer>
-    <div
-      :class="['translate-all ease-ease fixed top-[40%] bg-[var(--setting-bgcolor)] p-4 cursor-pointer rounded rounded-tr-none rounded-br-none right-0 z-10']"
-      @click="handleDrawer">
-      <i-ep-setting class="text-[18px]"></i-ep-setting>
-    </div>
+    <settings />
   </el-container>
 </template>
 
 <script lang="ts" setup>
 provide('refreshPage', handleRefresh)
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
-import { useThemeColor } from '@/stores/themeColor'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
+import settings from './settings.vue'
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
-const themeColorStore = useThemeColor()
 const route = useRoute()
-const drawer = ref(false)
-const isDark = ref(false)
-const isLayout = ref('fixed')
 const isrefreshing = ref(true)
 
-watch(() => isDark.value, () => {
-  document.documentElement.classList.toggle('dark')
-})
-
-watch(() => themeColorStore.color, newValue => {
-  console.log(newValue)
-  document.documentElement.style.setProperty('--el-color-primary', newValue)
-}, {
-  immediate: true
-})
-
 watch(() => sideStore.autoSplit, bool => {
-  console.log(bool)
-  // sideStore.setSplit(bool)
   if (!bool) {
     // 关闭自动分割菜单
     const filteWorkPlace = topStore.allRoutes.map(item => {
@@ -140,6 +70,7 @@ watch(() => sideStore.autoSplit, bool => {
     sideStore.setSideMenu(filteWorkPlace)
   } else {
     if (route.path === '/workplace') {
+      topStore.setKey('/workplace')
       sideStore.setSideMenu([])
     } else {
       const prefixUrl = route.path.match(/(\/\w+)/) ? route.path.match(/(\/\w+)/)?.[1] : null
@@ -148,11 +79,9 @@ watch(() => sideStore.autoSplit, bool => {
       sideStore.setSideMenu(sideMenu.children)
     }
   }
+}, {
+  immediate: true
 })
-
-function handleDrawer() {
-  drawer.value = !drawer.value
-}
 
 function handleRefresh() {
   isrefreshing.value = false
@@ -163,15 +92,4 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.15s ease-in-out;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-</style>
+<style lang="scss" scoped></style>

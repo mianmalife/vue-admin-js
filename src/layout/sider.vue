@@ -1,5 +1,5 @@
 <template>
-  <el-menu class="!min-h-[400px]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'"
+  <el-menu class="h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'"
     :default-active="route.path" @open="handleOpen" @close="handleClose" router :collapse="sideStore.collapse"
     :collapse-transition="false">
     <template v-for="menuItem in sideStore.menulist">
@@ -55,6 +55,10 @@ const handleClose = (key, keyPath) => {
 </script>
 
 <style lang="scss" scoped>
+:deep(.el-menu-item.is-active) {
+  border-right: 2px solid var(--el-menu-active-color)
+}
+
 :deep(.el-sub-menu.is-active)>.el-sub-menu__title {
   color: var(--el-menu-active-color);
 }

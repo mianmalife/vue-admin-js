@@ -1,5 +1,6 @@
 <template>
-  <el-menu :default-active="topStore.activeKey" :ellipsis="false" @select="handleSelect" mode="horizontal">
+  <el-menu class="flex flex-1 pr-[10px] !h-[48px] !border-b-0" :class="topStore.isLeft ? '' : 'justify-end'"
+    :default-active="topStore.activeKey" @select="handleSelect" mode="horizontal">
     <el-menu-item v-for="menuObj in topStore.allRoutes" :index="menuObj.path">
       <Icon :icon="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3 text-[18px]" />
       {{ t(`${menuObj.meta.title}`) }}
