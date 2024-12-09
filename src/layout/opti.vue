@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row-reverse items-center h-[60px] pr-[20px] border-b-default"
+  <div class="flex flex-row-reverse items-center h-[48px] pr-[20px] border-b-0"
     :class="sideStore.autoSplit ? '' : 'flex-1'">
     <el-dropdown @command="setLanguage">
       <div class="flex items-center outline-none">

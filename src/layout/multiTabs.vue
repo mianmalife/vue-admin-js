@@ -2,12 +2,13 @@
   <div
     class="mutab__cls flex items-center justify-between pt-[10px] bg-[var(--card-bgcolor)] border-b border-solid border-[var(--el-border-color)]">
     <el-tabs class="px-[10px] bg-[var(--card-bgcolor)]" type="card" :model-value="route.path" @tab-click="tabClick"
-      :closable="multiTabsStore.multiTabslist.length > 1" @tab-remove="handleTabsRemove">
-      <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path">
+      @tab-remove="handleTabsRemove">
+      <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path"
+        :closable="multiTabs.name !== 'workplace'">
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <i-ep-refreshRight class="hover:scale-150" :class="{ animateRotate: refresh }" @click="handleRefresh" />
+            <i-ep-refreshRight class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
@@ -170,27 +171,27 @@ const handleRefresh = (e) => {
 
   0% {
     transform: rotate(0deg);
-    scale: 1.5;
+    scale: 1.25;
   }
 
   30% {
     transform: rotate(100deg);
-    scale: 1.5;
+    scale: 1.25;
   }
 
   50% {
     transform: rotate(180deg);
-    scale: 1.5;
+    scale: 1.25;
   }
 
   70% {
     transform: rotate(270deg);
-    scale: 1.5;
+    scale: 1.25;
   }
 
   100% {
     transform: rotate(360deg);
-    scale: 1.5;
+    scale: 1.25;
   }
 
 }
