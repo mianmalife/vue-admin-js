@@ -3,7 +3,7 @@
     <el-header class="flex items-center justify-between !h-[48px] shadow-md z-2"
       style="--el-header-padding: 0 0 0 20px">
       <div class="w-[240px] flex-shrink-0 h-[30px] leading-[30px] my-[10px] font-bold">
-        VUE-ADMIN-JS
+        VUE-ADMIN-TS
       </div>
       <div class="flex flex-1 flex-shrink-0 items-center justify-between">
         <topmenu v-if="sideStore.autoSplit" />
