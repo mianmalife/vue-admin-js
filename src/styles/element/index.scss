@@ -1,7 +1,26 @@
 @forward 'element-plus/theme-chalk/src/common/var.scss' with (
   $colors: (
     'primary': (
-      'base': #701FF3
+      'base': #fd5732
     )
+  ),
+  $table: (
+    'text-color': #4b4848,
+    'header-text-color': #232121
+  ),
+  $text-color: (
+    'primary': #4b4848,
+    'regular': #4b4848,
+  ),
+  $menu: (
+    'active-color': #232121,
+    'text-color': #4b4848,
+    'hover-bg-color': #f1f1f1,
+    'border-color': #c8c8c8,
+    'bg-color': #fbfbfb,
+    'hover-text-color': #232121
+  ),
+  $border-color: (
+    '': #c8c8c8,
   )
 );

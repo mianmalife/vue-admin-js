@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--card-bgcolor)] h-[200px] p-[20px] rounded shadow">
+  <div class="sh-[200px] p-[20px] rounded">
     <el-badge :value="valu" class="mr-4">
       <el-button @click="valu--">comments</el-button>
     </el-badge>

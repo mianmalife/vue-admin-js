@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--card-bgcolor)] p-[20px] shadow">
+  <div class="p-[20px]">
     <el-form :inline="true" :model="formInline">
       <el-form-item label="Approved by">
         <el-input v-model="formInline.user" placeholder="Approved by" clearable />

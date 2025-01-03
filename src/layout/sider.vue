@@ -5,7 +5,7 @@
     <template v-for="menuItem in sideStore.menulist">
       <el-sub-menu :index="menuItem.path" v-if="menuItem.children && menuItem.children.length > 0">
         <template #title>
-          <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]"
+          <Icon :icon="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[16px]"
             :class="sideStore.collapse ? 'mx-auto' : ''" />
           <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
             }}</span>
@@ -56,9 +56,8 @@ const handleClose = (key, keyPath) => {
 
 <style lang="scss" scoped>
 :deep(.el-menu-item.is-active) {
-  border-right: 2px solid var(--el-menu-active-color)
+  background-color: var(--el-menu-hover-bg-color) !important;
 }
-
 :deep(.el-sub-menu.is-active)>.el-sub-menu__title {
   color: var(--el-menu-active-color);
 }

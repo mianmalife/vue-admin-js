@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-[var(--card-bgcolor)] h-[200px] p-[20px] rounded shadow">
+  <div class="h-[200px] p-[20px] rounded">
     <el-button :plain="true" @click="open">Show message</el-button>
     <el-button :plain="true" @click="openVn">VNode</el-button>
   </div>

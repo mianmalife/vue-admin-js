@@ -2,7 +2,7 @@
   <el-menu class="flex flex-1 pr-[10px] !h-[48px] !border-b-0" :class="topStore.isLeft ? '' : 'justify-end'"
     :default-active="topStore.activeKey" @select="handleSelect" mode="horizontal">
     <el-menu-item v-for="menuObj in topStore.allRoutes" :index="menuObj.path">
-      <Icon :icon="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3 text-[18px]" />
+      <Icon :icon="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3 text-[16px]" />
       {{ t(`${menuObj.meta.title}`) }}
     </el-menu-item>
   </el-menu>
@@ -39,4 +39,8 @@ const handleSelect = (key, keyPath) => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-menu--horizontal > .el-menu-item.is-active {
+  background-color: var(--el-menu-hover-bg-color) !important;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-[20px] bg-[var(--card-bgcolor)] shadow">
+  <div class="p-[20px]">
     <div class="flex">
       <div class="grow">
         <el-button class="mx-[12px]" @click="handleAdd">add item</el-button>

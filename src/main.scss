@@ -1,6 +1,3 @@
-// @use 'styles/base';
-// @use 'sass:color';
-
 :root {
   --sb-track-color: #cccccc;
   --sb-thumb-color: #f7f7f7;
@@ -9,6 +6,8 @@
 
 html, body, #app {
   height: 100%;
+  background-color: $bodyBgColor;
+  color: $baseColor;
 }
 
 :-webkit-autofill {
