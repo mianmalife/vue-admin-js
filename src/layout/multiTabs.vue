@@ -48,7 +48,6 @@ const router = useRouter()
 const refresh = ref(false)
 
 const tabClick = (TabsPaneContext, event) => {
-  console.log(TabsPaneContext.props.name)
   event.stopPropagation();
   if (TabsPaneContext.props.name === '/workplace') {
     topStore.setKey(TabsPaneContext.props.name)

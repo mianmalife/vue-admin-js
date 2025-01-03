@@ -1,8 +1,8 @@
 <template>
-  <div class="h-[100%] flex flex-col items-center ">
+  <div class="h-[100%] flex flex-col items-center bg-[url('@/assets/image/wallhaven-xlwry3.jpg')] bg-no-repeat bg-[length:100%_100%] bg-center">
     <div class="flex grow justify-center items-center">
       <el-form ref="userRef" :model="userForm" status-icon :rules="rules" label-width="auto" size="large"
-        class="w-[400px]  p-[30px] shadow-xl bg-[var(--card-bgcolor)] rounded-md">
+        class="w-[400px] p-[30px] shadow-xl rounded-md border border-[#fff]">
         <div class="text-center w-[100%] pb-[20px] font-bold">vue-admin-ts</div>
         <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
           @close="isLoginError = false" />
