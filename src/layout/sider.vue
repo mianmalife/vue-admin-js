@@ -1,5 +1,5 @@
 <template>
-  <el-menu class="h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'"
+  <el-menu class="h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[208px]'"
     :default-active="route.path" @open="handleOpen" @close="handleClose" router :collapse="sideStore.collapse"
     :collapse-transition="false">
     <template v-for="menuItem in sideStore.menulist">

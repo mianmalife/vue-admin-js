@@ -19,7 +19,7 @@ export const useMultiTabsStore = defineStore('MultiTabs', () => {
   }
 
   function removeOtherItem(path) {
-    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path === path)
+    multiTabslist.value = multiTabslist.value.filter(multiTabs => multiTabs.path === path|| multiTabs.path ==='/workplace')
   }
 
   function removeData() {

@@ -1,7 +1,6 @@
 <template>
-  <div
-    class="mutab__cls flex items-center justify-between pt-[10px] bg-[var(--card-bgcolor)] border-b border-solid border-[var(--el-border-color)]">
-    <el-tabs class="px-[10px] bg-[var(--card-bgcolor)]" type="card" :model-value="route.path" @tab-click="tabClick"
+  <!-- <div class="mutab__cls flex items-center justify-between pt-[10px] pb-[-20px]  border-b border-solid">
+    <el-tabs class="px-[10px] mb-[-10px]" type="card" :model-value="route.path" @tab-click="tabClick"
       @tab-remove="handleTabsRemove">
       <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path"
         :closable="multiTabs.name !== 'workplace'">
@@ -11,10 +10,29 @@
             <i-ep-refreshRight class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
           </i>
         </template>
-      </el-tab-pane>
-    </el-tabs>
+</el-tab-pane>
+</el-tabs>
+</div> -->
 
-    <el-dropdown class="mb-[15px] mr-[20px]" @command="handleCommand" size="small">
+  <div class="mutab h-[48px] pt-[8px] flex items-center justify-between relative ">
+    <div class="h-[100%] relative overflow-x-auto">
+      <div class="mutab_list h-[100%] flex px-[10px] whitespace-nowrap">
+        <div
+          class="mutab_item h-[100%] px-[20px] flex shrink-0 items-center justify-center font-medium text-[var(--el-text-color-primary] text-[12px] bg-black/[.02]"
+          :class="multiTabs.path === route.path ? 'isActive' : ''" v-for="multiTabs in multiTabsStore.multiTabslist"
+          :key="multiTabs.path" @click="tabClick(multiTabs)">
+          <span>{{ t(`${multiTabs.meta.title}`) }}</span>
+          <i class="ml-[5px]" v-show="multiTabs.path === route.path">
+            <i-ep-refreshRight class="hover:scale-125" :class="{ animateRotate: refresh }"
+              @click.stop="handleRefresh" />
+          </i>
+          <i class="ml-[5px] hover:scale-125" v-show="multiTabs.name !== 'workplace'">
+            <i-ep-close @click.stop="handleTabsRemove(multiTabs.path)" />
+          </i>
+        </div>
+      </div>
+    </div>
+    <el-dropdown class="mr-[20px]" @command="handleCommand" size="small">
       <span class="el-dropdown-link">
         <i class=" text-[var(--el-text-color-primary)] hover:text-[var(--el-color-primary)]">
           <i-ep-moreFilled class="rotate-[90deg]" />
@@ -47,11 +65,10 @@ const router = useRouter()
 
 const refresh = ref(false)
 
-const tabClick = (TabsPaneContext, event) => {
-  console.log(TabsPaneContext.props.name)
-  event.stopPropagation();
-  if (TabsPaneContext.props.name === '/workplace') {
-    topStore.setKey(TabsPaneContext.props.name)
+const tabClick = (context) => {
+  console.log(context.path)
+  if (context.path === '/workplace') {
+    topStore.setKey(context.path)
     // 自动分割菜单
     if (sideStore.autoSplit) {
       sideStore.setSideMenu([])
@@ -69,7 +86,7 @@ const tabClick = (TabsPaneContext, event) => {
       sideStore.setSideMenu(filteWorkPlace)
     }
   } else {
-    const prefixUrl = TabsPaneContext.props.name.match(/(\/\w+)/) ? TabsPaneContext.props.name.match(/(\/\w+)/)[1] : null
+    const prefixUrl = context.path.match(/(\/\w+)/) ? context.path.match(/(\/\w+)/)[1] : null
     const sideMenu = topStore.allRoutes.find(item => item.path === prefixUrl)
     topStore.setKey(prefixUrl)
     if (sideStore.autoSplit) {
@@ -89,7 +106,7 @@ const tabClick = (TabsPaneContext, event) => {
     }
   }
   nextTick(() => {
-    router.push({ path: TabsPaneContext.props.name })
+    router.push({ path: context.path })
   })
 }
 
@@ -97,7 +114,6 @@ const handleTabsRemove = (targetTab) => {
   // console.log(targetTab)
   // console.log(route)
   const tabs = multiTabsStore.multiTabslist
-  console.log(tabs)
   let activeTab = route.path
   if (activeTab === targetTab) {
     tabs.forEach((tab, index) => {
@@ -115,6 +131,7 @@ const handleTabsRemove = (targetTab) => {
           }
         }
         activeTab = nextTab.path
+        console.log('22')
       }
     })
   }
@@ -123,44 +140,68 @@ const handleTabsRemove = (targetTab) => {
   multiTabsStore.removeItem(targetTab)
 }
 
-const handleCommand = (command) => {
+const handleCommand = (command, e) => {
   if (command === 'close') {
     // console.log(route.path, multiTabsStore.multiTabslist)
     multiTabsStore.removeOtherItem(route.path)
     // console.log(multiTabsStore.multiTabslist)
   } else {
-    console.log(command)
-    refreshPage()
+    handleRefresh()
   }
 }
 
-const handleRefresh = (e) => {
+const handleRefresh = () => {
   refresh.value = true;
   setTimeout(() => {
     refresh.value = false
   }, 1000)
-  e.stopPropagation()
+  // e.stopPropagation()
   refreshPage()
 }
 </script>
 
 <style lang="scss" scoped>
-.el-tabs--border-card>.el-tabs__content {
-  display: none;
+.mutab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(5, 5, 5, .06)
 }
 
-.el-tabs {
-  --el-font-size-base: 12px;
-  overflow-x: auto;
+.mutab_item {
+  box-sizing: border-box;
+  margin: 0 1px;
+  border: 1px solid rgba(5, 5, 5, .06);
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  overflow: hidden;
+  z-index: 10;
+
+  span {
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
 }
 
-.el-dropdown-link:focus {
-  outline: none;
+.mutab_item:hover {
+  cursor: pointer;
+
+  span {
+    color: var(--el-color-primary);
+  }
+
 }
 
-:deep(.el-tabs__item) .is-icon-close:hover {
-  --el-text-color-placeholder: var(--el-color-primary);
-  opacity: 0.5;
+.mutab_item.isActive {
+  background: #ffffff;
+  border-bottom-color: #ffffff;
+
+  span {
+    color: var(--el-color-primary);
+  }
+
 }
 
 .animateRotate {
@@ -194,21 +235,5 @@ const handleRefresh = (e) => {
     scale: 1.25;
   }
 
-}
-</style>
-<style lang="scss">
-.mutab__cls {
-  .el-tabs--card>.el-tabs__header {
-    border-bottom: none;
-    margin-bottom: 10px;
-  }
-
-  .el-tabs--card>.el-tabs__header .el-tabs__item {
-    border-bottom: 1px solid var(--el-border-color-light);
-  }
-
-  // .el-tabs__item .is-icon-close:hover {
-  //   --el-text-color-placeholder: var(--el-color-primary);
-  // }
 }
 </style>

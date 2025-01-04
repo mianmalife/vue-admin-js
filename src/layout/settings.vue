@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-all duration-300 ease-ease w-[320px] h-[100%] fixed top-0 right-[-320px] bg-[#fff] text-[rgb(114, 118, 123] z-[2000]"
+    class="transition-all duration-300 ease-ease w-[300px] h-[100%] fixed top-0 right-[-300px] bg-[#fff] text-[rgb(114, 118, 123] z-[2000]"
     :class="drawer ? 'right-[0]' : ''">
     <!-- 遮罩层 -->
     <div
@@ -8,7 +8,7 @@
       :class="drawer ? 'opacity-100 visible' : 'invisible'" @click="handleDrawer">
     </div>
     <div
-      class="translate-all ease-ease absolute top-[40%] right-[320px] bg-[var(--el-menu-active-color)] p-3 cursor-pointer rounded rounded-tr-none rounded-br-none text-[#fff]"
+      class="translate-all ease-ease absolute top-[240px] right-[300px] bg-[var(--el-menu-active-color)] p-3 cursor-pointer rounded rounded-tr-none rounded-br-none text-[#fff]"
       @click="handleDrawer">
       <i-ep-setting class="text-[14px]" v-if="!drawer"></i-ep-setting>
       <i-ep-close class="text-[14px]" v-else></i-ep-close>
@@ -49,6 +49,10 @@
         <div class="flex justify-between items-end mb-2">
           <el-text class="mr-2">{{ t('Auto-split menu') }}</el-text>
           <el-switch v-model="sideStore.autoSplit" />
+        </div>
+        <div class="flex justify-between items-end mb-2">
+          <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>
+          <el-switch v-model="multiTabsStore.isVisible" />
         </div>
       </div>
       <el-divider></el-divider>

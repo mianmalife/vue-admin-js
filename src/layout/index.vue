@@ -1,8 +1,7 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="flex items-center justify-between !h-[48px] shadow-md z-2"
-      style="--el-header-padding: 0 0 0 20px">
-      <div class="w-[240px] flex-shrink-0 h-[30px] leading-[30px] my-[10px] font-bold">
+    <el-header class="flex items-center justify-between !h-[48px] shadow-md header" style="--el-header-padding:0">
+      <div class="w-[208px] flex-shrink-0 h-[30px] leading-[30px] my-[10px] pl-[20px] font-bold">
         VUE-ADMIN-JS
       </div>
       <div class="flex flex-1 flex-shrink-0 items-center justify-between">
@@ -92,4 +91,8 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.header {
+  z-index: calc(var(--el-index-normal) + 2)
+}
+</style>
