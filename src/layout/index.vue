@@ -92,4 +92,14 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.15s ease-in-out;
+}
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>
