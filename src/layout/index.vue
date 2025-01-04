@@ -1,11 +1,11 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="flex items-center justify-between !h-[48px] shadow-sm 
+    <el-header class="flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
     bg-[var(--el-menu-bg-color)] z-2" style="--el-header-padding: 0">
       <div class="w-[240px] flex-shrink-0 h-[100%] my-[10px] font-bold flex items-center ml-[20px]">
         VUE-ADMIN-JS
       </div>
-      <div class="flex flex-1 flex-shrink-0 items-center justify-between">
+      <div class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
         <topmenu v-if="sideStore.autoSplit" />
         <opti />
       </div>
