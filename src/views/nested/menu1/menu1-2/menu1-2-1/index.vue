@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-[200px] p-[20px] rounded">
+  <div>
     <el-badge :value="valu" class="mr-4">
       <el-button @click="valu--">comments</el-button>
     </el-badge>

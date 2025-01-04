@@ -1,5 +1,5 @@
 <template>
-  <div class="p-[20px]">
+  <div>
     <el-skeleton :rows="5" animated :loading="loading">
       <template #default>
         <h1>工作台</h1>

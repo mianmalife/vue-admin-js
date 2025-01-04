@@ -7,7 +7,8 @@
 html, body, #app {
   height: 100%;
   background-color: $bodyBgColor;
-  color: $baseColor;
+  font-family: Inter, 'Helvetica Neue', Helvetica, 'PingFang SC',
+  'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
 :-webkit-autofill {

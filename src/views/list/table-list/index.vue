@@ -1,5 +1,5 @@
 <template>
-  <div class="p-[20px]">
+  <div>
     <el-form :inline="true" :model="formInline">
       <el-form-item label="Approved by">
         <el-input v-model="formInline.user" placeholder="Approved by" clearable />

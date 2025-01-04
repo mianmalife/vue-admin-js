@@ -53,7 +53,7 @@
       </div>
       <el-divider></el-divider>
       <!-- 主题 -->
-      <div class="flex justify-between items-end mb-2">
+      <!-- <div class="flex justify-between items-end mb-2">
         <el-text class="mr-2">{{ t('Dark Mode') }}</el-text>
         <el-switch v-model="isDark" />
       </div>
@@ -61,7 +61,7 @@
         <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
         <el-color-picker v-model="themeColorStore.color" />
       </div>
-      <el-divider></el-divider>
+      <el-divider></el-divider> -->
       <!-- 标签栏 -->
       <div class="flex justify-between items-end mb-2">
         <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>

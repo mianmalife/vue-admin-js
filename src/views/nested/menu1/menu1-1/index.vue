@@ -1,5 +1,5 @@
 <template>
-  <div class="p-[20px] rounded">
+  <div>
     <el-alert title="Success alert" type="success" class="!mb-2" />
     <el-alert title="Info alert" type="info" class="!mb-2" />
     <el-alert title="Warning alert" type="warning" class="!mb-2" />

@@ -1,8 +1,8 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="flex items-center justify-between !h-[48px] shadow-sm z-2"
-      style="--el-header-padding: 0 0 0 20px">
-      <div class="w-[240px] flex-shrink-0 h-[30px] leading-[30px] my-[10px] font-bold">
+    <el-header class="flex items-center justify-between !h-[48px] shadow-sm 
+    bg-[var(--el-menu-bg-color)] z-2" style="--el-header-padding: 0">
+      <div class="w-[240px] flex-shrink-0 h-[100%] my-[10px] font-bold flex items-center ml-[20px]">
         VUE-ADMIN-JS
       </div>
       <div class="flex flex-1 flex-shrink-0 items-center justify-between">
