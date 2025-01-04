@@ -10,6 +10,11 @@ html, body, #app {
   'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
+html.dark .v-card {
+  background-color: var(--el-bg-color-overlay);
+}
+
+
 :-webkit-autofill {
   box-shadow: inset 0 0 0 2000px #fff;
 }

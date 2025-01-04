@@ -5,7 +5,8 @@
       <div class="w-[240px] flex-shrink-0 h-[100%] my-[10px] font-bold flex items-center ml-[20px]">
         VUE-ADMIN-JS
       </div>
-      <div class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
+      <div
+        class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
         <topmenu v-if="sideStore.autoSplit" />
         <opti />
       </div>
@@ -23,11 +24,13 @@
         <multiTabs v-if="multiTabsStore.isVisible" />
         <el-main class="!p-[10px]">
           <breadcrumb />
-          <router-view v-slot="{ Component }" v-if="isrefreshing">
-            <transition name="slide" mode="out-in">
-              <component :is="Component" />
-            </transition>
-          </router-view>
+          <vCard>
+            <router-view v-slot="{ Component }" v-if="isrefreshing">
+              <transition name="slide" mode="out-in">
+                <component :is="Component" />
+              </transition>
+            </router-view>
+          </vCard>
         </el-main>
         <el-footer class="flex justify-center" height="30px">Copyright © {{ new Date().getFullYear() }}
           vue-admin-js</el-footer>
@@ -48,6 +51,7 @@ import { useMultiTabsStore } from '@/stores/multiTabs'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 import settings from './settings.vue'
+import vCard from '@/components/v-card.vue';
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
@@ -97,6 +101,7 @@ function handleRefresh() {
 .slide-leave-active {
   transition: all 0.15s ease-in-out;
 }
+
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
