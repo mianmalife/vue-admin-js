@@ -24,13 +24,9 @@
         <multiTabs v-if="multiTabsStore.isVisible" />
         <el-main class="!p-[10px]">
           <breadcrumb />
-          <vCard>
-            <router-view v-slot="{ Component }" v-if="isrefreshing">
-              <transition name="slide" mode="out-in">
-                <component :is="Component" />
-              </transition>
-            </router-view>
-          </vCard>
+          <router-view v-slot="{ Component }" v-if="isrefreshing">
+            <vCard><component :is="Component" /></vCard>
+          </router-view>
         </el-main>
         <el-footer class="flex justify-center" height="30px">Copyright © {{ new Date().getFullYear() }}
           vue-admin-js</el-footer>
@@ -96,15 +92,4 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped>
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.15s ease-in-out;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-</style>
+<style lang="scss" scoped></style>
