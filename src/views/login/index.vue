@@ -22,7 +22,7 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="w-full" type="primary" @click="handleForm">{{ t('Sign in') }}</el-button>
+          <el-button class="w-full" type="primary" @click="handleForm" :loading="loading">{{ t('Sign in') }}</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -33,21 +33,18 @@
 </template>
 
 <script setup>
+import getToken from '~/mock/getToken'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-import { useActiveStore } from '@/stores/topmenu'
-import { useSideMenuStore } from '@/stores/sidemenu';
-import { staticRoutes, dynamicRoutes } from '@/router';
+import router from '@/router';
 import { useThemeColor } from '@/stores/themeColor'
-const filterPath = ['/', '/login']
-const allRoutes = staticRoutes.filter(item => filterPath.includes(item.path) === false).concat(dynamicRoutes)
-const topStore = useActiveStore()
-const sideStore = useSideMenuStore()
+import { useActiveStore } from "@/stores/topmenu"
 const themeColorStore = useThemeColor()
-const router = useRouter()
+const topStore = useActiveStore()
 
 let isLoginError = ref(false)
 const userRef = ref()
+const loading = ref(false)
 
 onMounted(() => {
   document.documentElement.style.setProperty('--el-color-primary', themeColorStore.color)
@@ -81,35 +78,22 @@ const rules = {
 
 const handleForm = async () => {
   try {
-    await userRef.value.validate((valid) => {
+    await userRef.value.validate(async (valid) => {
       if (!valid) return
+      loading.value = true
       if (userForm.username === 'admin' && userForm.password === 'admin') {
-        localStorage.setItem('token', 'true')
-        topStore.setAllRoutes(allRoutes)
+        const tk = await getToken()
+        localStorage.setItem('token', tk)
+        router.push('/workplace')
         topStore.setKey('/workplace')
-        if (sideStore.autoSplit) {
-          sideStore.setSideMenu([])
-        } else {
-          const filteWorkPlace = allRoutes.map(item => {
-            if (item.path === '/workplace') {
-              return {
-                ...item,
-                children: []
-              }
-            } else {
-              return item
-            }
-          })
-          sideStore.setSideMenu(filteWorkPlace)
-        }
-        nextTick(() => {
-          router.push({ name: 'workplace' })
-        })
+        loading.value = false
       } else {
         isLoginError.value = true
+        loading.value = false
       }
     })
   } catch (error) {
+    console.error(error)
     ElMessage.error(error.message)
   }
 }

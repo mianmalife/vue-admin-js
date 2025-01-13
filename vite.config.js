@@ -65,6 +65,7 @@ export default defineConfig({
           'vue': ['vue'],
           'vue-router': ['vue-router'],
           'element-plus': ['element-plus'],
+          '@iconify-json/ep': ['@iconify-json/ep']
         }
       }
     }

@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import downloadAndInstall from './iconify-ep'
 import pina from '@/stores/creaPinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import i18n from './locale'
@@ -10,6 +11,8 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
+
+downloadAndInstall()
 
 app.use(pina)
 pina.use(piniaPluginPersistedstate)

@@ -28,7 +28,7 @@
           <el-text>{{ t('Navigation Mode') }}</el-text>
         </div>
         <div class="flex items-center mb-4">
-          <el-tooltip :effect="isDark ? 'dark' : 'light'" :content="t('Mixed layout')" placement="top">
+          <el-tooltip :content="t('Mixed layout')" placement="top">
             <div @click="isLayout = 'fixed'"
               class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)]">
               <div
@@ -51,12 +51,8 @@
           <el-switch v-model="sideStore.autoSplit" />
         </div>
       </div>
-      <el-divider></el-divider>
+      <!-- <el-divider></el-divider> -->
       <!-- 主题 -->
-      <div class="flex justify-between items-end mb-2">
-        <el-text class="mr-2">{{ t('Dark Mode') }}</el-text>
-        <el-switch v-model="isDark" />
-      </div>
       <!-- <div class="flex justify-between items-end mb-2">
         <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
         <el-color-picker v-model="themeColorStore.color" />
@@ -83,12 +79,7 @@ const { t } = useI18n()
 import { useThemeColor } from '@/stores/themeColor'
 const themeColorStore = useThemeColor()
 const drawer = ref(false)
-const isDark = ref(false)
 const isLayout = ref('fixed')
-
-watch(() => isDark.value, newValue => {
-  document.documentElement.classList.toggle('dark')
-})
 
 watch(() => themeColorStore.color, newValue => {
   console.log(newValue)

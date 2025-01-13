@@ -58,5 +58,6 @@ declare module 'vue' {
     IEpUserFilled: typeof import('~icons/ep/user-filled')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    VCard: typeof import('./src/components/v-card.vue')['default']
   }
 }

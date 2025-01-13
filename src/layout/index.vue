@@ -16,8 +16,8 @@
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
           class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px]">
-          <i-ant-design:menu-unfold-outlined v-if="sideStore.collapse" />
-          <i-ant-design:menu-fold-outlined v-else />
+          <i-ep:expand v-if="sideStore.collapse" />
+          <i-ep:fold v-else />
         </div>
       </el-aside>
       <el-container>
@@ -54,8 +54,9 @@ const multiTabsStore = useMultiTabsStore()
 const route = useRoute()
 const isrefreshing = ref(true)
 
-watch(() => sideStore.autoSplit, bool => {
-  if (!bool) {
+watch(() => [sideStore.autoSplit, route.path], deps => {
+  console.log(sideStore.autoSplit)
+  if (!deps[0]) {
     // 关闭自动分割菜单
     const filteWorkPlace = topStore.allRoutes.map(item => {
       if (item.path === '/workplace') {
@@ -67,6 +68,7 @@ watch(() => sideStore.autoSplit, bool => {
         return item
       }
     })
+    console.log(filteWorkPlace)
     sideStore.setSideMenu(filteWorkPlace)
   } else {
     if (route.path === '/workplace') {
