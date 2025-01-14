@@ -17,8 +17,7 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-    <i-ep:moon class="text-[18px] mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-if="!isDark" @click="toggleDark()" />
-    <i-ep:sunny class="text-[18px] mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-else @click="toggleDark()" />
+    <toggle-theme></toggle-theme>
     <el-dropdown @command="handleCommand">
       <div class="flex flex-shrink-0 items-center outline-none">
         <el-avatar size="small" class="mr-[10px]">
@@ -43,7 +42,7 @@
 </template>
 
 <script setup>
-import { useDark, useToggle } from '@vueuse/core'
+import ToggleTheme from '@/components/toggle-theme.vue'
 import { useSideMenuStore } from '@/stores/sidemenu'
 const sideStore = useSideMenuStore()
 import { useI18n } from 'vue-i18n'
@@ -53,8 +52,6 @@ const langStore = useLangStore()
 const multiTabsStore = useMultiTabsStore()
 const router = useRouter()
 const { locale, t } = useI18n()
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
 
 function handleCommand(key) {
   if (key === 'logout') {

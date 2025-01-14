@@ -10,6 +10,11 @@ html, body, #app {
   'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 
+body {
+  background-color: var(--el-bg-color) !important;
+  transition: background-color var(--el-transition-duration-fast) !important;
+}
+
 html.dark .v-card {
   background-color: var(--el-bg-color-overlay);
 }
@@ -41,4 +46,26 @@ html.dark .v-card {
   body {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+.dark::view-transition-old(root) {
+  z-index: 2147483646;
+}
+
+.dark::view-transition-new(root) {
+  z-index: 1;
 }
