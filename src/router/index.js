@@ -98,31 +98,29 @@ let hasLoad = true
 
 router.beforeEach(async (to, from) => {
   NProgress.start()
-  if (localStorage.getItem('token')) {
-    if (to.name === 'login') {
-      router.push('/')
-      NProgress.done()
-    } else {
-      if (to.name !== 'NotFound') {
-        const multiTabsStore = useMultiTabsStore()
-        multiTabsStore.setMultiTabsStore(to)
-      }
-      NProgress.done()
-      if (hasLoad) {
-        const afterMenuData = await convertMenuData()
-        await addDynamicRoute(afterMenuData)
-        hasLoad = false
-        NProgress.done()
-        return to.fullPath
-      }
-    }
-  } else {
-    if (to.path !== '/login') {
-      NProgress.done()
-      return '/login'
-    }
+  const token = localStorage.getItem('token')
+  if (!token && to.name !== 'login') {
     NProgress.done()
+    return '/login'
   }
+  if (token && to.name === 'login') {
+    NProgress.done()
+    return '/'
+  }
+  if (token && to.name !== 'login') {
+    if (to.name !== 'NotFound') {
+      const multiTabsStore = useMultiTabsStore()
+      multiTabsStore.setMultiTabsStore(to)
+    }
+    if (hasLoad) {
+      const afterMenuData = await convertMenuData()
+      await addDynamicRoute(afterMenuData)
+      hasLoad = false
+      NProgress.done()
+      return to.fullPath
+    }
+  }
+  NProgress.done()
 })
 
 export default router
