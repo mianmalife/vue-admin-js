@@ -15,7 +15,7 @@ export const StaticRoutes = [
     component: layout,
     meta: {
       title: 'Workbenches',
-      icon: 'ep:compass'
+      icon: 'compass'
     },
     children: [
       {
@@ -36,7 +36,7 @@ const StaticMenu = [
     component: 'layout',
     meta: {
       title: 'Workbenches',
-      icon: 'ep:compass'
+      icon: 'compass'
     },
     children: [
       {

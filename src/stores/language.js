@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useLangStore = defineStore('language', () => {
+export const useLangStore = defineStore('v-lang', () => {
   const lang = ref('zh-cn')
 
   function setLang(lan) {

@@ -25,9 +25,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^9.3.0",
-    "@iconify-json/ep": "^1.2.0",
-    "@iconify/vue": "^4.1.2",
     "@rushstack/eslint-patch": "^1.8.0",
+    "@spiriit/vite-plugin-svg-spritemap": "^3.0.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",

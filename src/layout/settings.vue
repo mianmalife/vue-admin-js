@@ -10,15 +10,15 @@
     <div
       class="translate-all ease-ease absolute top-[40%] right-[320px] bg-[var(--el-menu-active-color)] p-3 cursor-pointer rounded rounded-tr-none rounded-br-none text-[#fff]"
       @click="handleDrawer">
-      <i-ep-setting class="text-[14px]" v-if="!drawer"></i-ep-setting>
-      <i-ep-close class="text-[14px]" v-else></i-ep-close>
+      <v-svg-icon name="setting" v-if="!drawer"></v-svg-icon>
+      <v-svg-icon name="close" v-else></v-svg-icon>
     </div>
     <el-card class="w-[100%] h-[100%] relative z-3000">
       <template #header>
         <div class="card-header flex justify-between">
           <span>{{ t('Settings') }}</span>
           <button aria-label="关闭此对话框" type="button" class="hover:text-[var(--el-color-primary)]" @click="handleDrawer">
-            <i-ep-close></i-ep-close>
+            <v-svg-icon name="close"></v-svg-icon>
           </button>
         </div>
       </template>
@@ -37,8 +37,8 @@
               <div
                 class="w-[20px] h-[40px] bg-[var(--topmenu-active-bgcolor] border-r-[var(--el-border-color)] border-r border-r-solid">
               </div>
-              <i-ep-check v-if="isLayout === 'fixed'"
-                class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></i-ep-check>
+              <v-svg-icon name="check" v-if="isLayout === 'fixed'"
+                class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></v-svg-icon>
             </div>
           </el-tooltip>
         </div>
@@ -68,6 +68,7 @@
 </template>
 
 <script setup>
+import vSvgIcon from '@/components/v-svg-icon.vue'
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'

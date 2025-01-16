@@ -15,9 +15,9 @@
       <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px]">
-          <i-ep:expand v-if="sideStore.collapse" />
-          <i-ep:fold v-else />
+          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--el-menu-hover-bg-color)]">
+          <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" />
+          <v-svg-icon name="menu-fold" v-else />
         </div>
       </el-aside>
       <el-container>
@@ -38,6 +38,7 @@
 
 <script setup>
 provide('refreshPage', handleRefresh)
+import vSvgIcon from '@/components/v-svg-icon.vue'
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';

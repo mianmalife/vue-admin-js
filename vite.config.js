@@ -5,8 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import Icons from 'unplugin-icons/vite'
-import IconsResolver from 'unplugin-icons/resolver'
+import VitePluginSvgSpritemap from '@spiriit/vite-plugin-svg-spritemap'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,9 +19,6 @@ export default defineConfig({
         ElementPlusResolver({
           importStyle: 'sass'
         }),
-        IconsResolver({
-          prefix: 'Icon',
-        })
       ],
       imports: ['vue', { 'vue-router': ['createRouter', 'createWebHistory', 'createWebHashHistory', 'useRoute', 'useRouter'] }],
       eslintrc: {
@@ -35,13 +31,10 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver({
           importStyle: 'sass'
-        }),
-        IconsResolver(),
+        })
       ]
     }),
-    Icons({
-      autoInstall: true,
-    })
+    VitePluginSvgSpritemap('./src/assets/icons/*.svg')
   ],
   resolve: {
     alias: {
@@ -65,7 +58,6 @@ export default defineConfig({
           'vue': ['vue'],
           'vue-router': ['vue-router'],
           'element-plus': ['element-plus'],
-          '@iconify-json/ep': ['@iconify-json/ep']
         }
       }
     }

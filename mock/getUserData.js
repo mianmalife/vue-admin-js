@@ -7,7 +7,7 @@ export default async function userData() {
         component: 'layout',
         meta: {
           title: 'List page',
-          icon: 'ep:notebook'
+          icon: 'table'
         },
         redirect: '/list/table-list',
         children: [
@@ -35,7 +35,7 @@ export default async function userData() {
         component: 'layout',
         meta: {
           title: 'Nested routes',
-          icon: 'ep:folder-opened'
+          icon: 'foler-open'
         },
         redirect: '/nested/menu1/menu1-2/menu1-2-1',
         children: [

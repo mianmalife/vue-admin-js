@@ -8,7 +8,7 @@
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <i-ep-refreshRight class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
+            <v-svg-icon name='refresh' class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
@@ -17,7 +17,7 @@
     <el-dropdown class="mb-[15px] mr-[20px]" @command="handleCommand" size="small">
       <span class="el-dropdown-link">
         <i class=" text-[var(--el-text-color-primary)] hover:text-[var(--el-color-primary)]">
-          <i-ep-moreFilled class="rotate-[90deg]" />
+          <v-svg-icon name="epmore" class="rotate-[90deg]" />
         </i>
       </span>
       <template #dropdown>
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import vSvgIcon from '@/components/v-svg-icon.vue'
 const refreshPage = inject('refreshPage')
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

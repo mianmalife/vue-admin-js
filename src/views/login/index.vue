@@ -9,7 +9,7 @@
         <el-form-item class="mt-[20px]" label="" prop="username">
           <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：admin`">
             <template #prefix>
-              <i-ep-user color="var(--el-color-primary)"></i-ep-user>
+              <v-svg-icon name="epuser" color="var(--el-color-primary)"></v-svg-icon>
             </template>
           </el-input>
         </el-form-item>
@@ -17,7 +17,7 @@
           <el-input v-model="userForm.password" type="password" autocomplete="off" show-password
             :placeholder="`${t('Password')}：admin`">
             <template #prefix>
-              <i-ep-lock color="var(--el-color-primary)"></i-ep-lock>
+              <v-svg-icon name="lock" color="var(--el-color-primary)"></v-svg-icon>
             </template>
           </el-input>
         </el-form-item>
@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import vSvgIcon from '@/components/v-svg-icon.vue'
 import getToken from '~/mock/getToken'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()

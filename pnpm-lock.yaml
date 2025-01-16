@@ -42,15 +42,12 @@ importers:
       '@faker-js/faker':
         specifier: ^9.3.0
         version: 9.3.0
-      '@iconify-json/ep':
-        specifier: ^1.2.0
-        version: 1.2.0
-      '@iconify/vue':
-        specifier: ^4.1.2
-        version: 4.1.2(vue@3.5.4)
       '@rushstack/eslint-patch':
         specifier: ^1.8.0
         version: 1.10.4
+      '@spiriit/vite-plugin-svg-spritemap':
+        specifier: ^3.0.0
+        version: 3.0.0(vite@5.4.4(sass@1.78.0))(vue@3.5.4)
       '@vitejs/plugin-vue':
         specifier: ^5.0.5
         version: 5.1.3(vite@5.4.4(sass@1.78.0))(vue@3.5.4)
@@ -370,19 +367,11 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
-  '@iconify-json/ep@1.2.0':
-    resolution: {integrity: sha512-0PQ0YxrYj373w7zPg/b50sbJUvlOGqb8a9l4DJA32hBM+SmEAPpRZrlz0c8rlA5RbjJF4nYZsrpB9ZzIX55o2A==}
-
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@iconify/utils@2.1.33':
     resolution: {integrity: sha512-jP9h6v/g0BIZx0p7XGJJVtkVnydtbgTgt9mVNcGDYwaa7UhdHdI9dvoq+gKj9sijMSJKxUPEG2JyjsgXjxL7Kw==}
-
-  '@iconify/vue@4.1.2':
-    resolution: {integrity: sha512-CQnYqLiQD5LOAaXhBrmj1mdL2/NCJvwcC4jtW2Z8ukhThiFkLDkutarTOV2trfc9EXqUqRs0KqXOL9pZ/IyysA==}
-    peerDependencies:
-      vue: '>=3'
 
   '@intlify/core-base@10.0.0':
     resolution: {integrity: sha512-o4d4Nve7YzU1YMR5VMqgPr8jDGTgT2pOOUtZa3JwCAhFnm40JYxfHdWToT7OEx6oJCBs/Q8HosJOhsimlF0C0Q==}
@@ -547,6 +536,19 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
+  '@spiriit/vite-plugin-svg-spritemap@3.0.0':
+    resolution: {integrity: sha512-hNOAY4euw5s+hVt/c3G2U6yRALEMn6c/X585VqT+ziLpbYQGLaBaOYEO5HDxxvBXKLr8/yZtmCbVTDkwuqY/nw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      svgo: ^3.0.0
+      vite: ^5.0.0 || ^6.0.0
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      svgo:
+        optional: true
+      vue:
+        optional: true
+
   '@sxzz/popperjs-es@2.11.7':
     resolution: {integrity: sha512-Ccy0NlLkzr0Ex2FKvh2X+OyERHXJ88XJ1MXtsI9y9fGexlaXaVTPzBCRBwIxFkORuOb+uBqeu+RqnpgYTEZRUQ==}
 
@@ -653,6 +655,10 @@ packages:
 
   '@vueuse/shared@9.13.0':
     resolution: {integrity: sha512-UrnhU+Cnufu4S6JLCPZnkWh0WwZGUp72ktOF2DFptMlOs3TOdVv8xJN53zhHGARmVOsz5KqOls09+J1NR6sBKw==}
+
+  '@xmldom/xmldom@0.9.6':
+    resolution: {integrity: sha512-Su4xcxR0CPGwlDHNmVP09fqET9YxbyDXHaSob6JlBH7L6reTYaeim6zbk9o08UarO0L5GTRo3uzl0D+9lSxmvw==}
+    engines: {node: '>=14.6'}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1342,6 +1348,10 @@ packages:
   mimic-fn@4.0.0:
     resolution: {integrity: sha512-vqiC06CuhBTUdZH+RYl8sFrL096vA45Ok5ISO6sE/Mr1jRbGH4Csnhi8f3wKVl7x8mO4Au7Ir9D3Oyv1VYMFJw==}
     engines: {node: '>=12'}
+
+  mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
 
   minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -2255,10 +2265,6 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@iconify-json/ep@1.2.0':
-    dependencies:
-      '@iconify/types': 2.0.0
-
   '@iconify/types@2.0.0': {}
 
   '@iconify/utils@2.1.33':
@@ -2272,11 +2278,6 @@ snapshots:
       mlly: 1.7.1
     transitivePeerDependencies:
       - supports-color
-
-  '@iconify/vue@4.1.2(vue@3.5.4)':
-    dependencies:
-      '@iconify/types': 2.0.0
-      vue: 3.5.4
 
   '@intlify/core-base@10.0.0':
     dependencies:
@@ -2437,6 +2438,16 @@ snapshots:
   '@rushstack/eslint-patch@1.10.4': {}
 
   '@sindresorhus/merge-streams@2.3.0': {}
+
+  '@spiriit/vite-plugin-svg-spritemap@3.0.0(vite@5.4.4(sass@1.78.0))(vue@3.5.4)':
+    dependencies:
+      '@xmldom/xmldom': 0.9.6
+      fast-glob: 3.3.2
+      hash-sum: 2.0.0
+      mini-svg-data-uri: 1.4.4
+      vite: 5.4.4(sass@1.78.0)
+    optionalDependencies:
+      vue: 3.5.4
 
   '@sxzz/popperjs-es@2.11.7': {}
 
@@ -2604,6 +2615,8 @@ snapshots:
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
+
+  '@xmldom/xmldom@0.9.6': {}
 
   acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
@@ -3320,6 +3333,8 @@ snapshots:
       mime-db: 1.52.0
 
   mimic-fn@4.0.0: {}
+
+  mini-svg-data-uri@1.4.4: {}
 
   minimatch@3.1.2:
     dependencies:

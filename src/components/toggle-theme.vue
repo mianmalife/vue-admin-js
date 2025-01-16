@@ -1,11 +1,12 @@
 <template>
   <span>
-    <i-ep:moon class="text-[18px] mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-if="!isDark" @click="clickIcon" />
-    <i-ep:sunny class="text-[18px] mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-else @click="clickIcon" />
+    <v-svg-icon name="moon" class="mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-if="!isDark" @click="clickIcon" />
+    <v-svg-icon name="sun" class="mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-else @click="clickIcon" />
   </span>
 </template>
 
 <script setup>
+import vSvgIcon from './v-svg-icon.vue'
 import { useDark, useToggle } from '@vueuse/core'
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
@@ -14,7 +15,7 @@ function clickIcon(e) {
   // 不支持startViewTransition或者用户开启了减弱动画功能
   if (!isApperance) {
     toggleDark()
-    return 
+    return
   }
   const { clientX, clientY } = e
   const endRadius = Math.hypot(
