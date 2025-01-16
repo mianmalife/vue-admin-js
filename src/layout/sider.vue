@@ -1,6 +1,6 @@
 <template>
   <el-menu class="h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'"
-    :default-active="route.path" @open="handleOpen" @close="handleClose" router :collapse="sideStore.collapse"
+    :default-active="route.path" router :collapse="sideStore.collapse"
     :collapse-transition="false">
     <template v-for="menuItem in sideStore.menulist">
       <el-sub-menu :index="menuItem.path" v-if="menuItem.children && menuItem.children.length > 0">
@@ -38,20 +38,6 @@ const props = defineProps({
     default: true
   }
 })
-
-watch(() => sideStore.autoSplit, newValue => {
-  if (newValue) {
-    sideStore.setCollapse(false)
-  }
-})
-
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath)
-}
 </script>
 
 <style lang="scss" scoped>

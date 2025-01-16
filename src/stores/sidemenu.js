@@ -7,7 +7,6 @@ export const useSideMenuStore = defineStore('Sidemenu', () => {
   const collapse = ref(false)
 
   function setSideMenu(data) {
-    console.log(data, 'data')
     menulist.value = data
   }
 

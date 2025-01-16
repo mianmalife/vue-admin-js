@@ -56,7 +56,6 @@ const route = useRoute()
 const isrefreshing = ref(true)
 
 watch(() => [sideStore.autoSplit, route.path], deps => {
-  console.log(sideStore.autoSplit)
   if (!deps[0]) {
     // 关闭自动分割菜单
     const filteWorkPlace = topStore.allRoutes.map(item => {
@@ -69,7 +68,6 @@ watch(() => [sideStore.autoSplit, route.path], deps => {
         return item
       }
     })
-    console.log(filteWorkPlace)
     sideStore.setSideMenu(filteWorkPlace)
   } else {
     if (route.path === '/workplace') {
@@ -81,6 +79,7 @@ watch(() => [sideStore.autoSplit, route.path], deps => {
       topStore.setKey(prefixUrl)
       sideStore.setSideMenu(sideMenu.children)
     }
+    sideStore.setCollapse(false)
   }
 }, {
   immediate: true
