@@ -22,7 +22,7 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-          <el-button class="w-full" type="primary" @click="handleForm" :loading="loading">{{ t('Sign in') }}</el-button>
+          <el-button class="w-full" type="primary" @click="handleForm" :loading="loading">{{ t('Signin') }}</el-button>
         </el-form-item>
       </el-form>
     </div>

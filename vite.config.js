@@ -20,7 +20,7 @@ export default defineConfig({
           importStyle: 'sass'
         }),
       ],
-      imports: ['vue', { 'vue-router': ['createRouter', 'createWebHistory', 'createWebHashHistory', 'useRoute', 'useRouter'] }],
+      imports: ['vue', { 'vue-router': ['createRouter', 'createWebHistory', 'createWebHashHistory', 'useRoute', 'useRouter'], 'v-card': ['default'] }],
       eslintrc: {
         enabled: true,
         filepath: fileURLToPath(new URL('./.eslintrc-auto-import.json', import.meta.url)),

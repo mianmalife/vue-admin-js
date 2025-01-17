@@ -33,7 +33,7 @@
         <el-dropdown-menu>
           <el-dropdown-item command="logout">
             <v-svg-icon name="epswitch-button" class="mr-[10px]"></v-svg-icon>
-            {{ t('Sign out') }}
+            {{ t('Signout') }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </template>
@@ -56,7 +56,9 @@ const { locale, t } = useI18n()
 
 function handleCommand(key) {
   if (key === 'logout') {
-    localStorage.clear()
+    localStorage.removeItem('token')
+    localStorage.removeItem('topActiveKey')
+    localStorage.removeItem('Sidemenu')
     multiTabsStore.removeData()
     nextTick(() => {
       router.push({ name: 'login' })

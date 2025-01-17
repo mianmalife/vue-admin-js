@@ -4,7 +4,6 @@ import enUs from './en-us.json'
 
 const lang = localStorage.getItem('v-lang') ? JSON.parse(localStorage.getItem('v-lang')).lang : 'zh-cn'
 const i18n = createI18n({
-  legacy: false,
   locale: lang,
   fallbackLocale: 'zh-cn',
   messages: {

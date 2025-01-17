@@ -1,12 +1,10 @@
 <template>
   <div>
-    <el-skeleton :rows="5" animated :loading="loading">
-      <template #default>
-        <h1>工作台</h1>
-        <el-button @click="count++">count++</el-button>
-        count: {{ count }}
-      </template>
-    </el-skeleton>
+    <v-card>              
+      <h1>工作台</h1>
+      <el-button @click="count++">count++</el-button>
+      count: {{ count }}
+    </v-card>
   </div>
 </template>
 

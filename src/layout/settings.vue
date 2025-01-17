@@ -43,25 +43,29 @@
           </el-tooltip>
         </div>
         <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Top menu to the left') }}</el-text>
+          <el-text class="mr-2">{{ t('Top-menu-to-the-left') }}</el-text>
           <el-switch v-model="topStore.isLeft" :disabled="!sideStore.autoSplit" />
         </div>
         <div class="flex justify-between items-end mb-2">
-          <el-text class="mr-2">{{ t('Auto-split menu') }}</el-text>
+          <el-text class="mr-2">{{ t('Auto-split-menu') }}</el-text>
           <el-switch v-model="sideStore.autoSplit" />
         </div>
       </div>
       <!-- <el-divider></el-divider> -->
       <!-- 主题 -->
       <!-- <div class="flex justify-between items-end mb-2">
-        <el-text class="mr-2">{{ t('Theme Color') }}</el-text>
+        <el-text class="mr-2">{{ t('ThemeColor') }}</el-text>
         <el-color-picker v-model="themeColorStore.color" />
       </div> -->
       <el-divider></el-divider>
       <!-- 标签栏 -->
       <div class="flex justify-between items-end mb-2">
-        <el-text class="mr-2">{{ t('Tab Bar') }}</el-text>
+        <el-text class="mr-2">{{ t('TabBar') }}</el-text>
         <el-switch v-model="multiTabsStore.isVisible" />
+      </div>
+      <div class="flex justify-between items-end mb-2">
+        <el-text class="mr-2">{{ t('Breadcrumbs') }}</el-text>
+        <el-switch v-model="breadcurmbStore.showBread" />
       </div>
     </el-card>
   </div>
@@ -72,9 +76,11 @@ import vSvgIcon from '@/components/v-svg-icon.vue'
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
+import { useBreadcurmbStore } from '@/stores/breadcurmb'
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
+const breadcurmbStore = useBreadcurmbStore()
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import { useThemeColor } from '@/stores/themeColor'

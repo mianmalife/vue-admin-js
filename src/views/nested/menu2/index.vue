@@ -1,7 +1,9 @@
 <template>
   <div class="h-[200px]">
-    <el-button :plain="true" @click="open">Show message</el-button>
-    <el-button :plain="true" @click="openVn">VNode</el-button>
+    <v-card>
+      <el-button :plain="true" @click="open">Show message</el-button>
+      <el-button :plain="true" @click="openVn">VNode</el-button>
+    </v-card>
   </div>
 </template>
 

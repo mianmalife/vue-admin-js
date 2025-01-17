@@ -6,7 +6,7 @@ export default async function userData() {
         name: 'list',
         component: 'layout',
         meta: {
-          title: 'List page',
+          title: 'Listpage',
           icon: 'table'
         },
         redirect: '/list/table-list',
@@ -16,7 +16,7 @@ export default async function userData() {
             name: 'table-list',
             component: 'list/table-list',
             meta: {
-              title: 'Enquiry Form'
+              title: 'EnquiryForm'
             }
           },
           {
@@ -24,7 +24,7 @@ export default async function userData() {
             name: 'basic-list',
             component: 'list/basic-list',
             meta: {
-              title: 'Standard forms'
+              title: 'Standardforms'
             }
           }
         ]
@@ -34,7 +34,7 @@ export default async function userData() {
         name: 'nested',
         component: 'layout',
         meta: {
-          title: 'Nested routes',
+          title: 'Nestedroutes',
           icon: 'foler-open'
         },
         redirect: '/nested/menu1/menu1-2/menu1-2-1',

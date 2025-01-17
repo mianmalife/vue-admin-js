@@ -22,11 +22,13 @@
       </el-aside>
       <el-container>
         <multiTabs v-if="multiTabsStore.isVisible" />
+        <breadcrumb v-if="breadcurmbStore.showBread"/>
         <el-main class="!p-[10px]">
-          <breadcrumb />
-          <router-view v-slot="{ Component }" v-if="isrefreshing">
-            <vCard><component :is="Component" /></vCard>
-          </router-view>
+            <router-view v-slot="{ Component }" v-if="isrefreshing">
+              <transition name="slide" mode="out-in">
+                <component :is="Component" />
+              </transition>
+            </router-view>
         </el-main>
         <el-footer class="flex justify-center" height="30px">Copyright © {{ new Date().getFullYear() }}
           vue-admin-js</el-footer>
@@ -45,13 +47,14 @@ import siderComp from './sider.vue';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
+import { useBreadcurmbStore } from '@/stores/breadcurmb'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 import settings from './settings.vue'
-import vCard from '@/components/v-card.vue';
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
+const breadcurmbStore = useBreadcurmbStore()
 const route = useRoute()
 const isrefreshing = ref(true)
 
@@ -94,4 +97,15 @@ function handleRefresh() {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.15s ease-in-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+</style>

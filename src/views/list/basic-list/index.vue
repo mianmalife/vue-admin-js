@@ -1,11 +1,11 @@
 <template>
   <div>
+    <v-card>
     <div class="flex">
-      <div class="grow">
-        <el-button class="mx-[12px]" @click="handleAdd">add item</el-button>
-      </div>
+        <div class="grow">
+          <el-button class="mx-[12px]" @click="handleAdd">add item</el-button>
+        </div>
     </div>
-
     <el-table class="w-[100%]" :data="paginatedData" :row-class-name="tableRowClassName">
       <el-table-column label="Date" prop="date" />
       <el-table-column label="Name" prop="name" />
@@ -29,6 +29,7 @@
         :pager-count="5" layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </div>
+    </v-card>
   </div>
 </template>
 

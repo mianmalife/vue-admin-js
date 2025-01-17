@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import MultiTabs from '@/layout/multiTabs.vue'
 
 export const useMultiTabsStore = defineStore('MultiTabs', () => {
   const multiTabslist = ref([])
