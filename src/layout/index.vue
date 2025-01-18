@@ -2,7 +2,7 @@
   <el-container class="h-[100%]">
     <el-header class="flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
     bg-[var(--el-menu-bg-color)] z-2" style="--el-header-padding: 0">
-      <div class="w-[240px] flex-shrink-0 h-[100%] my-[10px] font-bold flex items-center ml-[20px]">
+      <div class="w-[240px] flex-shrink-0 h-[100%] font-bold flex items-center ml-[20px]">
         VUE-ADMIN-JS
       </div>
       <div
@@ -11,27 +11,28 @@
         <opti />
       </div>
     </el-header>
-    <el-container>
-      <el-aside class="!w-auto bg-[var(--header-bgcolor)] relative" v-if="sideStore.menulist.length > 0">
+    <el-container class="h-[calc(100%-48px)]">
+      <el-aside class="!w-auto relative" v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="transition-all w-[100%] flex items-center absolute bottom-5 pl-[20px] py-4 cursor-pointer text-[18px] hover:bg-[var(--el-menu-hover-bg-color)]">
-          <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" />
-          <v-svg-icon name="menu-fold" v-else />
+          class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]" :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
+          <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
+          <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
         </div>
       </el-aside>
-      <el-container>
+      <el-container direction="vertical">
         <multiTabs v-if="multiTabsStore.isVisible" />
         <breadcrumb v-if="breadcurmbStore.showBread"/>
-        <el-main class="!p-[10px]">
-            <router-view v-slot="{ Component }" v-if="isrefreshing">
-              <transition name="slide" mode="out-in">
-                <component :is="Component" />
-              </transition>
-            </router-view>
+        <el-main class="!p-[10px] !pb-0">
+          <router-view v-slot="{ Component }" v-if="isrefreshing" class="mb-[10px]">
+            <transition name="slide" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
         </el-main>
-        <el-footer class="flex justify-center" height="30px">Copyright © {{ new Date().getFullYear() }}
-          vue-admin-js</el-footer>
+        <el-footer class="flex justify-center" height="30px">
+          <el-text>Copyright © 2024-PRESENT skea and llf000 contributors</el-text>
+        </el-footer>
       </el-container>
     </el-container>
     <settings />
