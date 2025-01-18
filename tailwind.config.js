@@ -10,6 +10,9 @@ export default {
         ease: 'cubic-bezier(.25, .1, .25, 1)'
       }
     },
+    fontSize: {
+      'base14': '14px'
+    }
   },
   plugins: [],
 }
