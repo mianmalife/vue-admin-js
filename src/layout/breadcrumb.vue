@@ -4,7 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/workplace' }" @click="handleSider">{{ t('Workbenches') }}</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: breadcrumb.path }" v-for="breadcrumb in breadcrumbList">{{
         t(`${breadcrumb.label}`)
-        }}</el-breadcrumb-item>
+      }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 
@@ -19,13 +19,20 @@ const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const route = useRoute()
 
+function getDeepPath(val) {
+  if (val[0] && val[0].children.length > 0) {
+    return getDeepPath(val[0].children)
+  }
+  return val[0].path
+}
+
 const breadcrumbList = computed(() => {
   const paths = route.matched.map(record => ({
-    path: record.children ? null : record.path,
+    path: record.children.length === 0 ? null : getDeepPath(record.children),
     name: record.name,
     label: record.meta.title,
   }));
-
+  console.log(paths)
   return paths;
 });
 
@@ -35,4 +42,12 @@ const handleSider = () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.el-breadcrumb__inner.is-link) {
+  font-weight: normal;
+}
+
+:deep(.el-breadcrumb__separator) {
+  margin: 0 6px;
+}
+</style>

@@ -1,4 +1,4 @@
-import "nprogress/nprogress.css"
+import "@/styles/nprogress.css"
 import NProgress from "nprogress"
 import userData from "~/mock/getUserData.js"
 import { useActiveStore } from "@/stores/topmenu"

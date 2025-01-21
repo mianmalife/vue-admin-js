@@ -3,7 +3,7 @@
     :class="sideStore.autoSplit ? '' : 'flex-1'">
     <el-dropdown @command="setLanguage">
       <div class="flex items-center outline-none">
-        <v-svg-icon name="global" class="text-[18px] hover:text-[var(--el-color-primary)]" />
+        <v-svg-icon name="global" class="w-[22px] h-[22px] p-[2px] rounded-[50%] hover:bg-[var(--el-menu-hover-bg-color)] hover:text-[var(--el-color-primary)]" />
       </div>
       <template #dropdown>
         <el-dropdown-menu>

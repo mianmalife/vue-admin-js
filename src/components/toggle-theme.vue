@@ -1,7 +1,7 @@
 <template>
   <span>
-    <v-svg-icon name="moon" class="mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-if="!isDark" @click="clickIcon" />
-    <v-svg-icon name="sun" class="mr-[10px] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-else @click="clickIcon" />
+    <v-svg-icon name="moon" class="mr-[10px] w-[22px] h-[22px] p-[2px] rounded-[50%] hover:bg-[var(--el-menu-hover-bg-color)] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-if="!isDark" @click="clickIcon" />
+    <v-svg-icon name="sun" class="mr-[10px] w-[22px] h-[22px] p-[2px] rounded-[50%] hover:bg-[var(--el-menu-hover-bg-color)] cursor-pointer text-[var(--el-text-color-regular)] hover:text-[var(--el-color-primary)]" v-else @click="clickIcon" />
   </span>
 </template>
 
