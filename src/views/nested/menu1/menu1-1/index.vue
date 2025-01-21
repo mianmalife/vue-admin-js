@@ -67,11 +67,11 @@
               <div class="w-[80px]">Id:</div>
               <div class="flex flex-col">
                 <div class="flex">
-                  <div class="w-[40px]">name:</div>
+                  <div class="w-[45px]">name:</div>
                   <el-text>{{ currUser.id.name }}</el-text>
                 </div>
                 <div class="flex">
-                  <div class="w-[40px]">value:</div>
+                  <div class="w-[45px]">value:</div>
                   <el-text>{{ currUser.id.value }}</el-text>
                 </div>
               </div>
@@ -81,11 +81,11 @@
               <div class="w-[80px]">Registered:</div>
               <div class="flex flex-col">
                 <div class="flex">
-                  <div class="w-[40px]">date:</div>
+                  <div class="w-[45px]">date:</div>
                   <el-text>{{ currUser.registered.date.slice(0, 10) }}</el-text>
                 </div>
                 <div class="flex">
-                  <div class="w-[40px]">age:</div>
+                  <div class="w-[45px]">age:</div>
                   <el-text>{{ currUser.registered.age }}</el-text>
                 </div>
               </div>
