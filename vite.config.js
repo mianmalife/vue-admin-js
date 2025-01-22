@@ -61,5 +61,8 @@ export default defineConfig({
         }
       }
     }
+  },
+  optimizeDeps: {
+    include: ['element-plus/es/components/**/*']
   }
 })
