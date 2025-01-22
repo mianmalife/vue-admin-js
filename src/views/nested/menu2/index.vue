@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus'
 const open = () => {
   ElMessage('This is a message.')
 }

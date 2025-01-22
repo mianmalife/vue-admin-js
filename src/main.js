@@ -3,6 +3,7 @@ import pina from '@/stores/creaPinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import i18n from './locale'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import 'element-plus/es/components/message/style/css'
 import "./index.css"
 import './main.scss'
 

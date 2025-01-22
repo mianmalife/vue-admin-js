@@ -28,12 +28,23 @@ export default defineConfig({
       }
     }),
     Components({
-      resolvers: [
+      resolvers: process.env.NODE_ENV === 'production' ? [
         ElementPlusResolver({
           importStyle: 'sass'
         })
-      ]
+      ] : undefined
     }),
+    {
+      name: 'auto-import-ep',
+      transform(code, id) {
+        if (process.env.NODE_ENV !== 'production' && /src\/main.js$/.test(id)) {
+          return {
+            code: `${code};import ElementPlus from 'element-plus';import 'element-plus/dist/index.css';app.use(ElementPlus)`,
+            map: null
+          }
+        }
+      }
+    },
     VitePluginSvgSpritemap('./src/assets/icons/*.svg')
   ],
   resolve: {
@@ -62,7 +73,7 @@ export default defineConfig({
       }
     }
   },
-  optimizeDeps: {
-    include: ['element-plus/es/components/**/*']
-  }
+  // optimizeDeps: {
+  //   include: ['element-plus/es/components/**/*']
+  // }
 })

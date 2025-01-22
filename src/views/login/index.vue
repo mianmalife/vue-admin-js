@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+import { ElMessage } from 'element-plus'
 import vSvgIcon from '@/components/v-svg-icon.vue'
 import getToken from '~/mock/getToken'
 import { useI18n } from 'vue-i18n'
