@@ -25,14 +25,16 @@ export default defineConfig({
         enabled: true,
         filepath: fileURLToPath(new URL('./.eslintrc-auto-import.json', import.meta.url)),
         globalsPropValue: true
-      }
+      },
+      dts: false
     }),
     Components({
       resolvers: process.env.NODE_ENV === 'production' ? [
         ElementPlusResolver({
           importStyle: 'sass'
         })
-      ] : undefined
+      ] : undefined,
+      dts: false
     }),
     {
       name: 'auto-import-ep',
