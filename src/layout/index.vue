@@ -7,8 +7,7 @@
       </div>
       <div
         class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
-        <topmenu v-if="sideStore.autoSplit && layoutTypeStore.value === 'mix'" />
-        <siderComp v-if="layoutTypeStore.value === 'top'" />
+        <topmenu v-if="sideStore.autoSplit || layoutTypeStore.value === 'top'" />
         <opti />
       </div>
     </el-header>

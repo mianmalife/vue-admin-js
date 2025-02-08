@@ -54,11 +54,11 @@
         </div>
         <div class="flex justify-between items-end mb-2">
           <el-text class="mr-2">{{ t('Top-menu-to-the-left') }}</el-text>
-          <el-switch v-model="topStore.isLeft" :disabled="!sideStore.autoSplit" />
+          <el-switch v-model="topStore.isLeft" :disabled="!sideStore.autoSplit && layoutTypeStore.value !== 'top'" />
         </div>
         <div class="flex justify-between items-end mb-2">
           <el-text class="mr-2">{{ t('Auto-split-menu') }}</el-text>
-          <el-switch v-model="sideStore.autoSplit" />
+          <el-switch v-model="sideStore.autoSplit" :disabled="layoutTypeStore.value === 'top'" />
         </div>
       </div>
       <!-- <el-divider></el-divider> -->
@@ -104,6 +104,13 @@ watch(() => themeColorStore.color, newValue => {
   document.documentElement.style.setProperty('--el-color-primary', newValue)
 }, {
   immediate: true
+})
+
+watch(() => layoutTypeStore.value, (n) => {
+  console.log(n)
+  if (n === 'top') {
+    sideStore.setCollapse(false)
+  }
 })
 
 function handleDrawer() {
