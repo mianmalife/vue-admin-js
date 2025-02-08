@@ -6,23 +6,24 @@ import isArray from '@/shared/isArray'
 import layout from '@/layout/index.vue'
 import { useMultiTabsStore } from '@/stores/multiTabs'
 
-const RootRoute = { path: '/', name: 'home', component: layout, redirect: '/workplace' }
 const LoginRoute = { path: '/login', name: 'login', meta: { title: 'Login' }, component: () => import('@/views/login/index.vue') }
 const NotFoundRoute = { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/notFound/index.vue') }
 export const StaticRoutes = [
   {
-    path: '/workplace',
+    path: '/',
     component: layout,
     meta: {
       title: 'Workbenches',
       icon: 'compass'
     },
+    redirect: '/workplace',
     children: [
       {
-        path: '',
+        path: '/workplace',
         name: 'workplace',
         meta: {
-          title: 'Workbenches'
+          title: 'Workbenches',
+          icon: 'compass'
         },
         component: () => import('@/views/workplace/index.vue')
       }
@@ -33,22 +34,13 @@ export const StaticRoutes = [
 const StaticMenu = [
   {
     path: '/workplace',
-    component: 'layout',
+    name: 'workplace',
     meta: {
       title: 'Workbenches',
       icon: 'compass'
     },
-    children: [
-      {
-        path: '',
-        name: 'workplace',
-        meta: {
-          title: 'Workbenches'
-        },
-        component: 'workplace'
-      }
-    ]
-  },
+    component: 'workplace'
+  }
 ]
 
 const viewsModules = import.meta.glob('@/views/**/index.vue')
@@ -85,7 +77,7 @@ export async function convertMenuData() {
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...StaticRoutes, RootRoute, LoginRoute, NotFoundRoute]
+  routes: [...StaticRoutes, LoginRoute, NotFoundRoute]
 })
 
 const addDynamicRoute = async (menuData) => {

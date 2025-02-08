@@ -7,13 +7,14 @@
       </div>
       <div
         class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
-        <topmenu v-if="sideStore.autoSplit" />
+        <topmenu v-if="sideStore.autoSplit && layoutTypeStore.value === 'mix'" />
+        <siderComp v-if="layoutTypeStore.value === 'top'" />
         <opti />
       </div>
     </el-header>
     <el-container class="h-[calc(100%-48px)]">
       <el-aside class="!w-auto relative" v-if="sideStore.menulist.length > 0">
-        <siderComp />
+        <siderComp v-if="layoutTypeStore.value === 'mix'" />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
           class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]" :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
           <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
@@ -49,6 +50,7 @@ import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
 import { useBreadcurmbStore } from '@/stores/breadcurmb'
+import { useLayoutTypeStore } from '@/stores/layoutType'
 import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 import settings from './settings.vue'
@@ -57,6 +59,7 @@ const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
 const breadcurmbStore = useBreadcurmbStore()
 const route = useRoute()
+const layoutTypeStore = useLayoutTypeStore()
 const isrefreshing = ref(true)
 
 watch(() => [sideStore.autoSplit, route.path], deps => {

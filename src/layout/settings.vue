@@ -25,19 +25,29 @@
       <!-- 导航模式 -->
       <div>
         <div class="mb-2">
-          <el-text>{{ t('Navigation Mode') }}</el-text>
+          <el-text>{{ t('NavigationMode') }}</el-text>
         </div>
         <div class="flex items-center mb-4">
-          <el-tooltip :content="t('Mixed layout')" placement="top">
-            <div @click="isLayout = 'fixed'"
-              class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)]">
+          <el-tooltip :content="t('Mixedlayout')" placement="top">
+            <div @click="layoutTypeStore.setLayoutType('mix')"
+              class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)] mr-[20px] border border-solid border-[var(--el-card-border-color)]">
               <div
                 class="w-[100%] h-[10px] rounded-t bg-[var(--topmenu-active-bgcolor)] border-b-[var(--el-border-color)] border-b border-b-solid">
               </div>
               <div
                 class="w-[20px] h-[40px] bg-[var(--topmenu-active-bgcolor] border-r-[var(--el-border-color)] border-r border-r-solid">
               </div>
-              <v-svg-icon name="check" v-if="isLayout === 'fixed'"
+              <v-svg-icon name="check" v-if="layoutTypeStore.value === 'mix'"
+                class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></v-svg-icon>
+            </div>
+          </el-tooltip>
+          <el-tooltip :content="t('top-layout')" placement="top">
+            <div @click="layoutTypeStore.setLayoutType('top')"
+              class="relative cursor-pointer rounded w-[60px] h-[50px] shadow bg-[var(--topmenu-active-bgcolor)] border border-solid border-[var(--el-card-border-color)]">
+              <div
+                class="w-[100%] h-[10px] rounded-t bg-[var(--topmenu-active-bgcolor)] border-b-[var(--el-border-color)] border-b border-b-solid">
+              </div>
+              <v-svg-icon name="check" v-if="layoutTypeStore.value === 'top'"
                 class="absolute right-[10px] top-[24px] text-[var(--el-color-primary)]"></v-svg-icon>
             </div>
           </el-tooltip>
@@ -77,16 +87,17 @@ import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useMultiTabsStore } from '@/stores/multiTabs'
 import { useBreadcurmbStore } from '@/stores/breadcurmb'
+import { useLayoutTypeStore } from '@/stores/layoutType'
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
 const multiTabsStore = useMultiTabsStore()
 const breadcurmbStore = useBreadcurmbStore()
+const layoutTypeStore = useLayoutTypeStore()
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import { useThemeColor } from '@/stores/themeColor'
 const themeColorStore = useThemeColor()
 const drawer = ref(false)
-const isLayout = ref('fixed')
 
 watch(() => themeColorStore.color, newValue => {
   console.log(newValue)

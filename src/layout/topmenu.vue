@@ -1,7 +1,7 @@
 <template>
   <el-menu class="flex flex-1 pr-[10px] !h-[48px] !border-b-0" :class="topStore.isLeft ? '' : 'justify-end'"
     :default-active="topStore.activeKey" mode="horizontal" router>
-    <el-menu-item v-for="menuObj in topStore.allRoutes" :index="menuObj.path">
+    <el-menu-item v-for="menuObj in topStore.allRoutes" :index="menuObj.path === '/' ? '/workplace' : menuObj.path">
       <v-svg-icon :name="menuObj.meta.icon" v-if="menuObj.meta.icon" class="mr-3" />
       {{ t(`${menuObj.meta.title}`) }}
     </el-menu-item>
