@@ -1,7 +1,7 @@
 <template>
-  <el-container class="h-[100%]">
+  <el-container class="h-[100%] overflow-auto">
     <el-header class="flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
-    bg-[var(--el-menu-bg-color)] z-2" style="--el-header-padding: 0">
+    bg-[var(--el-menu-bg-color)] z-[100] fixed top-0 left-0 w-[100%]" style="--el-header-padding: 0">
       <div class="w-[240px] flex-shrink-0 h-[100%] font-bold flex items-center ml-[20px]">
         VUE-ADMIN-JS
       </div>
@@ -11,19 +11,22 @@
         <opti />
       </div>
     </el-header>
-    <el-container class="h-[calc(100%-48px)]">
-      <el-aside class="!w-auto relative" v-if="sideStore.menulist.length > 0">
+    <el-container>
+      <el-aside :class="sideStore.menulist.length > 0 ? 'w-[260px] h-[100%] fixed top-[48px] left-0' : '!w-auto'"
+        v-if="sideStore.menulist.length > 0">
         <siderComp />
         <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]" :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
+          class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]"
+          :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
           <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
           <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
         </div>
       </el-aside>
-      <el-container direction="vertical">
+      <el-container direction="vertical" class="max-h-[100%] mt-[48px]"
+        :class="sideStore.menulist.length > 0 ? 'ml-[260px] width-[100%]' : ''">
         <multiTabs v-if="multiTabsStore.isVisible" />
-        <breadcrumb v-if="breadcurmbStore.showBread"/>
-        <el-main class="!p-[10px] !pb-0">
+        <breadcrumb v-if="breadcurmbStore.showBread" />
+        <el-main class="!p-[10px] !pb-0 overflow-none">
           <router-view v-slot="{ Component }" v-if="isrefreshing" class="mb-[10px]">
             <transition name="slide" mode="out-in">
               <component :is="Component" />
