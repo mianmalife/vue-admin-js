@@ -1,39 +1,51 @@
 <template>
   <el-container class="h-[100%]">
-    <el-header class="flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
-    bg-[var(--el-menu-bg-color)] z-2" style="--el-header-padding: 0">
-      <div class="w-[240px] flex-shrink-0 h-[100%] font-bold flex items-center ml-[20px]">
-        VUE-ADMIN-JS
+    <el-aside class="fixed left-0 top-0 pt-[48px] h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'" v-if="sideStore.menulist.length > 0">
+      <siderComp v-if="layoutTypeStore.value === 'mix'" />
+      <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
+        class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]"
+        :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
+        <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
+        <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
       </div>
-      <div
-        class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
-        <topmenu v-if="sideStore.autoSplit || layoutTypeStore.value === 'top'" />
-        <opti />
-      </div>
-    </el-header>
-    <el-container class="h-[calc(100%-48px)]">
-      <el-aside class="!w-auto relative" v-if="sideStore.menulist.length > 0">
-        <siderComp v-if="layoutTypeStore.value === 'mix'" />
-        <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-          class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]" :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
-          <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
-          <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
+    </el-aside>
+    <el-container direction="vertical" class="transition-all" :class="rightContentCls">
+      <el-header class="flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
+    bg-[var(--el-menu-bg-color)] z-2 opacity-0" style="--el-header-padding: 0">
+        <div class="w-[240px] flex-shrink-0 h-[100%] font-bold flex items-center ml-[20px]">
+          VUE-ADMIN-JS
         </div>
-      </el-aside>
-      <el-container direction="vertical">
+        <div
+          class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
+          <topmenu v-if="sideStore.autoSplit || layoutTypeStore.value === 'top'" />
+          <opti />
+        </div>
+      </el-header>
+      <el-header class="fixed left-0 top-0 w-[100%] flex items-center justify-between !h-[48px] border-b border-[var(--el-menu-border-color)] border-solid
+    bg-[var(--el-menu-bg-color)] !z-[100]" style="--el-header-padding: 0">
+        <div class="w-[240px] flex-shrink-0 h-[100%] font-bold flex items-center ml-[20px]">
+          VUE-ADMIN-JS
+        </div>
+        <div
+          class="flex flex-1 flex-shrink-0 items-center justify-between border-b border-[var(--el-menu-border-color)] border-solid">
+          <topmenu v-if="sideStore.autoSplit || layoutTypeStore.value === 'top'" />
+          <opti />
+        </div>
+      </el-header>
+      <el-main class="!p-0" style="overflow: initial">
         <multiTabs v-if="multiTabsStore.isVisible" />
-        <breadcrumb v-if="breadcurmbStore.showBread"/>
-        <el-main class="!p-[10px] !pb-0">
+        <breadcrumb v-if="breadcurmbStore.showBread" />
+        <div class="m-[10px]">
           <router-view v-slot="{ Component }" v-if="isrefreshing" class="mb-[10px]">
             <transition name="slide" mode="out-in">
               <component :is="Component" />
             </transition>
           </router-view>
-        </el-main>
-        <el-footer class="flex justify-center" height="30px">
-          <el-text>Copyright © 2024-PRESENT skea and llf000 contributors</el-text>
-        </el-footer>
-      </el-container>
+          <el-footer class="flex justify-center" height="30px">
+            <el-text>Copyright © 2024-PRESENT skea and llf000 contributors</el-text>
+          </el-footer>
+        </div>
+      </el-main>
     </el-container>
     <settings />
   </el-container>
@@ -90,6 +102,11 @@ watch(() => [sideStore.autoSplit, route.path], deps => {
 }, {
   immediate: true
 })
+
+const rightContentCls = computed(() => ({
+'!ml-[260px]': layoutTypeStore.value !== 'top' && sideStore.menulist.length > 0,
+'!ml-[64px]': sideStore.collapse && !sideStore.autoSplit
+}))
 
 function handleRefresh() {
   isrefreshing.value = false

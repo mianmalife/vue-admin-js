@@ -25,7 +25,7 @@
     </el-table>
 
     <div class="flex justify-end px-[12px] py-[10px]">
-      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20]"
+      <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :page-sizes="[10, 20, 40]"
         :pager-count="5" layout="total,sizes, prev, pager, next,jumper" :total="total" @size-change="handleSizeChange"
         @current-change="handleCurrentChange" />
     </div>
