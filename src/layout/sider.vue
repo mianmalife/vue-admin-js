@@ -1,23 +1,21 @@
 <template>
-  <el-menu class="h-[100%] w-[100%]"
-    :default-active="route.path" router :collapse="sideStore.collapse"
+  <el-menu :class="siderStyle" :default-active="route.path" router :collapse="sideStore.collapse"
     :collapse-transition="false">
     <template v-for="menuItem in sideStore.menulist">
       <el-sub-menu :index="menuItem.path" v-if="menuItem.children && menuItem.children.length > 0">
         <template #title>
-          <v-svg-icon :name="menuItem.meta.icon"v-if="menuItem.meta.icon" class="text-[16px]"
+          <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon"
             :class="sideStore.collapse ? 'mx-auto' : ''" />
-            <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
-            }}</span>
+          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
+          }}</span>
         </template>
         <sidemenu :menuItem="menuItem.children" />
       </el-sub-menu>
       <el-menu-item v-else :index="menuItem.path">
-        <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon" class="text-[18px]"
-          :class="sideStore.collapse ? 'mx-auto' : ''" />
+        <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon" :class="sideStore.collapse ? 'mx-auto' : ''" />
         <template #title>
           <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
-            }}</span>
+          }}</span>
         </template>
       </el-menu-item>
     </template>
@@ -38,6 +36,13 @@ const props = defineProps({
     default: true
   }
 })
+const siderStyle = computed(() => ({
+  'w-[100%] overflow-auto': true,
+  'h-[calc(100%-50px)]': !sideStore.autoSplit,
+  'h-[100%]': sideStore.autoSplit,
+  '!w-[64px]': sideStore.collapse,
+  '!w-[260px]': !sideStore.collapse,
+}))
 </script>
 
 <style lang="scss" scoped>

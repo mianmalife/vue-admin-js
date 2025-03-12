@@ -1,10 +1,9 @@
 <template>
   <el-container class="h-[100%]">
-    <el-aside class="fixed left-0 top-0 pt-[48px] h-[100%]" :class="sideStore.collapse && !sideStore.autoSplit ? '!w-[64px]' : '!w-[260px]'" v-if="sideStore.menulist.length > 0">
+    <el-aside class="fixed left-0 top-0 pt-[48px] !w-[auto] h-[100%]" v-if="sideStore.menulist.length > 0">
       <siderComp v-if="layoutTypeStore.value === 'mix'" />
-      <div v-if="!sideStore.autoSplit" @click="sideStore.setCollapse(!sideStore.collapse)"
-        class="flex items-center absolute bottom-5 pl-[20px] px-[1px] box-border py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)]"
-        :class="sideStore.collapse ? '!w-[63px]' : '!w-[259px]'">
+      <div v-if="!sideStore.autoSplit && layoutTypeStore.value !== 'top'" @click="sideStore.setCollapse(!sideStore.collapse)"
+        class="px-[20px] mx-auto py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)] border-r border-[var(--el-menu-border-color)] border-solid">
         <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
         <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
       </div>
@@ -104,8 +103,8 @@ watch(() => [sideStore.autoSplit, route.path], deps => {
 })
 
 const rightContentCls = computed(() => ({
-'!ml-[260px]': layoutTypeStore.value !== 'top' && sideStore.menulist.length > 0,
-'!ml-[64px]': sideStore.collapse && !sideStore.autoSplit
+  '!ml-[260px]': layoutTypeStore.value !== 'top' && sideStore.menulist.length > 0,
+  '!ml-[64px]': sideStore.collapse
 }))
 
 function handleRefresh() {
