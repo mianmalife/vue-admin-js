@@ -1,5 +1,5 @@
 <template>
-  <div class="p-[10px]" v-if="route.path !== '/workplace'">
+  <div class="px-[10px] pt-[10px]" v-if="route.path !== '/workplace'">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/workplace' }" @click="handleSider">{{ t('Workbenches') }}</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: breadcrumb.path }" v-for="breadcrumb in breadcrumbList">{{

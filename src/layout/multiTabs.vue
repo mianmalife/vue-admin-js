@@ -1,20 +1,20 @@
 <template>
-  <div
-    class="mutab__cls flex items-center justify-between pt-[10px] bg-[var(--card-bgcolor)] border-b border-solid border-[var(--el-border-color)]">
-    <el-tabs class="px-[10px] bg-[var(--card-bgcolor)]" type="card" :model-value="route.path" @tab-click="tabClick"
+<div class="relative px-[10px] mt-[10px]">
+  <el-tabs type="card" :model-value="route.path" @tab-click="tabClick"
       @tab-remove="handleTabsRemove">
       <el-tab-pane v-for="multiTabs in multiTabsStore.multiTabslist" :name="multiTabs.path" :key="multiTabs.path"
         :closable="multiTabs.name !== 'workplace'">
         <template #label>
           {{ t(`${multiTabs.meta.title}`) }}
           <i class="el-icon icon-refresh  ml-[5px]" v-show="multiTabs.path === route.path">
-            <v-svg-icon name='refresh' class="hover:scale-125" :class="{ animateRotate: refresh }" @click="handleRefresh" />
+            <v-svg-icon name='refresh' class="hover:scale-125" :class="{ animateRotate: refresh }"
+              @click="handleRefresh" />
           </i>
         </template>
       </el-tab-pane>
     </el-tabs>
 
-    <el-dropdown class="mb-[15px] mr-[20px]" @command="handleCommand" size="small">
+    <el-dropdown class="!absolute top-[50%] translate-y-[-50%] right-[20px]" @command="handleCommand" size="small">
       <span class="el-dropdown-link">
         <i class=" text-[var(--el-text-color-primary)] hover:text-[var(--el-color-primary)]">
           <v-svg-icon name="epmore" class="rotate-[90deg]" />
@@ -23,12 +23,12 @@
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item command="close" :disabled="!(multiTabsStore.multiTabslist.length > 1)">{{ t('closeOther')
-            }}</el-dropdown-item>
+          }}</el-dropdown-item>
           <el-dropdown-item command="refresh">{{ t('Refresh') }}</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
-  </div>
+</div>
 
 </template>
 
@@ -96,10 +96,8 @@ const tabClick = (TabsPaneContext, event) => {
 }
 
 const handleTabsRemove = (targetTab) => {
-  // console.log(targetTab)
-  // console.log(route)
   const tabs = multiTabsStore.multiTabslist
-  console.log(tabs)
+  if (tabs.length === 1) return
   let activeTab = route.path
   if (activeTab === targetTab) {
     tabs.forEach((tab, index) => {
@@ -127,9 +125,7 @@ const handleTabsRemove = (targetTab) => {
 
 const handleCommand = (command) => {
   if (command === 'close') {
-    // console.log(route.path, multiTabsStore.multiTabslist)
     multiTabsStore.removeOtherItem(route.path)
-    // console.log(multiTabsStore.multiTabslist)
   } else {
     console.log(command)
     refreshPage()
@@ -147,13 +143,11 @@ const handleRefresh = (e) => {
 </script>
 
 <style lang="scss" scoped>
-.el-tabs--border-card>.el-tabs__content {
-  display: none;
-}
-
 .el-tabs {
   --el-font-size-base: 12px;
-  overflow-x: auto;
+}
+.el-tabs--border-card>.el-tabs__content {
+  display: none;
 }
 
 .el-dropdown-link:focus {
@@ -197,20 +191,8 @@ const handleRefresh = (e) => {
   }
 
 }
-</style>
-<style lang="scss">
-.mutab__cls {
-  .el-tabs--card>.el-tabs__header {
-    border-bottom: none;
-    margin-bottom: 10px;
-  }
 
-  .el-tabs--card>.el-tabs__header .el-tabs__item {
-    border-bottom: 1px solid var(--el-border-color-light);
-  }
-
-  // .el-tabs__item .is-icon-close:hover {
-  //   --el-text-color-placeholder: var(--el-color-primary);
-  // }
+:deep(.el-tabs__header) {
+  margin-bottom: 0;
 }
 </style>
