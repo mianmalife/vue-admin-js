@@ -1,11 +1,14 @@
 <template>
-  <div class="h-[100%] flex flex-col items-center ">
+  <div class="h-[100%] flex flex-col items-center bg-gradient-to-b from-gray-50 to-white login__wrapper">
     <div class="flex grow justify-center items-center">
       <el-form ref="userRef" :model="userForm" status-icon :rules="rules" label-width="auto" size="large"
-        class="w-[400px]  p-[30px] shadow-xl bg-[var(--card-bgcolor)] rounded-md">
-        <div class="text-center w-[100%] pb-[20px] font-bold">vue-admin-js</div>
+        class="w-[420px] p-[40px] shadow-lg bg-white rounded-[var(--el-border-radius-base)] transition-all duration-300 hover:shadow-xl">
+        <div class="text-center w-[100%] pb-[30px]">
+          <h1 class="text-[22px] font-bold text-gray-800 mb-2">vue-admin-js</h1>
+          <p class="text-gray-500 text-sm">欢迎回来，请登录</p>
+        </div>
         <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
-          @close="isLoginError = false" />
+          @close="isLoginError = false" class="mb-4" />
         <el-form-item class="mt-[20px]" label="" prop="username">
           <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：admin`">
             <template #prefix>
@@ -21,12 +24,15 @@
             </template>
           </el-input>
         </el-form-item>
-        <el-form-item>
-          <el-button class="w-full" type="primary" @click="handleForm" :loading="loading">{{ t('Signin') }}</el-button>
+        <el-form-item class="mt-8">
+          <el-button class="w-full transition-all duration-300 hover:opacity-90 auto-insert-space" type="primary"
+            @click="handleForm" :loading="loading">
+            {{ t('Signin') }}
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
-    <div class=" h-[30px]">
+    <div class="h-[40px] text-gray-500 text-sm">
       Copyright © {{ new Date().getFullYear() }} vue-admin-js
     </div>
   </div>
@@ -101,4 +107,20 @@ const handleForm = async () => {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login__wrapper {
+  --el-border-radius-base: 12px;
+}
+:deep(.el-input__wrapper) {
+  box-shadow: 0 0 0 1px #e5e7eb inset;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+  }
+
+  &.is-focus {
+    box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+  }
+}
+</style>
