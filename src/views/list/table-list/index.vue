@@ -28,12 +28,18 @@
 </template>
 
 <script setup>
-import getUserList from '~/mock/getUserTable.js'
-const tableData = ref(getUserList())
+import axios from '@/shared/axios'
+const tableData = ref([])
 const formInline = reactive({
   user: '',
   region: 'shanghai',
   date: '',
+})
+
+onMounted(() => {
+  axios({ url: '/api/user/table' }).then(res => {
+    tableData.value = res.data
+  })
 })
 
 const onSubmit = () => {

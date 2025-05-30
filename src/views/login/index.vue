@@ -39,9 +39,9 @@
 </template>
 
 <script setup>
+import axios from '@/shared/axios'
 import { ElMessage } from 'element-plus'
 import vSvgIcon from '@/components/v-svg-icon.vue'
-import getToken from '~/mock/getToken'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import router from '@/router';
@@ -89,16 +89,25 @@ const handleForm = async () => {
     await userRef.value.validate(async (valid) => {
       if (!valid) return
       loading.value = true
-      if (userForm.username === 'admin' && userForm.password === 'admin') {
-        const tk = await getToken()
-        localStorage.setItem('token', tk)
-        router.push('/workplace')
-        topStore.setKey('/workplace')
+      const { username, password } = userForm
+      axios({
+        url: '/api/auth/login',
+        method: 'post',
+        data: { username, password }
+      }).then(res => {
+        if (res.code === 200) {
+          localStorage.setItem('token', res.data.access_token)
+          ElMessage.success(res.msg)
+          router.push('/workplace')
+          topStore.setKey('/workplace')
+        } else {
+          ElMessage.error(res.msg)
+        }
+      }).catch(err => {
+        console.log(err)
+      }).finally(() => {
         loading.value = false
-      } else {
-        isLoginError.value = true
-        loading.value = false
-      }
+      })
     })
   } catch (error) {
     console.error(error)
@@ -111,6 +120,7 @@ const handleForm = async () => {
 .login__wrapper {
   --el-border-radius-base: 12px;
 }
+
 :deep(.el-input__wrapper) {
   box-shadow: 0 0 0 1px #e5e7eb inset;
   transition: all 0.3s;

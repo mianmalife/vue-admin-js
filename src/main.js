@@ -17,4 +17,14 @@ pina.use(piniaPluginPersistedstate)
 app.use(i18n)
 app.use(router)
 
-app.mount('#app')
+async function enableMocks() {
+  if (process.env.NODE_ENV !== 'development') {
+    return
+  }
+  const { worker } = await import('../mock/browser')
+  return worker.start({ onUnhandledRequest: 'bypass' })
+}
+
+enableMocks().then(() => {
+  app.mount('#app')
+})

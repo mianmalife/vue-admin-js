@@ -1,6 +1,6 @@
 import "@/styles/nprogress.css"
+import axios from "@/shared/axios"
 import NProgress from "nprogress"
-import userData from "~/mock/getUserData.js"
 import { useActiveStore } from "@/stores/topmenu"
 import isArray from '@/shared/isArray'
 import layout from '@/layout/index.vue'
@@ -46,9 +46,10 @@ const StaticMenu = [
 const viewsModules = import.meta.glob('@/views/**/index.vue')
 
 export async function convertMenuData() {
-  const usrData = await userData()
+  await new Promise(resolve => setTimeout(resolve, 500))
+  const usrData = await axios({ url: '/api/auth/menus', method: 'get' })
   const topStore = useActiveStore()
-  topStore.setAllRoutes(StaticMenu.concat(usrData.menuList))
+  topStore.setAllRoutes(StaticMenu.concat(usrData.data.menuList))
 
   const transformRoute = (route, f) => {
     let component
@@ -67,7 +68,7 @@ export async function convertMenuData() {
   }
 
   const routeMenu = []
-  usrData.menuList.forEach(route => {
+  usrData.data.menuList.forEach(route => {
     const compRoute = transformRoute(route)
     routeMenu.push(compRoute)
   })
