@@ -73,9 +73,12 @@ export default defineConfig({
           'element-plus': ['element-plus'],
         }
       }
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: ['log']
+      }
     }
   },
-  // optimizeDeps: {
-  //   include: ['element-plus/es/components/**/*']
-  // }
 })

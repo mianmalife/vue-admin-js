@@ -37,6 +37,7 @@
     "postcss": "^8.4.45",
     "sass": "^1.78.0",
     "tailwindcss": "^3.4.11",
+    "terser": "^5.42.0",
     "unplugin-auto-import": "^0.18.2",
     "unplugin-icons": "^0.19.3",
     "unplugin-vue-components": "^0.27.4",
