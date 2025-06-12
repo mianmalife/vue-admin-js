@@ -2,7 +2,8 @@
   <el-container class="h-[100%]">
     <el-aside class="fixed left-0 top-0 pt-[48px] !w-[auto] h-[100%]" v-if="sideStore.menulist.length > 0">
       <siderComp v-if="layoutTypeStore.value === 'mix'" />
-      <div v-if="!sideStore.autoSplit && layoutTypeStore.value !== 'top'" @click="sideStore.setCollapse(!sideStore.collapse)"
+      <div v-if="!sideStore.autoSplit && layoutTypeStore.value !== 'top'"
+        @click="sideStore.setCollapse(!sideStore.collapse)"
         class="px-[20px] mx-auto py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)] border-r border-[var(--el-menu-border-color)] border-solid">
         <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
         <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
@@ -32,7 +33,7 @@
         </div>
       </el-header>
       <el-main class="!p-0" style="overflow: initial">
-        <multiTabs v-if="multiTabsStore.isVisible" />
+        <multi-tag v-if="tagStore.isVisible" />
         <breadcrumb v-if="breadcurmbStore.showBread" />
         <div class="m-[10px]">
           <router-view v-slot="{ Component }" v-if="isrefreshing" class="mb-[10px]">
@@ -52,21 +53,21 @@
 
 <script setup>
 provide('refreshPage', handleRefresh)
+import multiTag from './multiTag.vue';
 import vSvgIcon from '@/components/v-svg-icon.vue'
 import topmenu from './topmenu.vue';
 import opti from './opti.vue';
 import siderComp from './sider.vue';
+import { useTagStore } from '@/stores/multiTag';
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
-import { useMultiTabsStore } from '@/stores/multiTabs'
 import { useBreadcurmbStore } from '@/stores/breadcurmb'
 import { useLayoutTypeStore } from '@/stores/layoutType'
-import multiTabs from './multiTabs.vue';
 import breadcrumb from './breadcrumb.vue';
 import settings from './settings.vue'
+const tagStore = useTagStore()
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
-const multiTabsStore = useMultiTabsStore()
 const breadcurmbStore = useBreadcurmbStore()
 const route = useRoute()
 const layoutTypeStore = useLayoutTypeStore()

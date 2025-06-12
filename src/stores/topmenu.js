@@ -14,7 +14,11 @@ export const useActiveStore = defineStore('topActiveKey', () => {
   function setIsLeft(bool) {
     isLeft.value = bool
   }
-  return { activeKey, setKey, allRoutes, setAllRoutes, isLeft, setIsLeft }
+  function clear() {
+    activeKey.value = ''
+    allRoutes.value = []
+  }
+  return { activeKey, setKey, allRoutes, setAllRoutes, isLeft, setIsLeft, clear }
 }, {
   persist: true
 })

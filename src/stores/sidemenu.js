@@ -18,7 +18,11 @@ export const useSideMenuStore = defineStore('Sidemenu', () => {
     collapse.value = bool
   }
 
-  return { menulist, setSideMenu, autoSplit, setSplit, collapse, setCollapse }
+  function clear() {
+    menulist.value = []
+  }
+
+  return { menulist, setSideMenu, autoSplit, setSplit, collapse, setCollapse, clear }
 }, {
   persist: true
 })

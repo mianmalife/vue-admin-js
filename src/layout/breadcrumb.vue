@@ -1,7 +1,6 @@
 <template>
   <div class="px-[10px] pt-[10px]" v-if="route.path !== '/workplace'">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/workplace' }" @click="handleSider">{{ t('Workbenches') }}</el-breadcrumb-item>
+    <el-breadcrumb :separator-icon="ArrowRight">
       <el-breadcrumb-item :to="{ path: breadcrumb.path }" v-for="breadcrumb in breadcrumbList">{{
         t(`${breadcrumb.label}`)
       }}</el-breadcrumb-item>
@@ -11,6 +10,7 @@
 </template>
 
 <script setup>
+import { ArrowRight } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import { useActiveStore } from '@/stores/topmenu'

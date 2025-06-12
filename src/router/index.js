@@ -4,7 +4,7 @@ import NProgress from "nprogress"
 import { useActiveStore } from "@/stores/topmenu"
 import isArray from '@/shared/isArray'
 import layout from '@/layout/index.vue'
-import { useMultiTabsStore } from '@/stores/multiTabs'
+import { useTagStore } from '@/stores/multiTag'
 
 const LoginRoute = { path: '/login', name: 'login', meta: { title: 'Login' }, component: () => import('@/views/login/index.vue') }
 const NotFoundRoute = { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/notFound/index.vue') }
@@ -94,6 +94,7 @@ router.beforeEach(async (to, from) => {
   const token = localStorage.getItem('token')
   if (!token && to.name !== 'login') {
     NProgress.done()
+    hasLoad = true
     return '/login'
   }
   if (token && to.name === 'login') {
@@ -102,8 +103,8 @@ router.beforeEach(async (to, from) => {
   }
   if (token && to.name !== 'login') {
     if (to.name !== 'NotFound') {
-      const multiTabsStore = useMultiTabsStore()
-      multiTabsStore.setMultiTabsStore(to)
+      const tagStore = useTagStore()
+      tagStore.setTagList({ path: to.path, meta: to.meta })
     }
     if (hasLoad) {
       const afterMenuData = await convertMenuData()
@@ -112,6 +113,8 @@ router.beforeEach(async (to, from) => {
       NProgress.done()
       return to.fullPath
     }
+  } else {
+    hasLoad = true
   }
   NProgress.done()
 })

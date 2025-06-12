@@ -90,27 +90,25 @@ const handleForm = async () => {
       if (!valid) return
       loading.value = true
       const { username, password } = userForm
-      axios({
+      const res = await axios({
         url: '/api/auth/login',
         method: 'post',
         data: { username, password }
-      }).then(res => {
-        if (res.code === 200) {
-          localStorage.setItem('token', res.data.access_token)
-          ElMessage.success(res.msg)
-          router.push('/workplace')
-          topStore.setKey('/workplace')
-        } else {
-          ElMessage.error(res.msg)
-        }
-      }).catch(err => {
-        console.log(err)
-      }).finally(() => {
-        loading.value = false
       })
+      if (res.code === 200) {
+        localStorage.setItem('token', res.data.access_token)
+        ElMessage.success(res.msg)
+        router.push('/workplace')
+        topStore.setKey('/workplace')
+        loading.value = false
+      } else {
+        ElMessage.error(res.msg)
+        loading.value = false
+      }
     })
   } catch (error) {
     console.error(error)
+    loading.value = false
     ElMessage.error(error.message)
   }
 }

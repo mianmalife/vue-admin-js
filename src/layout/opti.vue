@@ -3,13 +3,14 @@
     :class="sideStore.autoSplit ? '' : 'flex-1'">
     <el-dropdown @command="setLanguage">
       <div class="flex items-center outline-none">
-        <v-svg-icon name="global" class="w-[22px] h-[22px] p-[2px] rounded-[50%] hover:bg-[var(--el-menu-hover-bg-color)] hover:text-[var(--el-color-primary)]" />
+        <v-svg-icon name="global"
+          class="w-[22px] h-[22px] p-[2px] rounded-[50%] hover:bg-[var(--el-menu-hover-bg-color)] hover:text-[var(--el-color-primary)]" />
       </div>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item command="zh-cn">
             <span :class="langStore.lang === 'zh-cn' && '!text-[var(--el-color-primary)]'">{{ t('Simplified Chinese')
-              }}</span>
+            }}</span>
           </el-dropdown-item>
           <el-dropdown-item command="en-us">
             <span :class="langStore.lang === 'en-us' && '!text-[var(--el-color-primary)]'">English</span>
@@ -44,22 +45,24 @@
 <script setup>
 import vSvgIcon from '@/components/v-svg-icon.vue'
 import ToggleTheme from '@/components/toggle-theme.vue'
+import { useActiveStore } from "@/stores/topmenu"
+import { useTagStore } from '@/stores/multiTag'
 import { useSideMenuStore } from '@/stores/sidemenu'
+const topStore = useActiveStore()
+const tagStore = useTagStore()
 const sideStore = useSideMenuStore()
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/language'
-import { useMultiTabsStore } from '@/stores/multiTabs';
 const langStore = useLangStore()
-const multiTabsStore = useMultiTabsStore()
 const router = useRouter()
 const { locale, t } = useI18n()
 
 function handleCommand(key) {
   if (key === 'logout') {
     localStorage.removeItem('token')
-    localStorage.removeItem('topActiveKey')
-    localStorage.removeItem('Sidemenu')
-    multiTabsStore.removeData()
+    topStore.clear()
+    sideStore.clear()
+    tagStore.clear()
     nextTick(() => {
       router.push({ name: 'login' })
     })

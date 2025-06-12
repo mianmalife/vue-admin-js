@@ -71,7 +71,7 @@
       <!-- 标签栏 -->
       <div class="flex justify-between items-end mb-2">
         <el-text class="mr-2">{{ t('TabBar') }}</el-text>
-        <el-switch v-model="multiTabsStore.isVisible" />
+        <el-switch v-model="tagStore.isVisible" />
       </div>
       <div class="flex justify-between items-end mb-2">
         <el-text class="mr-2">{{ t('Breadcrumbs') }}</el-text>
@@ -85,12 +85,12 @@
 import vSvgIcon from '@/components/v-svg-icon.vue'
 import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
-import { useMultiTabsStore } from '@/stores/multiTabs'
+import { useTagStore } from '@/stores/multiTag'
 import { useBreadcurmbStore } from '@/stores/breadcurmb'
 import { useLayoutTypeStore } from '@/stores/layoutType'
 const topStore = useActiveStore()
 const sideStore = useSideMenuStore()
-const multiTabsStore = useMultiTabsStore()
+const tagStore = useTagStore()
 const breadcurmbStore = useBreadcurmbStore()
 const layoutTypeStore = useLayoutTypeStore()
 import { useI18n } from 'vue-i18n'
