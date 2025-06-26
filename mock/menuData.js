@@ -1,4 +1,4 @@
-export default {
+const mockMenu = {
   menuList: [
     {
       path: '/list',
@@ -69,6 +69,15 @@ export default {
                   meta: {
                     title: 'menu1-2-1'
                   }
+                },
+                {
+                  path: '/translate',
+                  name: 'translate',
+                  component: null,
+                  meta: {
+                    title: 'translate',
+                    url: 'https://fanyi.baidu.com/mtpe-individual/multimodal#/'
+                  }
                 }
               ]
             }
@@ -81,8 +90,33 @@ export default {
           meta: {
             title: 'menu2'
           }
+        },
+        {
+          path: '/github-page',
+          name: 'Github',
+          component: null,
+          meta: {
+            title: 'Github',
+            url: 'https://github.com/'
+          }
         }
       ]
+    },
+    {
+      path: '/github-page0',
+      name: 'Hello',
+      component: 'https://www.baidu.com/',
+      meta: {
+        title: 'Baidu',
+        url: 'https://www.baidu.com/'
+      }
     }
   ]
+}
+export default function getMenuList() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(mockMenu)
+    }, Math.floor(Math.random() * 300))
+  })
 }

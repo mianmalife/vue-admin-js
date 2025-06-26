@@ -1,10 +1,11 @@
 import "@/styles/nprogress.css"
-import axios from "@/shared/axios"
 import NProgress from "nprogress"
 import { useActiveStore } from "@/stores/topmenu"
 import isArray from '@/shared/isArray'
 import layout from '@/layout/index.vue'
 import { useTagStore } from '@/stores/multiTag'
+import getMenuList from "~/mock/menuData"
+import { userInfoStore } from "@/stores/userInfo"
 
 const LoginRoute = { path: '/login', name: 'login', meta: { title: 'Login' }, component: () => import('@/views/login/index.vue') }
 const NotFoundRoute = { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/notFound/index.vue') }
@@ -46,10 +47,9 @@ const StaticMenu = [
 const viewsModules = import.meta.glob('@/views/**/index.vue')
 
 export async function convertMenuData() {
-  await new Promise(resolve => setTimeout(resolve, 500))
-  const usrData = await axios({ url: '/api/auth/menus', method: 'get' })
+  const res = await getMenuList()
   const topStore = useActiveStore()
-  topStore.setAllRoutes(StaticMenu.concat(usrData.data.menuList))
+  topStore.setAllRoutes(StaticMenu.concat(res.menuList))
 
   const transformRoute = (route, f) => {
     let component
@@ -68,7 +68,7 @@ export async function convertMenuData() {
   }
 
   const routeMenu = []
-  usrData.data.menuList.forEach(route => {
+  res.menuList.forEach(route => {
     const compRoute = transformRoute(route)
     routeMenu.push(compRoute)
   })
@@ -91,7 +91,7 @@ let hasLoad = true
 
 router.beforeEach(async (to, from) => {
   NProgress.start()
-  const token = localStorage.getItem('token')
+  const token = userInfoStore().user.accessToken
   if (!token && to.name !== 'login') {
     NProgress.done()
     hasLoad = true
@@ -102,6 +102,9 @@ router.beforeEach(async (to, from) => {
     return '/'
   }
   if (token && to.name !== 'login') {
+    if (to.meta.url) {
+      return
+    }
     if (to.name !== 'NotFound') {
       const tagStore = useTagStore()
       tagStore.setTagList({ path: to.path, meta: to.meta })

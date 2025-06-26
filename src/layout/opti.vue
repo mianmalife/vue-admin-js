@@ -10,7 +10,7 @@
         <el-dropdown-menu>
           <el-dropdown-item command="zh-cn">
             <span :class="langStore.lang === 'zh-cn' && '!text-[var(--el-color-primary)]'">{{ t('Simplified Chinese')
-            }}</span>
+              }}</span>
           </el-dropdown-item>
           <el-dropdown-item command="en-us">
             <span :class="langStore.lang === 'en-us' && '!text-[var(--el-color-primary)]'">English</span>
@@ -53,13 +53,14 @@ const tagStore = useTagStore()
 const sideStore = useSideMenuStore()
 import { useI18n } from 'vue-i18n'
 import { useLangStore } from '@/stores/language'
+import { userInfoStore } from '@/stores/userInfo'
 const langStore = useLangStore()
 const router = useRouter()
 const { locale, t } = useI18n()
 
 function handleCommand(key) {
   if (key === 'logout') {
-    localStorage.removeItem('token')
+    userInfoStore().clear()
     topStore.clear()
     sideStore.clear()
     tagStore.clear()

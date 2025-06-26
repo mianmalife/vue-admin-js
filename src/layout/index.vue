@@ -4,7 +4,7 @@
       <siderComp v-if="layoutTypeStore.value === 'mix'" />
       <div v-if="!sideStore.autoSplit && layoutTypeStore.value !== 'top'"
         @click="sideStore.setCollapse(!sideStore.collapse)"
-        class="px-[20px] mx-auto py-4 cursor-pointer hover:bg-[var(--el-menu-hover-bg-color)] border-r border-[var(--el-menu-border-color)] border-solid">
+        class="px-[20px] mx-auto py-4 cursor-pointer bg-[var(--el-menu-bg-color)] hover:bg-[var(--el-menu-hover-bg-color)] border-r border-[var(--el-menu-border-color)] border-solid">
         <v-svg-icon name="menu-unfold" v-if="sideStore.collapse" class="w-[18px] h-[18px]" />
         <v-svg-icon name="menu-fold" v-else class="w-[18px] h-[18px]" />
       </div>

@@ -10,7 +10,7 @@
         <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
           @close="isLoginError = false" class="mb-4" />
         <el-form-item class="mt-[20px]" label="" prop="username">
-          <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：admin`">
+          <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：emilys`">
             <template #prefix>
               <v-svg-icon name="epuser" color="var(--el-color-primary)"></v-svg-icon>
             </template>
@@ -18,7 +18,7 @@
         </el-form-item>
         <el-form-item label="" prop="password">
           <el-input v-model="userForm.password" type="password" autocomplete="off" show-password
-            :placeholder="`${t('Password')}：admin`">
+            :placeholder="`${t('Password')}：emilyspass`">
             <template #prefix>
               <v-svg-icon name="lock" color="var(--el-color-primary)"></v-svg-icon>
             </template>
@@ -45,10 +45,12 @@ import vSvgIcon from '@/components/v-svg-icon.vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 import router from '@/router';
+import { userInfoStore } from '@/stores/userInfo'
 import { useThemeColor } from '@/stores/themeColor'
 import { useActiveStore } from "@/stores/topmenu"
 const themeColorStore = useThemeColor()
 const topStore = useActiveStore()
+const userStore = userInfoStore()
 
 let isLoginError = ref(false)
 const userRef = ref()
@@ -91,18 +93,18 @@ const handleForm = async () => {
       loading.value = true
       const { username, password } = userForm
       const res = await axios({
-        url: '/api/auth/login',
+        url: 'https://dummyjson.com/auth/login',
         method: 'post',
-        data: { username, password }
+        data: { username, password, expiresInMins: 3 }
       })
-      if (res.code === 200) {
-        localStorage.setItem('token', res.data.access_token)
-        ElMessage.success(res.msg)
+      if (res) {
+        userStore.setUser(res)
+        ElMessage.success('登录成功')
         router.push('/workplace')
         topStore.setKey('/workplace')
         loading.value = false
       } else {
-        ElMessage.error(res.msg)
+        ElMessage.error('系统异常, 登录失败')
         loading.value = false
       }
     })

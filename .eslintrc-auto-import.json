@@ -79,6 +79,7 @@
     "useId": true,
     "useModel": true,
     "useTemplateRef": true,
-    "default": true
+    "default": true,
+    "RouterLink": true
   }
 }

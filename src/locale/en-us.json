@@ -28,5 +28,8 @@
   "Username or password is incorrect": "Username or password is incorrect",
   "Password cannot be empty": "Password cannot be empty",
   "Username cannot be empty": "Username cannot be empty",
-  "Breadcrumbs": "Breadcrumbs"
+  "Breadcrumbs": "Breadcrumbs",
+  "Github": "Github",
+  "translate": "Baidu translate",
+  "Baidu": "Baidu"
 }
