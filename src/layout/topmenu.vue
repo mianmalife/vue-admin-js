@@ -13,7 +13,7 @@
       <el-menu-item v-else :index="menuItem.path" :key="menuItem.path + 'el-item'">
         <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon" class="mr-3" />
         <template #title>
-          <app-link :to="menuItem.meta.url || menuItem.path" @click.stop="() => { }">
+          <app-link :to="menuItem.meta.url || menuItem.path">
             <span>{{ t(`${menuItem.meta.title}`) }}</span>
           </app-link>
         </template>

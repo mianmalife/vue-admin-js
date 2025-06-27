@@ -6,7 +6,7 @@
       </template>
       <sidermenu :menuItem="menu.children" />
     </el-sub-menu>
-    <app-link v-else :to="menu.meta.url || menu.path" class="w-[100%]" @click.stop="() => { }">
+    <app-link v-else :to="menu.meta.url || menu.path" class="w-[100%]">
       <li class="el-menu-item" v-if="menu.meta.url">
         <span>{{ t(`${menu.meta.title}`) }}</span>
       </li>

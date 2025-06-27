@@ -6,7 +6,7 @@
           <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon"
             :class="sideStore.collapse ? 'mx-auto' : ''" />
           <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{ t(`${menuItem.meta.title}`)
-            }}</span>
+          }}</span>
         </template>
         <sidermenu :menuItem="menuItem.children" />
       </el-sub-menu>
@@ -16,16 +16,16 @@
             :class="sideStore.collapse ? 'mx-auto' : ''" />
           <span v-if="!sideStore.collapse" :class="sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
             t(`${menuItem.meta.title}`)
-            }}</span>
+          }}</span>
         </li>
         <el-menu-item v-else :index="menuItem.path">
           <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon"
             :class="sideStore.collapse ? 'mx-auto' : ''" />
           <template #title>
-            <app-link :to="menuItem.path" class="w-[100%]" @click.stop="() => { }">
+            <app-link :to="menuItem.path" class="w-[100%]">
               <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
                 t(`${menuItem.meta.title}`)
-              }}</span>
+                }}</span>
             </app-link>
           </template>
         </el-menu-item>
