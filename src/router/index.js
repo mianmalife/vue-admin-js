@@ -57,6 +57,8 @@ export async function convertMenuData() {
       component = layout
     } else if (f && component === 'layout') {
       component = null
+    } else if (route.meta.url) {
+      component = null
     } else {
       component = viewsModules[`/src/views/${route.component}/index.vue`]
     }

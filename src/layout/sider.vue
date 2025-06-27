@@ -10,23 +10,26 @@
         </template>
         <sidermenu :menuItem="menuItem.children" />
       </el-sub-menu>
-      <el-menu-item v-else-if="!menuItem.meta.url" :index="menuItem.path" @click="handlerMenuItem(menuItem.path)">
-        <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon" :class="sideStore.collapse ? 'mx-auto' : ''" />
-        <template #title>
-          <app-link :to="menuItem.path" class="w-[100%]" @click.stop="() => { }">
-            <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
-              t(`${menuItem.meta.title}`)
-              }}</span>
-          </app-link>
-        </template>
-      </el-menu-item>
-      <li v-else class="el-menu-item" @click="handlerExternal(menuItem.meta.url)">
-        <app-link :to="menuItem.meta.url" class="w-[100%]" @click.stop="() => { }">
-          <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
+      <app-link v-else :to="menuItem.meta.url || menuItem.path" class="w-[100%]">
+        <li class="el-menu-item" v-if="menuItem.meta.url">
+          <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon"
+            :class="sideStore.collapse ? 'mx-auto' : ''" />
+          <span v-if="!sideStore.collapse" :class="sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
             t(`${menuItem.meta.title}`)
             }}</span>
-        </app-link>
-      </li>
+        </li>
+        <el-menu-item v-else :index="menuItem.path">
+          <v-svg-icon :name="menuItem.meta.icon" v-if="menuItem.meta.icon"
+            :class="sideStore.collapse ? 'mx-auto' : ''" />
+          <template #title>
+            <app-link :to="menuItem.path" class="w-[100%]" @click.stop="() => { }">
+              <span :class="sideStore.collapse || sideStore.autoSplit ? 'pl-0' : 'pl-[6px]'">{{
+                t(`${menuItem.meta.title}`)
+              }}</span>
+            </app-link>
+          </template>
+        </el-menu-item>
+      </app-link>
     </template>
   </el-menu>
 </template>
@@ -40,7 +43,6 @@ import sidermenu from './sidermenu.vue'
 import { useSideMenuStore } from '@/stores/sidemenu'
 const sideStore = useSideMenuStore()
 const route = useRoute()
-const router = useRouter()
 const props = defineProps({
   isSplit: {
     type: Boolean,
@@ -54,12 +56,6 @@ const siderStyle = computed(() => ({
   '!w-[64px]': sideStore.collapse,
   '!w-[260px]': !sideStore.collapse,
 }))
-function handlerMenuItem(path) {
-  router.push(path)
-}
-function handlerExternal(url) {
-  window.open(url, url)
-}
 </script>
 
 <style lang="scss" scoped>

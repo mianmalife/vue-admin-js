@@ -108,7 +108,8 @@ const mockMenu = {
       component: 'https://www.baidu.com/',
       meta: {
         title: 'Baidu',
-        url: 'https://www.baidu.com/'
+        url: 'https://www.baidu.com/',
+        icon: 'tabler--brand-baidu'
       }
     }
   ]

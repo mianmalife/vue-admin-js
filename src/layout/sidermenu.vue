@@ -6,16 +6,14 @@
       </template>
       <sidermenu :menuItem="menu.children" />
     </el-sub-menu>
-    <el-menu-item v-else-if="!menu.meta.url" :index="menu.path" @click="handlerMenuItem(menu.path)">
-      <app-link :to="menu.path" class="w-[100%]" @click.stop="() => { }">
+    <app-link v-else :to="menu.meta.url || menu.path" class="w-[100%]" @click.stop="() => { }">
+      <li class="el-menu-item" v-if="menu.meta.url">
         <span>{{ t(`${menu.meta.title}`) }}</span>
-      </app-link>
-    </el-menu-item>
-    <li v-else class="el-menu-item" @click="handlerExternal(menu.meta.url)">
-      <app-link :to="menu.meta.url" class="w-[100%]" @click.stop="() => { }">
+      </li>
+      <el-menu-item v-else :index="menu.path">
         <span>{{ t(`${menu.meta.title}`) }}</span>
-      </app-link>
-    </li>
+      </el-menu-item>
+    </app-link>
   </template>
 </template>
 
@@ -23,14 +21,7 @@
 import AppLink from '@/components/AppLink.vue'
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
-const router = useRouter()
 const props = defineProps(['menuItem'])
-function handlerMenuItem(path) {
-  router.push(path)
-}
-function handlerExternal(url) {
-  window.open(url, url)
-}
 </script>
 
 <style lang="scss" scoped></style>
