@@ -15,7 +15,8 @@ const mockMenu = {
           name: 'table-list',
           component: 'list/table-list',
           meta: {
-            title: 'EnquiryForm'
+            title: 'EnquiryForm',
+            keepAlive: true
           }
         },
         {
@@ -51,7 +52,8 @@ const mockMenu = {
               name: 'menu1-1',
               component: 'nested/menu1/menu1-1',
               meta: {
-                title: 'menu1-1'
+                title: 'menu1-1',
+                keepAlive: true
               }
             },
             {

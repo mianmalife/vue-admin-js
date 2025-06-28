@@ -38,7 +38,9 @@
         <div class="m-[10px]">
           <router-view v-slot="{ Component }" v-if="isrefreshing" class="mb-[10px]">
             <transition name="slide" mode="out-in">
-              <component :is="Component" />
+              <keep-alive :include="cachePageStore.cacheList">
+                <component :is="Component" />
+              </keep-alive>
             </transition>
           </router-view>
           <el-footer class="flex justify-center" height="30px">
@@ -63,6 +65,7 @@ import { useActiveStore } from '@/stores/topmenu';
 import { useSideMenuStore } from '@/stores/sidemenu'
 import { useBreadcurmbStore } from '@/stores/breadcurmb'
 import { useLayoutTypeStore } from '@/stores/layoutType'
+import { useCachePageStore } from '@/stores/cachePage';
 import breadcrumb from './breadcrumb.vue';
 import settings from './settings.vue'
 const tagStore = useTagStore()
@@ -71,6 +74,7 @@ const sideStore = useSideMenuStore()
 const breadcurmbStore = useBreadcurmbStore()
 const route = useRoute()
 const layoutTypeStore = useLayoutTypeStore()
+const cachePageStore = useCachePageStore()
 const isrefreshing = ref(true)
 
 watch(() => [sideStore.autoSplit, route.path], deps => {

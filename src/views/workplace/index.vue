@@ -9,6 +9,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'workplace' })
 const loading = ref(true)
 const count = ref(0)
 onMounted(() => {

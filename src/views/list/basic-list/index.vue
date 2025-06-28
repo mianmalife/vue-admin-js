@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-
+defineOptions({ name: 'basic-list' })
 const tableData = ref([
   {
     date: '2024-05-03',

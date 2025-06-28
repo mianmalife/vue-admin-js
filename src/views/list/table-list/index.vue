@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'table-list' })
 import axios from '@/shared/axios'
 const tableData = ref([])
 const formInline = reactive({

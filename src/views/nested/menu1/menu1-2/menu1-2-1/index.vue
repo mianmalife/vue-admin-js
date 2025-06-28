@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'menu1-2-1' })
 const valu = ref(12)
 </script>
 

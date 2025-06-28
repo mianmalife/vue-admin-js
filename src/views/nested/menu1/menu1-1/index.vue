@@ -122,6 +122,7 @@
 </template>
 
 <script setup>
+defineOptions({ name: 'menu1-1' })
 import axios from '@/shared/axios';
 
 const isError = ref(false)

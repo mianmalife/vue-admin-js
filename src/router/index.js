@@ -6,6 +6,7 @@ import layout from '@/layout/index.vue'
 import { useTagStore } from '@/stores/multiTag'
 import getMenuList from "~/mock/menuData"
 import { userInfoStore } from "@/stores/userInfo"
+import { useCachePageStore } from "@/stores/cachePage"
 
 const LoginRoute = { path: '/login', name: 'login', meta: { title: 'Login' }, component: () => import('@/views/login/index.vue') }
 const NotFoundRoute = { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/notFound/index.vue') }
@@ -60,6 +61,10 @@ export async function convertMenuData() {
     } else if (route.meta.url) {
       component = null
     } else {
+      if (route.meta.keepAlive) {
+        const cachePageStore = useCachePageStore()
+        cachePageStore.setCacheList(route.name)
+      }
       component = viewsModules[`/src/views/${route.component}/index.vue`]
     }
     return {
