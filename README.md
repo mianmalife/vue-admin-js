@@ -1,14 +1,15 @@
 ## vue-admin-js
 
-vue3技术栈的中后台模板，纯js实现, 解决市面上都是ts版本的问题(js版本都收费)，追求极简。
+Vue3技术栈的中后台模板，纯js实现, 解决市面上都是ts版本的问题(js版本都收费)，追求极简。
 
 使用主流前端技术栈
 
-* vue3
+* Vue3
 * vue-router 4.x
 * vue-i18n 10
 * pinia
 * element-plus 2.8.x
+* Vite7
 
 ## 浏览器支持
 

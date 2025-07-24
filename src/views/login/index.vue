@@ -10,14 +10,14 @@
         <el-alert v-show="isLoginError" :title="t('Username or password is incorrect')" type="error" show-icon
           @close="isLoginError = false" class="mb-4" />
         <el-form-item class="mt-[20px]" label="" prop="username">
-          <el-input v-model="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：emilys`">
+          <el-input v-model.trim="userForm.username" type="text" autocomplete="off" :placeholder="`${t('Username')}：emilys`">
             <template #prefix>
               <v-svg-icon name="epuser" color="var(--el-color-primary)"></v-svg-icon>
             </template>
           </el-input>
         </el-form-item>
         <el-form-item label="" prop="password">
-          <el-input v-model="userForm.password" type="password" autocomplete="off" show-password
+          <el-input v-model.trim="userForm.password" type="password" autocomplete="off" show-password
             :placeholder="`${t('Password')}：emilyspass`">
             <template #prefix>
               <v-svg-icon name="lock" color="var(--el-color-primary)"></v-svg-icon>
@@ -30,6 +30,7 @@
             {{ t('Signin') }}
           </el-button>
         </el-form-item>
+        <div class="text-gray-500 text-[14px]">demo{{ t('Username') }}: emilys , {{ t('Password') }}: emilyspass</div>
       </el-form>
     </div>
     <div class="h-[40px] text-gray-500 text-sm">
