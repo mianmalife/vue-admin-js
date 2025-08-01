@@ -6,9 +6,9 @@ Vue3技术栈的中后台模板，纯js实现, 解决市面上都是ts版本的�
 
 * Vue3
 * vue-router 4.x
-* vue-i18n 10
+* vue-i18n 10.x
 * pinia
-* element-plus 2.8.x
+* element-plus
 * Vite7
 
 ## 浏览器支持
