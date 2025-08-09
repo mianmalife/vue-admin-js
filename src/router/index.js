@@ -47,10 +47,24 @@ const StaticMenu = [
 
 const viewsModules = import.meta.glob('@/views/**/index.vue')
 
+function handlePrefix(data) {
+  function addPrefix(node, parentPath = '') {
+    const newPath = parentPath ? `${parentPath}/${node.path}` : node.path
+    const newNode = { ...node, path: newPath }
+
+    if (node.children?.length) {
+      newNode.children = node.children.map(child => addPrefix(child, newPath))
+    }
+    return newNode
+  }
+  return data.map(node => addPrefix(node))
+}
+
 export async function convertMenuData() {
   const res = await getMenuList()
   const topStore = useActiveStore()
-  topStore.setAllRoutes(StaticMenu.concat(res.menuList))
+  const prefixRoutes = handlePrefix(res.menuList)
+  topStore.setAllRoutes(StaticMenu.concat(prefixRoutes))
 
   const transformRoute = (route, f) => {
     let component
@@ -75,7 +89,7 @@ export async function convertMenuData() {
   }
 
   const routeMenu = []
-  res.menuList.forEach(route => {
+  prefixRoutes.forEach(route => {
     const compRoute = transformRoute(route)
     routeMenu.push(compRoute)
   })

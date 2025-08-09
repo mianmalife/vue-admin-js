@@ -11,7 +11,7 @@ const mockMenu = {
       redirect: '/list/table-list',
       children: [
         {
-          path: '/list/table-list',
+          path: 'table-list',
           name: 'table-list',
           component: 'list/table-list',
           meta: {
@@ -20,7 +20,7 @@ const mockMenu = {
           }
         },
         {
-          path: '/list/basic-list',
+          path: 'basic-list',
           name: 'basic-list',
           component: 'list/basic-list',
           meta: {
@@ -40,7 +40,7 @@ const mockMenu = {
       redirect: '/nested/menu1/menu1-2/menu1-2-1',
       children: [
         {
-          path: '/menu1',
+          path: 'menu1',
           name: 'menu1',
           meta: {
             title: 'menu1'
@@ -48,7 +48,7 @@ const mockMenu = {
           component: 'layout',
           children: [
             {
-              path: '/nested/menu1/menu1-1',
+              path: 'menu1-1',
               name: 'menu1-1',
               component: 'nested/menu1/menu1-1',
               meta: {
@@ -57,7 +57,7 @@ const mockMenu = {
               }
             },
             {
-              path: '/nested/menu1/menu1-2',
+              path: 'menu1-2',
               name: 'menu1-2',
               component: 'layout',
               meta: {
@@ -65,7 +65,7 @@ const mockMenu = {
               },
               children: [
                 {
-                  path: '/nested/menu1/menu1-2/menu1-2-1',
+                  path: 'menu1-2-1',
                   name: 'menu1-2-1',
                   component: 'nested/menu1/menu1-2/menu1-2-1',
                   meta: {
@@ -73,7 +73,7 @@ const mockMenu = {
                   }
                 },
                 {
-                  path: '/translate',
+                  path: 'translate',
                   name: 'translate',
                   component: null,
                   meta: {
@@ -86,7 +86,7 @@ const mockMenu = {
           ]
         },
         {
-          path: '/nested/menu2',
+          path: 'menu2',
           name: 'menu2',
           component: 'nested/menu2',
           meta: {
@@ -94,7 +94,7 @@ const mockMenu = {
           }
         },
         {
-          path: '/github-page',
+          path: 'github-page',
           name: 'Github',
           component: null,
           meta: {
